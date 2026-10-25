@@ -11,16 +11,18 @@ export class ExpressionService {
   readonly expressions = signal<Expression[]>([]);
 
   load(): Promise<Expression[]> {
-    this.loading ??= firstValueFrom(this.http.get<ExpressionFile>('data/praepositioner.json')).then(
-      (file) => {
+    this.loading ??= firstValueFrom(this.http.get<ExpressionFile>('data/praepositioner.json'))
+      .then((file) => {
+        if (!Array.isArray(file?.udtryk) || file.udtryk.length === 0) {
+          throw new Error('data/praepositioner.json has no "udtryk" items');
+        }
         this.expressions.set(file.udtryk);
         return file.udtryk;
-      },
-      (error) => {
+      })
+      .catch((error) => {
         this.loading = undefined; // allow a retry
         throw error;
-      },
-    );
+      });
     return this.loading;
   }
 }

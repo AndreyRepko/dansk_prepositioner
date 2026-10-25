@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { ExpressionService } from '../services/expression.service';
 import { QuizService } from '../services/quiz.service';
 import { byCategory, hardest, overview, percent, totals } from '../services/stats';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-stats',
   imports: [DatePipe],
   template: `
@@ -91,8 +92,8 @@ export class StatsPage {
   private readonly expressions = inject(ExpressionService).expressions;
 
   protected readonly progress = this.quiz.progress;
-  protected readonly ov = computed(() => overview(this.expressions(), this.progress(), Date.now()));
-  protected readonly all = computed(() => totals(this.progress()));
+  protected readonly ov = computed(() => overview(this.expressions(), this.progress(), this.quiz.now()));
+  protected readonly all = computed(() => totals(this.expressions(), this.progress()));
   protected readonly categories = computed(() => byCategory(this.expressions(), this.progress()));
   protected readonly hard = computed(() => hardest(this.expressions(), this.progress(), 10));
   protected readonly sessions = computed(() => this.progress().sessions.slice(-10).reverse());

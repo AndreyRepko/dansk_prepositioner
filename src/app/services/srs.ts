@@ -23,22 +23,29 @@ export interface SessionFilter {
   onlyMineFejl?: boolean;
 }
 
+/**
+ * Records one answer. A wrong answer always sends the item back to box 1.
+ * A correct answer only promotes an item that was due; answering a not-yet-due
+ * item (session filler) correctly keeps its box and due date, so repeating
+ * sessions cannot fast-track items to "mastered".
+ */
 export function applyAnswer(
   progress: ItemProgress | undefined,
   correct: boolean,
   now: number,
 ): ItemProgress {
   const prev = progress ?? { box: 0, seen: 0, correct: 0, wrong: 0, lastSeen: 0, due: 0 };
-  // Box 1 is reserved for recent mistakes, so a correct answer lands in box 2 or higher.
-  const box: Box = correct ? (Math.min(Math.max(prev.box + 1, 2), 5) as Box) : 1;
-  return {
-    box,
+  const wasDue = prev.box === 0 || prev.due <= now;
+  const counts = {
     seen: prev.seen + 1,
     correct: prev.correct + (correct ? 1 : 0),
     wrong: prev.wrong + (correct ? 0 : 1),
     lastSeen: now,
-    due: now + BOX_INTERVALS[box],
   };
+  if (correct && !wasDue) return { ...counts, box: prev.box, due: prev.due };
+  // Box 1 is reserved for recent mistakes, so a correct answer lands in box 2 or higher.
+  const box: Box = correct ? (Math.min(Math.max(prev.box + 1, 2), 5) as Box) : 1;
+  return { box, ...counts, due: now + BOX_INTERVALS[box] };
 }
 
 /**

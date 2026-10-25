@@ -1,6 +1,7 @@
 import { emptyProgress, ProgressState } from '../models/progress';
 import { seededRng, testExpression, testProgress } from '../testing/fixtures';
-import { applyAnswer, BOX_INTERVALS, buildOptions, selectSession, shuffle } from './srs';
+import { Box } from '../models/progress';
+import { applyAnswer, buildOptions, selectSession, shuffle } from './srs';
 
 const NOW = 1_000_000_000_000;
 const DAY = 24 * 60 * 60 * 1000;
@@ -11,10 +12,27 @@ describe('applyAnswer', () => {
     expect(p).toEqual({ box: 2, seen: 1, correct: 1, wrong: 0, lastSeen: NOW, due: NOW + DAY });
   });
 
-  it('moves a correct answer one box up and caps at 5', () => {
-    expect(applyAnswer(testProgress({ box: 3 }), true, NOW).box).toBe(4);
-    expect(applyAnswer(testProgress({ box: 5 }), true, NOW).box).toBe(5);
-    expect(applyAnswer(testProgress({ box: 3 }), true, NOW).due).toBe(NOW + BOX_INTERVALS[4]);
+  it.each<[Box, Box, number]>([
+    [0, 2, 1],
+    [1, 2, 1],
+    [2, 3, 3],
+    [3, 4, 7],
+    [4, 5, 21],
+    [5, 5, 21],
+  ])('moves a due item from box %i to box %i, due in %i days', (from, to, days) => {
+    const p = applyAnswer(testProgress({ box: from, due: NOW }), true, NOW);
+    expect(p.box).toBe(to);
+    expect(p.due).toBe(NOW + days * DAY);
+  });
+
+  it('keeps box and due date when a not-yet-due item is answered correctly', () => {
+    const p = applyAnswer(testProgress({ box: 2, seen: 1, correct: 1, due: NOW + DAY }), true, NOW);
+    expect(p).toEqual({ box: 2, seen: 2, correct: 2, wrong: 0, lastSeen: NOW, due: NOW + DAY });
+  });
+
+  it('still demotes a not-yet-due item answered wrong', () => {
+    const p = applyAnswer(testProgress({ box: 4, due: NOW + DAY }), false, NOW);
+    expect(p).toEqual(expect.objectContaining({ box: 1, due: NOW }));
   });
 
   it('sends a wrong answer back to box 1, due immediately', () => {
@@ -55,6 +73,18 @@ describe('selectSession', () => {
     expect(ids(selectSession(all, s, 2, {}, NOW, seededRng()))).toEqual([2, 3]);
     expect(ids(selectSession(all, s, 7, {}, NOW, seededRng()))).toEqual([2, 3, 4, 5, 6, 7, 8]);
     expect(ids(selectSession(all, s, 8, {}, NOW, seededRng()))).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+  });
+
+  it('orders recent mistakes by due date and other due items by box', () => {
+    const all = [1, 2, 3, 4].map((id) => testExpression(id));
+    const s = state({
+      1: testProgress({ box: 1, due: NOW - 10 }),
+      2: testProgress({ box: 1, due: NOW - 20 }),
+      3: testProgress({ box: 4, due: NOW - 30 }),
+      4: testProgress({ box: 2, due: NOW }), // due exactly now counts as due
+    });
+    expect(ids(selectSession(all, s, 1, {}, NOW, seededRng()))).toEqual([2]);
+    expect(ids(selectSession(all, s, 3, {}, NOW, seededRng()))).toEqual([1, 2, 4]);
   });
 
   it('picks mine_fejl items first among new items', () => {

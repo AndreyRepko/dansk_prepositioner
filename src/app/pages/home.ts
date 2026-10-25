@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from '../models/expression';
 import { ExpressionService } from '../services/expression.service';
@@ -7,6 +7,7 @@ import { overview, percent } from '../services/stats';
 
 @Component({
   selector: 'app-home',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h1>Danske præpositioner</h1>
 
@@ -27,18 +28,19 @@ import { overview, percent } from '../services/stats';
     <section class="card settings">
       <label>
         Questions
-        <select [value]="settings().size" (change)="setSize($event)">
+        <!-- [selected] on the options, not [value] on the select: the options do not exist yet when the select's value is bound -->
+        <select (change)="setSize($event)">
           @for (n of sizes; track n) {
-            <option [value]="n">{{ n }}</option>
+            <option [value]="n" [selected]="n === settings().size">{{ n }}</option>
           }
         </select>
       </label>
       <label>
         Category
-        <select [value]="settings().category ?? ''" (change)="setCategory($event)">
-          <option value="">All</option>
+        <select (change)="setCategory($event)">
+          <option value="" [selected]="!settings().category">All</option>
           @for (c of categories(); track c) {
-            <option [value]="c">{{ c }}</option>
+            <option [value]="c" [selected]="c === settings().category">{{ c }}</option>
           }
         </select>
       </label>
@@ -49,7 +51,7 @@ import { overview, percent } from '../services/stats';
       <div class="actions">
         <button class="primary" (click)="start()">Start</button>
       </div>
-      @if (empty) {
+      @if (empty()) {
         <p class="error">No expressions match this filter.</p>
       }
     </section>
@@ -96,9 +98,9 @@ export class HomePage {
 
   protected readonly sizes = [5, 10, 20, 30];
   protected readonly settings = this.quiz.settings;
-  protected readonly ov = computed(() => overview(this.expressions(), this.quiz.progress(), Date.now()));
+  protected readonly ov = computed(() => overview(this.expressions(), this.quiz.progress(), this.quiz.now()));
   protected readonly categories = computed(() => [...new Set(this.expressions().map((e) => e.kategori))]);
-  protected empty = false;
+  protected readonly empty = signal(false);
 
   protected pct(n: number): number {
     return percent(n, this.ov().total);
@@ -120,7 +122,7 @@ export class HomePage {
   }
 
   protected start(): void {
-    this.empty = this.quiz.start(this.settings()) === 0;
-    if (!this.empty) void this.router.navigate(['/quiz']);
+    this.empty.set(this.quiz.start(this.settings()) === 0);
+    if (!this.empty()) void this.router.navigate(['/quiz']);
   }
 }

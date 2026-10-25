@@ -26,6 +26,11 @@ jobs:
       - run: npm ci
       - run: npx ng test --watch=false
       - run: npx ng build
+      # skip_app_build uploads app_location as-is, so make sure the build actually produced it.
+      - name: Check build output
+        run: |
+          test -s dist/dansk-prepositioner/browser/index.html
+          test -s dist/dansk-prepositioner/browser/data/praepositioner.json
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1

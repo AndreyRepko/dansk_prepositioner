@@ -1,6 +1,6 @@
 import { emptyProgress, ProgressState } from '../models/progress';
 import { testExpression, testProgress } from '../testing/fixtures';
-import { byCategory, hardest, overview, percent } from './stats';
+import { byCategory, hardest, overview, percent, totals } from './stats';
 
 const NOW = 1_000;
 
@@ -33,6 +33,11 @@ describe('stats', () => {
 
   it('lists items with mistakes, most mistakes first', () => {
     expect(hardest(all, state, 10).map((h) => h.expression.id)).toEqual([2, 3]);
+  });
+
+  it('totals answers over current expressions only', () => {
+    const withRemoved: ProgressState = { ...state, items: { ...state.items, 99: testProgress({ seen: 50, correct: 50 }) } };
+    expect(totals(all, withRemoved)).toEqual({ answers: 8, correct: 5 });
   });
 
   it('computes percentages safely', () => {

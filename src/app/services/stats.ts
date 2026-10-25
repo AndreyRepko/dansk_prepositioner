@@ -39,10 +39,13 @@ export function overview(expressions: Expression[], state: ProgressState, now: n
   return result;
 }
 
-export function totals(state: ProgressState): { answers: number; correct: number } {
+/** Answers over the current expressions (progress for removed ids is ignored, as in the other stats). */
+export function totals(expressions: Expression[], state: ProgressState): { answers: number; correct: number } {
   let answers = 0;
   let correct = 0;
-  for (const p of Object.values(state.items)) {
+  for (const e of expressions) {
+    const p = state.items[e.id];
+    if (!p) continue;
     answers += p.seen;
     correct += p.correct;
   }

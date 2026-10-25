@@ -1,9 +1,10 @@
-import { Component, computed, HostListener, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, HostListener, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GAP } from '../models/expression';
 import { QuizService } from '../services/quiz.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-quiz',
   template: `
     @if (question(); as q) {

@@ -29,6 +29,7 @@ export class QuizService {
   private readonly store = inject(ProgressStore);
   private readonly expressionService = inject(ExpressionService);
   private ready?: Promise<void>;
+  private saving: Promise<void> = Promise.resolve();
 
   /** Overridable in tests. */
   now: () => number = Date.now;
@@ -43,6 +44,10 @@ export class QuizService {
   /** First attempts only, in the order they were answered. */
   readonly results = signal<AnswerRecord[]>([]);
   readonly finished = signal(false);
+  /** Saved progress could not be loaded; saving is disabled so it is not overwritten. */
+  readonly loadError = signal(false);
+  /** The last save failed. */
+  readonly saveError = signal(false);
 
   readonly current = computed<Question | undefined>(() => this.queue()[this.index()]);
   readonly active = computed(() => this.queue().length > 0 && !this.finished());
@@ -54,9 +59,13 @@ export class QuizService {
 
   init(): Promise<void> {
     this.ready ??= Promise.all([this.store.load(), this.expressionService.load()]).then(
-      ([progress]) => this.progress.set(progress),
+      ([progress]) => {
+        this.progress.set(progress);
+        this.loadError.set(false);
+      },
       (error) => {
         this.ready = undefined;
+        this.loadError.set(true);
         throw error;
       },
     );
@@ -95,7 +104,7 @@ export class QuizService {
         items: { ...s.items, [id]: applyAnswer(s.items[id], correct, this.now()) },
       }));
       this.results.update((r) => [...r, { expression: q.expression, chosen: option, correct }]);
-      void this.store.save(this.progress());
+      void this.persist();
     }
     if (!correct) {
       this.queue.update((queue) => [...queue, this.toQuestion(q.expression, true)]);
@@ -103,7 +112,7 @@ export class QuizService {
   }
 
   next(): void {
-    if (this.chosen() === null) return;
+    if (this.chosen() === null || this.finished()) return;
     if (this.index() + 1 < this.queue().length) {
       this.index.update((i) => i + 1);
       this.chosen.set(null);
@@ -117,7 +126,7 @@ export class QuizService {
         { date: this.now(), total: results.length, correct: results.filter((r) => r.correct).length },
       ],
     }));
-    void this.store.save(this.progress());
+    void this.persist();
     this.finished.set(true);
   }
 
@@ -126,7 +135,23 @@ export class QuizService {
     this.queue.set([]);
     this.results.set([]);
     this.finished.set(false);
-    await this.store.save(this.progress());
+    await this.persist();
+  }
+
+  /** Saves the current progress; saves run one after another so they cannot land out of order. */
+  private persist(): Promise<void> {
+    if (this.loadError()) return Promise.resolve();
+    const state = this.progress();
+    this.saving = this.saving
+      .then(() => this.store.save(state))
+      .then(
+        () => this.saveError.set(false),
+        (error) => {
+          console.error('Could not save progress', error);
+          this.saveError.set(true);
+        },
+      );
+    return this.saving;
   }
 
   private toQuestion(expression: Expression, retry: boolean): Question {
