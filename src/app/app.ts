@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ExpressionService } from './services/expression.service';
 import { QuizService } from './services/quiz.service';
+import { ShareDialog } from './share/share-dialog';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, ShareDialog],
   selector: 'app-root',
   template: `
     <header class="top">
@@ -13,8 +14,10 @@ import { QuizService } from './services/quiz.service';
       <nav>
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Practice</a>
         <a routerLink="/stats" routerLinkActive="active">Statistics</a>
+        <button class="share" (click)="share.open()">Share</button>
       </nav>
     </header>
+    <app-share-dialog #share />
     <main>
       @if (expressions().length === 0 || loadError()) {
         <div class="card error">
@@ -52,6 +55,12 @@ import { QuizService } from './services/quiz.service';
     nav a {
       color: var(--muted);
       text-decoration: none;
+    }
+    nav .share {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--muted);
     }
     nav a.active {
       color: var(--accent);
