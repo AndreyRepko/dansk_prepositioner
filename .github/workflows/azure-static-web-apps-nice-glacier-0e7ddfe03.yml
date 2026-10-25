@@ -31,6 +31,7 @@ jobs:
         run: |
           test -s dist/dansk-prepositioner/browser/index.html
           test -s dist/dansk-prepositioner/browser/data/praepositioner.json
+          test -s dist/dansk-prepositioner/browser/qr.svg
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
