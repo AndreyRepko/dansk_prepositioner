@@ -58,9 +58,11 @@ through the `ProgressStore` abstraction, so a backend store can replace it in `a
 
 ## Deployment (Azure Static Web Apps)
 
-Create a Static Web App (Free plan) linked to this repo, preset **Angular**, app location `/`,
-output location `dist/dansk-prepositioner/browser`. `public/staticwebapp.config.json` rewrites
-deep links (`/stats`, `/quiz`) to `index.html`.
+The Static Web App `swa-dansk-prep` (Free plan, resource group `rg_dansk_prep`) deploys via
+`.github/workflows/azure-static-web-apps-*.yml`: on every push to `main` it runs the tests,
+builds with Node 24 and uploads `dist/dansk-prepositioner/browser`; pull requests get a preview
+environment. `public/staticwebapp.config.json` rewrites deep links (`/stats`, `/quiz`) to
+`index.html`.
 
 Planned: an `api/` folder with Azure Functions (`GET/PUT /api/progress`) backed by Azure Table
 Storage, keyed by the Static Web Apps login, so progress syncs between devices.
