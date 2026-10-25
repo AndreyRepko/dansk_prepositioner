@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ExpressionService } from './services/expression.service';
 import { QuizService } from './services/quiz.service';
+import { UserService } from './services/user.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -10,20 +11,33 @@ import { QuizService } from './services/quiz.service';
   template: `
     <header class="top">
       <a routerLink="/" class="brand">Præpositioner</a>
-      <nav>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Practice</a>
-        <a routerLink="/stats" routerLinkActive="active">Statistics</a>
-      </nav>
+      @if (user(); as name) {
+        <nav>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Practice</a>
+          <a routerLink="/stats" routerLinkActive="active">Statistics</a>
+          <span class="user">{{ name }} · <a routerLink="/who" class="switch">switch</a></span>
+        </nav>
+      }
     </header>
     <main>
-      @if (expressions().length === 0 || loadError()) {
+      @if (expressions().length === 0) {
         <div class="card error">
-          <p>Could not load the expressions or your saved progress.</p>
+          <p>Could not load the expressions.</p>
           <button (click)="retry()">Retry</button>
         </div>
+      } @else if (loadError()) {
+        <div class="card error">
+          <p>Could not load the saved progress for {{ user() }}.</p>
+          <div class="actions">
+            <button (click)="retry()">Retry</button>
+            <button (click)="otherName()">Use another name</button>
+          </div>
+        </div>
+      } @else if (loading()) {
+        <p class="card muted">Loading progress…</p>
       } @else {
         @if (saveError()) {
-          <p class="card warning">Progress is not being saved in this browser.</p>
+          <p class="card warning">Progress is not being saved.</p>
         }
         <router-outlet />
       }
@@ -47,7 +61,15 @@ import { QuizService } from './services/quiz.service';
     }
     nav {
       display: flex;
-      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.25rem 1rem;
+    }
+    .user {
+      color: var(--text);
+    }
+    nav a.switch {
+      color: var(--accent);
     }
     nav a {
       color: var(--muted);
@@ -66,11 +88,19 @@ import { QuizService } from './services/quiz.service';
 })
 export class App {
   private readonly quiz = inject(QuizService);
+  private readonly router = inject(Router);
   protected readonly expressions = inject(ExpressionService).expressions;
+  protected readonly user = inject(UserService).current;
+  protected readonly loading = this.quiz.loading;
   protected readonly loadError = this.quiz.loadError;
   protected readonly saveError = this.quiz.saveError;
 
   protected retry(): void {
     this.quiz.init().catch((e) => console.error(e));
+  }
+
+  protected otherName(): void {
+    this.quiz.signOut();
+    void this.router.navigate(['/who']);
   }
 }

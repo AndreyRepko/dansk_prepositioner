@@ -8,12 +8,34 @@ explanation and the Ukrainian translation.
 
 ```bash
 npm install
-npm start          # http://localhost:4200
+npm start          # http://localhost:4200, progress kept in this browser (no backend needed)
 npm test           # unit tests (Vitest)
-npm run build      # output: dist/dansk-prepositioner/browser
+npm run build      # output: dist/dansk-prepositioner/browser (uses the API for progress)
 ```
 
 Keyboard: `1`–`4` answers, `Enter` goes to the next question.
+
+### With the API locally
+
+Needs [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) v4.
+Create `api/local.settings.json` (git-ignored):
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "TABLES_CONNECTION_STRING": "UseDevelopmentStorage=true"
+  }
+}
+```
+
+```bash
+npx -p azurite@3 azurite-table --location .azurite   # storage emulator (port 10002)
+cd api && npm install && npm run build && npm start  # functions on :7071
+npm run start:api                                    # app on :4200, /api proxied to :7071
+cd api && npm test                                   # API unit tests
+```
 
 ## Data
 
@@ -45,24 +67,40 @@ Every expression sits in a Leitner box (`src/app/services/srs.ts`):
 | 4   | mastered         | 7 days          |
 | 5   | mastered         | 21 days         |
 
-A correct answer moves the item one box up (at least to box 2); a wrong answer sends it back
-to box 1. A session (10 questions by default) is filled with: recent mistakes → other due
+A correct answer on a due item moves it one box up (at least to box 2); answering a not-yet-due
+item correctly changes nothing, so repeating sessions cannot fast-track it. A wrong answer
+always sends the item back to box 1. A session (10 questions by default) is filled with: recent mistakes → other due
 items → new items (`mine_fejl` first) → least recently seen items. Within a session a wrong
 answer is asked again at the end until it is answered correctly (only the first attempt
 counts for the statistics).
 
-## Storage
+## Names and storage
 
-Progress is kept in the browser's `localStorage` (`LocalStorageProgressStore`). Storage goes
-through the `ProgressStore` abstraction, so a backend store can replace it in `app.config.ts`.
+There is no login. On the first visit the app asks for a name (`/who`); the browser remembers it
+and the names used before, and the header has a *switch* link. Progress belongs to the name, so
+the same name on another device shows the same progress. Names are case-insensitive, 1–30
+letters/digits/spaces/`. _ ' -`. Anyone who types the same name shares that progress, and when
+one name is used on two devices at once the last save wins.
+
+Storage goes through `ProgressStore` (chosen in `app.config.ts` by the `USE_API` build define):
+
+- **Production** (`ApiProgressStore`): `GET/PUT /api/progress/{name}` (Azure Functions in `api/`),
+  stored in Azure Table Storage, table `progress`, one row per name (`PartitionKey` = lower-case
+  name). The JSON is split over `data0..dataN` properties because a table property holds at most
+  64 KiB; the app keeps the last 200 sessions so a row stays small.
+- **`npm start`** (`LocalStorageProgressStore`): browser `localStorage`, one key per name.
+
+Progress saved before names existed (one unnamed `localStorage` entry) is moved to the first
+name entered in that browser that has no progress yet.
 
 ## Deployment (Azure Static Web Apps)
 
 The Static Web App `swa-dansk-prep` (Free plan, resource group `rg_dansk_prep`) deploys via
-`.github/workflows/azure-static-web-apps-*.yml`: on every push to `main` it runs the tests,
-builds with Node 24 and uploads `dist/dansk-prepositioner/browser`; pull requests get a preview
-environment. `public/staticwebapp.config.json` rewrites deep links (`/stats`, `/quiz`) to
-`index.html`.
+`.github/workflows/azure-static-web-apps-*.yml`: on every push to `main` it tests and builds the
+app (Node 24) and the API (Node 22, the managed Functions runtime set in
+`public/staticwebapp.config.json`) and uploads both; pull requests get a preview environment
+(it shares the same table). `staticwebapp.config.json` also rewrites deep links (`/stats`,
+`/quiz`) to `index.html`.
 
-Planned: an `api/` folder with Azure Functions (`GET/PUT /api/progress`) backed by Azure Table
-Storage, keyed by the Static Web Apps login, so progress syncs between devices.
+The API reads the app setting `TABLES_CONNECTION_STRING` (connection string of the storage
+account `sadanskprep`); it creates the table on first use.
