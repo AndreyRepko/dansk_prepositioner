@@ -1,0 +1,3459 @@
+{
+  "titel": "Danske præpositioner til PD3 – Andriis liste",
+  "beskrivelse": "Faste udtryk med præposition. 'saetning' har ét hul (___). 'praeposition' er det rigtige svar, 'forkerte' er tre forkerte svarmuligheder. 'mine_fejl' = true betyder, at Andrii selv har lavet fejlen i sine tekster.",
+  "oprettet": "2026-10-25",
+  "kilder": "Andriis egne fejl, almindelige PD3-udtryk og ordlisterne i Havnen i Vestkøbing og Modvind",
+  "antal": 230,
+  "udtryk": [
+    {
+      "id": 1,
+      "udtryk": "godt for",
+      "praeposition": "for",
+      "saetning": "Det er godt ___ samfundet, at unge får en uddannelse.",
+      "forkerte": [
+        "til",
+        "på",
+        "med"
+      ],
+      "forklaring": "godt/dårligt/vigtigt for nogen eller noget",
+      "ukrainsk": "добре для (когось/чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 2,
+      "udtryk": "dårligt for",
+      "praeposition": "for",
+      "saetning": "Det er dårligt ___ de små byers økonomi.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "godt/dårligt/vigtigt for nogen eller noget",
+      "ukrainsk": "погано для (когось/чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 3,
+      "udtryk": "vigtigt for",
+      "praeposition": "for",
+      "saetning": "Det er vigtigt ___ alle at dyrke motion.",
+      "forkerte": [
+        "til",
+        "på",
+        "med"
+      ],
+      "forklaring": "godt/dårligt/vigtigt for nogen eller noget",
+      "ukrainsk": "важливо для (когось/чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 4,
+      "udtryk": "afhængig af",
+      "praeposition": "af",
+      "saetning": "Mange landmænd er afhængige ___ vejret.",
+      "forkerte": [
+        "på",
+        "til",
+        "for"
+      ],
+      "forklaring": "være afhængig af noget",
+      "ukrainsk": "залежний від (чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 5,
+      "udtryk": "glad for",
+      "praeposition": "for",
+      "saetning": "Jeg er meget glad ___ min nye cykel.",
+      "forkerte": [
+        "med",
+        "på",
+        "til"
+      ],
+      "forklaring": "være glad for noget",
+      "ukrainsk": "любити (щось), бути радим (чомусь)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 6,
+      "udtryk": "enig med (person)",
+      "praeposition": "med",
+      "saetning": "Jeg er enig ___ min chef.",
+      "forkerte": [
+        "i",
+        "på",
+        "til"
+      ],
+      "forklaring": "enig med en person, enig i en sag",
+      "ukrainsk": "погоджуватися з (кимось)",
+      "kategori": "tillægsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 7,
+      "udtryk": "enig i (sag)",
+      "praeposition": "i",
+      "saetning": "Jeg er ikke enig ___ det, chefen siger.",
+      "forkerte": [
+        "med",
+        "på",
+        "til"
+      ],
+      "forklaring": "enig med en person, enig i en sag",
+      "ukrainsk": "погоджуватися з (чимось)",
+      "kategori": "tillægsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 8,
+      "udtryk": "uenig i",
+      "praeposition": "i",
+      "saetning": "Jeg er helt uenig ___, at vi skal sammenligne møllerne med kirketårne.",
+      "forkerte": [
+        "med",
+        "til",
+        "på"
+      ],
+      "forklaring": "uenig i en sag, uenig med en person",
+      "ukrainsk": "не погоджуватися з (чимось)",
+      "kategori": "tillægsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 9,
+      "udtryk": "sikker på",
+      "praeposition": "på",
+      "saetning": "Jeg er ikke helt sikker ___, om jeg kan komme.",
+      "forkerte": [
+        "om",
+        "i",
+        "af"
+      ],
+      "forklaring": "være sikker på noget",
+      "ukrainsk": "бути впевненим у (чомусь)",
+      "kategori": "tillægsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 10,
+      "udtryk": "bekymret for",
+      "praeposition": "for",
+      "saetning": "De er bekymrede ___ værdien af deres huse.",
+      "forkerte": [
+        "om",
+        "til",
+        "på"
+      ],
+      "forklaring": "være bekymret for noget",
+      "ukrainsk": "хвилюватися за (когось/щось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 11,
+      "udtryk": "tilfreds med",
+      "praeposition": "med",
+      "saetning": "Er du tilfreds ___ dit nye job?",
+      "forkerte": [
+        "af",
+        "for",
+        "over"
+      ],
+      "forklaring": "være tilfreds med noget",
+      "ukrainsk": "бути задоволеним (чимось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 12,
+      "udtryk": "stolt af",
+      "praeposition": "af",
+      "saetning": "Han er meget stolt ___ sin datter.",
+      "forkerte": [
+        "med",
+        "for",
+        "på"
+      ],
+      "forklaring": "være stolt af nogen eller noget",
+      "ukrainsk": "пишатися (кимось/чимось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 13,
+      "udtryk": "træt af",
+      "praeposition": "af",
+      "saetning": "Jeg er træt ___ al den regn.",
+      "forkerte": [
+        "på",
+        "for",
+        "med"
+      ],
+      "forklaring": "være træt af noget (= have fået nok)",
+      "ukrainsk": "втомитися від (чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 14,
+      "udtryk": "interesseret i",
+      "praeposition": "i",
+      "saetning": "Hun er meget interesseret ___ politik.",
+      "forkerte": [
+        "for",
+        "på",
+        "om"
+      ],
+      "forklaring": "være interesseret i noget (men: interessere sig for)",
+      "ukrainsk": "зацікавлений у (чомусь)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 15,
+      "udtryk": "god til",
+      "praeposition": "til",
+      "saetning": "Hun er god ___ at tale med kunderne.",
+      "forkerte": [
+        "for",
+        "på",
+        "i"
+      ],
+      "forklaring": "være god til noget (en evne)",
+      "ukrainsk": "добре вміти (щось), бути вправним у",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 16,
+      "udtryk": "vant til",
+      "praeposition": "til",
+      "saetning": "Jeg er ikke vant ___ at cykle i sne.",
+      "forkerte": [
+        "med",
+        "på",
+        "for"
+      ],
+      "forklaring": "være vant til noget",
+      "ukrainsk": "бути звиклим до (чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 17,
+      "udtryk": "ked af",
+      "praeposition": "af",
+      "saetning": "Oscar er ked ___ at skulle skifte skole.",
+      "forkerte": [
+        "for",
+        "over",
+        "med"
+      ],
+      "forklaring": "være ked af noget",
+      "ukrainsk": "засмучений (чимось), шкодувати про",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 18,
+      "udtryk": "bange for",
+      "praeposition": "for",
+      "saetning": "Mange børn er bange ___ mørket.",
+      "forkerte": [
+        "af",
+        "på",
+        "over"
+      ],
+      "forklaring": "være bange for noget",
+      "ukrainsk": "боятися (чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 19,
+      "udtryk": "taknemmelig for",
+      "praeposition": "for",
+      "saetning": "Jeg er taknemmelig ___ din hjælp.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "være taknemmelig for noget",
+      "ukrainsk": "бути вдячним за (щось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 20,
+      "udtryk": "skuffet over",
+      "praeposition": "over",
+      "saetning": "Borgerne var skuffede ___ byrådets beslutning.",
+      "forkerte": [
+        "af",
+        "for",
+        "på"
+      ],
+      "forklaring": "være skuffet over noget",
+      "ukrainsk": "бути розчарованим (чимось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 21,
+      "udtryk": "vred på (person)",
+      "praeposition": "på",
+      "saetning": "Hun var vred ___ sin bror.",
+      "forkerte": [
+        "over",
+        "for",
+        "til"
+      ],
+      "forklaring": "vred på en person, vred over en sag",
+      "ukrainsk": "сердитися на (когось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 22,
+      "udtryk": "vred over (sag)",
+      "praeposition": "over",
+      "saetning": "Mange er vrede ___ de høje priser.",
+      "forkerte": [
+        "på",
+        "for",
+        "af"
+      ],
+      "forklaring": "vred på en person, vred over en sag",
+      "ukrainsk": "обурюватися (чимось), сердитися через",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 23,
+      "udtryk": "forelsket i",
+      "praeposition": "i",
+      "saetning": "Han er forelsket ___ sin nabo.",
+      "forkerte": [
+        "på",
+        "med",
+        "til"
+      ],
+      "forklaring": "være forelsket i nogen",
+      "ukrainsk": "бути закоханим у (когось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 24,
+      "udtryk": "klar til",
+      "praeposition": "til",
+      "saetning": "Er du klar ___ prøven?",
+      "forkerte": [
+        "for",
+        "på",
+        "med"
+      ],
+      "forklaring": "være klar til noget",
+      "ukrainsk": "бути готовим до (чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 25,
+      "udtryk": "ansvarlig for",
+      "praeposition": "for",
+      "saetning": "Hvem er ansvarlig ___ projektet?",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "være ansvarlig for noget",
+      "ukrainsk": "відповідальний за (щось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 26,
+      "udtryk": "typisk for",
+      "praeposition": "for",
+      "saetning": "Det er typisk ___ Danmark, at mange cykler.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "være typisk for noget",
+      "ukrainsk": "типовий для (чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 27,
+      "udtryk": "lære af",
+      "praeposition": "af",
+      "saetning": "Jeg har lært meget ___ Ullas rettelser.",
+      "forkerte": [
+        "fra",
+        "med",
+        "på"
+      ],
+      "forklaring": "lære af nogen eller noget",
+      "ukrainsk": "вчитися в (когось) / на (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 28,
+      "udtryk": "holde øje med",
+      "praeposition": "med",
+      "saetning": "Kan du holde øje ___ mine børn et øjeblik?",
+      "forkerte": [
+        "på",
+        "for",
+        "til"
+      ],
+      "forklaring": "holde øje med nogen = passe på",
+      "ukrainsk": "стежити за (кимось/чимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 29,
+      "udtryk": "gøre noget ved",
+      "praeposition": "ved",
+      "saetning": "Kommunen skal gøre noget ___ problemet.",
+      "forkerte": [
+        "med",
+        "for",
+        "på"
+      ],
+      "forklaring": "gøre noget ved et problem",
+      "ukrainsk": "щось робити з (проблемою)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 30,
+      "udtryk": "bruge tid på",
+      "praeposition": "på",
+      "saetning": "Jeg bruger meget tid ___ at lære dansk.",
+      "forkerte": [
+        "om",
+        "for",
+        "med"
+      ],
+      "forklaring": "bruge tid på noget",
+      "ukrainsk": "витрачати час на (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 31,
+      "udtryk": "tænke over (problem)",
+      "praeposition": "over",
+      "saetning": "Jeg har ikke tænkt ___ det før.",
+      "forkerte": [
+        "om",
+        "af",
+        "med"
+      ],
+      "forklaring": "tænke over et problem, tænke på en person",
+      "ukrainsk": "обмірковувати (щось), думати над (чимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 32,
+      "udtryk": "tænke på (person)",
+      "praeposition": "på",
+      "saetning": "Jeg tænker tit ___ min familie i Ukraine.",
+      "forkerte": [
+        "over",
+        "om",
+        "af"
+      ],
+      "forklaring": "tænke på en person, tænke over et problem",
+      "ukrainsk": "думати про (когось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 33,
+      "udtryk": "vente på",
+      "praeposition": "på",
+      "saetning": "Vi venter ___ bussen.",
+      "forkerte": [
+        "for",
+        "til",
+        "efter"
+      ],
+      "forklaring": "vente på nogen eller noget",
+      "ukrainsk": "чекати на (когось/щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 34,
+      "udtryk": "passe på",
+      "praeposition": "på",
+      "saetning": "Du skal passe ___ dig selv.",
+      "forkerte": [
+        "om",
+        "for",
+        "med"
+      ],
+      "forklaring": "passe på nogen eller noget",
+      "ukrainsk": "берегти (когось), остерігатися (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 35,
+      "udtryk": "glæde sig til",
+      "praeposition": "til",
+      "saetning": "Jeg glæder mig ___ weekenden.",
+      "forkerte": [
+        "på",
+        "for",
+        "over"
+      ],
+      "forklaring": "glæde sig til noget i fremtiden",
+      "ukrainsk": "з нетерпінням чекати (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 36,
+      "udtryk": "have lyst til",
+      "praeposition": "til",
+      "saetning": "Har du lyst ___ at tage på stranden?",
+      "forkerte": [
+        "på",
+        "for",
+        "med"
+      ],
+      "forklaring": "have lyst til noget",
+      "ukrainsk": "хотіти (чогось), мати бажання",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 37,
+      "udtryk": "have brug for",
+      "praeposition": "for",
+      "saetning": "Byen har brug ___ flere unge familier.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "have brug for noget",
+      "ukrainsk": "потребувати (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 38,
+      "udtryk": "have tid til",
+      "praeposition": "til",
+      "saetning": "Jeg har ikke tid ___ at lave mad i dag.",
+      "forkerte": [
+        "for",
+        "på",
+        "med"
+      ],
+      "forklaring": "have tid til noget",
+      "ukrainsk": "мати час на (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 39,
+      "udtryk": "have overskud til",
+      "praeposition": "til",
+      "saetning": "Efter arbejde har jeg ikke overskud ___ at lave mad.",
+      "forkerte": [
+        "for",
+        "på",
+        "med"
+      ],
+      "forklaring": "have overskud til noget",
+      "ukrainsk": "мати сили на (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 40,
+      "udtryk": "deltage i",
+      "praeposition": "i",
+      "saetning": "Mange borgere deltog ___ mødet.",
+      "forkerte": [
+        "ved",
+        "til",
+        "med"
+      ],
+      "forklaring": "deltage i noget",
+      "ukrainsk": "брати участь у (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 41,
+      "udtryk": "tro på",
+      "praeposition": "på",
+      "saetning": "Jeg tror ___, at det bliver bedre.",
+      "forkerte": [
+        "i",
+        "om",
+        "for"
+      ],
+      "forklaring": "tro på noget",
+      "ukrainsk": "вірити в (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 42,
+      "udtryk": "drømme om",
+      "praeposition": "om",
+      "saetning": "Hun drømmer ___ at åbne sin egen café.",
+      "forkerte": [
+        "på",
+        "for",
+        "af"
+      ],
+      "forklaring": "drømme om noget",
+      "ukrainsk": "мріяти про (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 43,
+      "udtryk": "tale om",
+      "praeposition": "om",
+      "saetning": "Hele aftenen talte vi ___ de nye planer for havnen.",
+      "forkerte": [
+        "på",
+        "for",
+        "af"
+      ],
+      "forklaring": "tale om et emne, tale med en person",
+      "ukrainsk": "говорити про (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 44,
+      "udtryk": "snakke med (person)",
+      "praeposition": "med",
+      "saetning": "Jeg snakker tit ___ mine kolleger.",
+      "forkerte": [
+        "for",
+        "af",
+        "ved"
+      ],
+      "forklaring": "snakke/tale med en person",
+      "ukrainsk": "розмовляти з (кимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 45,
+      "udtryk": "spørge om",
+      "praeposition": "om",
+      "saetning": "Må jeg spørge dig ___ noget?",
+      "forkerte": [
+        "på",
+        "for",
+        "til"
+      ],
+      "forklaring": "spørge nogen om noget",
+      "ukrainsk": "питати (когось) про (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 46,
+      "udtryk": "bede om",
+      "praeposition": "om",
+      "saetning": "Må jeg bede dig ___ et råd?",
+      "forkerte": [
+        "for",
+        "på",
+        "til"
+      ],
+      "forklaring": "bede nogen om noget",
+      "ukrainsk": "просити (когось) про (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 47,
+      "udtryk": "sørge for",
+      "praeposition": "for",
+      "saetning": "Kan du sørge ___, at døren er låst?",
+      "forkerte": [
+        "om",
+        "på",
+        "til"
+      ],
+      "forklaring": "sørge for noget",
+      "ukrainsk": "подбати про (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 48,
+      "udtryk": "lede efter",
+      "praeposition": "efter",
+      "saetning": "Jeg leder ___ mine nøgler.",
+      "forkerte": [
+        "for",
+        "på",
+        "om"
+      ],
+      "forklaring": "lede efter noget",
+      "ukrainsk": "шукати (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 49,
+      "udtryk": "se frem til",
+      "praeposition": "til",
+      "saetning": "Jeg ser frem ___ at møde dig.",
+      "forkerte": [
+        "på",
+        "for",
+        "mod"
+      ],
+      "forklaring": "se frem til noget",
+      "ukrainsk": "з нетерпінням чекати (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 50,
+      "udtryk": "fokusere på",
+      "praeposition": "på",
+      "saetning": "Når jeg arbejder hjemme, fokuserer jeg ___ opgaverne.",
+      "forkerte": [
+        "om",
+        "til",
+        "i"
+      ],
+      "forklaring": "fokusere på noget",
+      "ukrainsk": "зосереджуватися на (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 51,
+      "udtryk": "koncentrere sig om",
+      "praeposition": "om",
+      "saetning": "Jeg kan ikke koncentrere mig ___ arbejdet.",
+      "forkerte": [
+        "på",
+        "til",
+        "i"
+      ],
+      "forklaring": "koncentrere sig om noget",
+      "ukrainsk": "зосереджуватися на (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 52,
+      "udtryk": "interessere sig for",
+      "praeposition": "for",
+      "saetning": "Han interesserer sig ___ dansk politik.",
+      "forkerte": [
+        "i",
+        "på",
+        "om"
+      ],
+      "forklaring": "interessere sig for noget (men: interesseret i)",
+      "ukrainsk": "цікавитися (чимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 53,
+      "udtryk": "bestå af",
+      "praeposition": "af",
+      "saetning": "Prøven består ___ en skriftlig og en mundtlig del.",
+      "forkerte": [
+        "med",
+        "i",
+        "på"
+      ],
+      "forklaring": "bestå af dele",
+      "ukrainsk": "складатися з (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 54,
+      "udtryk": "stamme fra",
+      "praeposition": "fra",
+      "saetning": "Ordet \"kaffe\" stammer ___ arabisk.",
+      "forkerte": [
+        "af",
+        "ud",
+        "på"
+      ],
+      "forklaring": "stamme fra noget",
+      "ukrainsk": "походити з / від (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 55,
+      "udtryk": "bygge på",
+      "praeposition": "på",
+      "saetning": "Hans argument bygger ___ en ny undersøgelse.",
+      "forkerte": [
+        "af",
+        "med",
+        "om"
+      ],
+      "forklaring": "bygge på noget (= have som grundlag)",
+      "ukrainsk": "ґрунтуватися на (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 56,
+      "udtryk": "opfordre nogen til",
+      "praeposition": "til",
+      "saetning": "Jeg opfordrer byrådet ___ at lytte til borgerne.",
+      "forkerte": [
+        "om",
+        "for",
+        "på"
+      ],
+      "forklaring": "opfordre nogen til at gøre noget",
+      "ukrainsk": "закликати (когось) до (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 57,
+      "udtryk": "overtale nogen til",
+      "praeposition": "til",
+      "saetning": "Hun kan ikke overtale mig ___ at gå i seng.",
+      "forkerte": [
+        "om",
+        "for",
+        "på"
+      ],
+      "forklaring": "overtale nogen til at gøre noget",
+      "ukrainsk": "умовити (когось) (щось зробити)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 58,
+      "udtryk": "overbevise nogen om",
+      "praeposition": "om",
+      "saetning": "Han overbeviste mig ___, at han havde ret.",
+      "forkerte": [
+        "til",
+        "for",
+        "på"
+      ],
+      "forklaring": "overbevise nogen om, at noget er sandt",
+      "ukrainsk": "переконати (когось) у (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 59,
+      "udtryk": "forberede sig på",
+      "praeposition": "på",
+      "saetning": "Man skal forberede sig ___ det værste.",
+      "forkerte": [
+        "om",
+        "for",
+        "med"
+      ],
+      "forklaring": "forberede sig på noget",
+      "ukrainsk": "готуватися до (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 60,
+      "udtryk": "gå op i",
+      "praeposition": "i",
+      "saetning": "Han går meget op ___ fodbold.",
+      "forkerte": [
+        "på",
+        "til",
+        "med"
+      ],
+      "forklaring": "gå op i noget = interessere sig meget",
+      "ukrainsk": "захоплюватися (чимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 61,
+      "udtryk": "klage over",
+      "praeposition": "over",
+      "saetning": "Naboerne klager ___ støjen.",
+      "forkerte": [
+        "om",
+        "på",
+        "af"
+      ],
+      "forklaring": "klage over noget",
+      "ukrainsk": "скаржитися на (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 62,
+      "udtryk": "svare på",
+      "praeposition": "på",
+      "saetning": "Kan du svare ___ mit spørgsmål?",
+      "forkerte": [
+        "til",
+        "om",
+        "for"
+      ],
+      "forklaring": "svare på noget",
+      "ukrainsk": "відповідати на (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 63,
+      "udtryk": "reagere på",
+      "praeposition": "på",
+      "saetning": "Hvordan reagerede han ___ nyheden?",
+      "forkerte": [
+        "til",
+        "om",
+        "over"
+      ],
+      "forklaring": "reagere på noget",
+      "ukrainsk": "реагувати на (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 64,
+      "udtryk": "sammenligne med",
+      "praeposition": "med",
+      "saetning": "Man kan ikke sammenligne møllerne ___ kirketårne.",
+      "forkerte": [
+        "til",
+        "af",
+        "for"
+      ],
+      "forklaring": "sammenligne noget med noget",
+      "ukrainsk": "порівнювати з (чимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 65,
+      "udtryk": "hjælpe med",
+      "praeposition": "med",
+      "saetning": "Kan du hjælpe mig ___ at forstå reglen?",
+      "forkerte": [
+        "om",
+        "på",
+        "for"
+      ],
+      "forklaring": "hjælpe nogen med noget",
+      "ukrainsk": "допомагати (комусь) з (чимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 66,
+      "udtryk": "holde op med",
+      "praeposition": "med",
+      "saetning": "Han holdt op ___ at ryge sidste år.",
+      "forkerte": [
+        "for",
+        "af",
+        "til"
+      ],
+      "forklaring": "holde op med noget",
+      "ukrainsk": "припинити (щось робити), кинути",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 67,
+      "udtryk": "begynde på",
+      "praeposition": "på",
+      "saetning": "Hun begyndte ___ et nyt kursus i august.",
+      "forkerte": [
+        "for",
+        "i",
+        "til"
+      ],
+      "forklaring": "begynde på et kursus/en uddannelse",
+      "ukrainsk": "почати (навчання, курс)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 68,
+      "udtryk": "blande sig i",
+      "praeposition": "i",
+      "saetning": "Du skal ikke blande dig ___ deres diskussion.",
+      "forkerte": [
+        "med",
+        "på",
+        "til"
+      ],
+      "forklaring": "blande sig i noget",
+      "ukrainsk": "втручатися в (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 69,
+      "udtryk": "tage stilling til",
+      "praeposition": "til",
+      "saetning": "Vi skal tage stilling ___ forslaget på mødet.",
+      "forkerte": [
+        "om",
+        "på",
+        "for"
+      ],
+      "forklaring": "tage stilling til noget",
+      "ukrainsk": "визначитися щодо (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 70,
+      "udtryk": "komme an på",
+      "praeposition": "an på",
+      "saetning": "Det kommer ___ vejret.",
+      "forkerte": [
+        "på",
+        "an til",
+        "an i"
+      ],
+      "forklaring": "det kommer an på noget = det afhænger af",
+      "ukrainsk": "залежати від (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 71,
+      "udtryk": "sætte sig ind i",
+      "praeposition": "ind i",
+      "saetning": "Jeg skal sætte mig ___ den nye arkitektur.",
+      "forkerte": [
+        "ind på",
+        "på",
+        "til"
+      ],
+      "forklaring": "sætte sig ind i noget = lære det grundigt",
+      "ukrainsk": "розібратися в (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 72,
+      "udtryk": "have styr på",
+      "praeposition": "på",
+      "saetning": "Jeg har styr ___ tallene.",
+      "forkerte": [
+        "med",
+        "over",
+        "om"
+      ],
+      "forklaring": "have styr på noget",
+      "ukrainsk": "тримати (щось) під контролем",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 73,
+      "udtryk": "tage sig af",
+      "praeposition": "af",
+      "saetning": "Kan du tage dig ___ det med kunden?",
+      "forkerte": [
+        "om",
+        "med",
+        "for"
+      ],
+      "forklaring": "tage sig af noget",
+      "ukrainsk": "подбати про (щось), займатися (чимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 74,
+      "udtryk": "lytte til",
+      "praeposition": "til",
+      "saetning": "Byrådet skal lytte ___ borgerne.",
+      "forkerte": [
+        "på",
+        "for",
+        "med"
+      ],
+      "forklaring": "lytte til nogen",
+      "ukrainsk": "слухати (когось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 75,
+      "udtryk": "skamme sig over",
+      "praeposition": "over",
+      "saetning": "Han skammede sig ___ det, han havde sagt.",
+      "forkerte": [
+        "af",
+        "for",
+        "på"
+      ],
+      "forklaring": "skamme sig over noget",
+      "ukrainsk": "соромитися (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 76,
+      "udtryk": "være skyld i",
+      "praeposition": "i",
+      "saetning": "Hvem er skyld ___ problemet?",
+      "forkerte": [
+        "for",
+        "på",
+        "til"
+      ],
+      "forklaring": "være skyld i noget",
+      "ukrainsk": "бути винним у (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 77,
+      "udtryk": "få øje på",
+      "praeposition": "på",
+      "saetning": "Jeg fik øje ___ ham i mængden.",
+      "forkerte": [
+        "for",
+        "til",
+        "med"
+      ],
+      "forklaring": "få øje på = se noget",
+      "ukrainsk": "помітити (щось), побачити",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 78,
+      "udtryk": "få øje for",
+      "praeposition": "for",
+      "saetning": "Firmaerne har fået øje ___ værdien af de ældre.",
+      "forkerte": [
+        "af",
+        "til",
+        "med"
+      ],
+      "forklaring": "få øje for = forstå værdien af noget",
+      "ukrainsk": "усвідомити цінність (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 79,
+      "udtryk": "lægge mærke til",
+      "praeposition": "til",
+      "saetning": "Jeg lagde ikke mærke ___, at han var gået.",
+      "forkerte": [
+        "på",
+        "for",
+        "om"
+      ],
+      "forklaring": "lægge mærke til noget",
+      "ukrainsk": "помічати (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 80,
+      "udtryk": "lægge vægt på",
+      "praeposition": "på",
+      "saetning": "Mange lægger vægt ___ en kort vej til arbejde.",
+      "forkerte": [
+        "til",
+        "for",
+        "i"
+      ],
+      "forklaring": "lægge vægt på noget",
+      "ukrainsk": "надавати значення (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 81,
+      "udtryk": "gå ud over",
+      "praeposition": "ud over",
+      "saetning": "Nedskæringerne går ___ børnene.",
+      "forkerte": [
+        "ud af",
+        "over",
+        "ud for"
+      ],
+      "forklaring": "gå ud over nogen = skade nogen",
+      "ukrainsk": "шкодити (комусь), відбиватися на (комусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 82,
+      "udtryk": "få lov til",
+      "praeposition": "til",
+      "saetning": "Børnene får ikke lov ___ at se tv om aftenen.",
+      "forkerte": [
+        "for",
+        "på",
+        "om"
+      ],
+      "forklaring": "få lov til noget",
+      "ukrainsk": "отримати дозвіл на (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": true
+    },
+    {
+      "id": 83,
+      "udtryk": "have råd til",
+      "praeposition": "til",
+      "saetning": "Vi har ikke råd ___ en ny bil.",
+      "forkerte": [
+        "for",
+        "på",
+        "med"
+      ],
+      "forklaring": "have råd til noget",
+      "ukrainsk": "могти дозволити собі (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 84,
+      "udtryk": "stole på",
+      "praeposition": "på",
+      "saetning": "Du kan godt stole ___ mig.",
+      "forkerte": [
+        "til",
+        "i",
+        "om"
+      ],
+      "forklaring": "stole på nogen",
+      "ukrainsk": "довіряти (комусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 85,
+      "udtryk": "have ondt af",
+      "praeposition": "af",
+      "saetning": "Jeg har ondt ___ ham.",
+      "forkerte": [
+        "for",
+        "på",
+        "over"
+      ],
+      "forklaring": "have ondt af nogen = have medlidenhed",
+      "ukrainsk": "співчувати (комусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 86,
+      "udtryk": "tage hensyn til",
+      "praeposition": "til",
+      "saetning": "Man skal tage hensyn ___ naboerne.",
+      "forkerte": [
+        "for",
+        "på",
+        "om"
+      ],
+      "forklaring": "tage hensyn til nogen",
+      "ukrainsk": "зважати на (когось/щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 87,
+      "udtryk": "takke for",
+      "praeposition": "for",
+      "saetning": "Jeg vil gerne takke dig ___ hjælpen.",
+      "forkerte": [
+        "til",
+        "om",
+        "på"
+      ],
+      "forklaring": "takke nogen for noget",
+      "ukrainsk": "дякувати (комусь) за (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 88,
+      "udtryk": "en løsning på",
+      "praeposition": "på",
+      "saetning": "Det kan være en løsning ___ problemet med støj.",
+      "forkerte": [
+        "af",
+        "om",
+        "ved"
+      ],
+      "forklaring": "en løsning på et problem",
+      "ukrainsk": "вирішення (проблеми)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 89,
+      "udtryk": "en forudsætning for",
+      "praeposition": "for",
+      "saetning": "Tillid er en forudsætning ___ et godt samarbejde.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "en forudsætning for noget",
+      "ukrainsk": "передумова (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 90,
+      "udtryk": "en betingelse for",
+      "praeposition": "for",
+      "saetning": "Dansk er en betingelse ___ at få jobbet.",
+      "forkerte": [
+        "til",
+        "på",
+        "om"
+      ],
+      "forklaring": "en betingelse for noget",
+      "ukrainsk": "умова для (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 91,
+      "udtryk": "en risiko for",
+      "praeposition": "for",
+      "saetning": "Der er risiko ___ regn i morgen.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "en risiko for noget",
+      "ukrainsk": "ризик (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 92,
+      "udtryk": "en fordel ved",
+      "praeposition": "ved",
+      "saetning": "En fordel ___ at bo i byen er kulturlivet.",
+      "forkerte": [
+        "for",
+        "af",
+        "med"
+      ],
+      "forklaring": "en fordel/ulempe ved noget",
+      "ukrainsk": "перевага (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 93,
+      "udtryk": "en ulempe ved",
+      "praeposition": "ved",
+      "saetning": "En ulempe ___ ordningen er, at den er dyr.",
+      "forkerte": [
+        "for",
+        "af",
+        "med"
+      ],
+      "forklaring": "en fordel/ulempe ved noget",
+      "ukrainsk": "недолік (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 94,
+      "udtryk": "en stigning i",
+      "praeposition": "i",
+      "saetning": "Der var en stigning ___ antallet af cyklister.",
+      "forkerte": [
+        "af",
+        "på",
+        "for"
+      ],
+      "forklaring": "en stigning/et fald i noget",
+      "ukrainsk": "зростання (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 95,
+      "udtryk": "et fald i",
+      "praeposition": "i",
+      "saetning": "Vi kan se et betydeligt fald ___ antallet.",
+      "forkerte": [
+        "af",
+        "på",
+        "for"
+      ],
+      "forklaring": "en stigning/et fald i noget",
+      "ukrainsk": "зниження (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 96,
+      "udtryk": "en tendens til",
+      "praeposition": "til",
+      "saetning": "Der er en tendens ___, at flere arbejder hjemme.",
+      "forkerte": [
+        "for",
+        "på",
+        "af"
+      ],
+      "forklaring": "en tendens til noget",
+      "ukrainsk": "тенденція до (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 97,
+      "udtryk": "en grund til",
+      "praeposition": "til",
+      "saetning": "Dårligt vejr er en grund ___ at blive hjemme.",
+      "forkerte": [
+        "for",
+        "på",
+        "af"
+      ],
+      "forklaring": "en grund/årsag til noget",
+      "ukrainsk": "підстава для (чогось), причина",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 98,
+      "udtryk": "en årsag til",
+      "praeposition": "til",
+      "saetning": "Hvad er årsagen ___ faldet?",
+      "forkerte": [
+        "for",
+        "af",
+        "på"
+      ],
+      "forklaring": "en grund/årsag til noget",
+      "ukrainsk": "причина (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 99,
+      "udtryk": "en opskrift på",
+      "praeposition": "på",
+      "saetning": "Hermed sender jeg dig en opskrift ___ fiskesuppe.",
+      "forkerte": [
+        "for",
+        "til",
+        "af"
+      ],
+      "forklaring": "en opskrift på en ret",
+      "ukrainsk": "рецепт (страви)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 100,
+      "udtryk": "et symbol på",
+      "praeposition": "på",
+      "saetning": "Møllerne er et symbol ___ fremtiden.",
+      "forkerte": [
+        "af",
+        "om",
+        "til"
+      ],
+      "forklaring": "et symbol på noget",
+      "ukrainsk": "символ (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 101,
+      "udtryk": "omsorg for",
+      "praeposition": "for",
+      "saetning": "Det er vigtigt at vise omsorg ___ miljøet.",
+      "forkerte": [
+        "på",
+        "til",
+        "om"
+      ],
+      "forklaring": "omsorg for noget",
+      "ukrainsk": "турбота про (когось/щось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 102,
+      "udtryk": "en del af",
+      "praeposition": "af",
+      "saetning": "Møllerne bliver en del ___ udsigten.",
+      "forkerte": [
+        "i",
+        "fra",
+        "på"
+      ],
+      "forklaring": "en del af noget",
+      "ukrainsk": "частина (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 103,
+      "udtryk": "mulighed for",
+      "praeposition": "for",
+      "saetning": "Vi skal have mulighed ___ at påvirke beslutningerne.",
+      "forkerte": [
+        "til",
+        "på",
+        "om"
+      ],
+      "forklaring": "mulighed for at gøre noget",
+      "ukrainsk": "можливість (щось зробити)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 104,
+      "udtryk": "et svar på",
+      "praeposition": "på",
+      "saetning": "Jeg har ikke fået svar ___ min mail.",
+      "forkerte": [
+        "til",
+        "om",
+        "for"
+      ],
+      "forklaring": "et svar på noget",
+      "ukrainsk": "відповідь на (щось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 105,
+      "udtryk": "et forslag om",
+      "praeposition": "om",
+      "saetning": "Byrådet fik et forslag ___ en ny cykelsti.",
+      "forkerte": [
+        "på",
+        "for",
+        "af"
+      ],
+      "forklaring": "et forslag om noget",
+      "ukrainsk": "пропозиція щодо (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 106,
+      "udtryk": "interesse for",
+      "praeposition": "for",
+      "saetning": "Han har stor interesse ___ musik.",
+      "forkerte": [
+        "på",
+        "til",
+        "om"
+      ],
+      "forklaring": "interesse for noget",
+      "ukrainsk": "інтерес до (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 107,
+      "udtryk": "respekt for",
+      "praeposition": "for",
+      "saetning": "Vi skal have respekt ___ hinandens holdninger.",
+      "forkerte": [
+        "til",
+        "af",
+        "på"
+      ],
+      "forklaring": "respekt for nogen eller noget",
+      "ukrainsk": "повага до (когось/чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 108,
+      "udtryk": "kritik af",
+      "praeposition": "af",
+      "saetning": "Der kom meget kritik ___ projektet.",
+      "forkerte": [
+        "til",
+        "på",
+        "over"
+      ],
+      "forklaring": "kritik af noget",
+      "ukrainsk": "критика (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 109,
+      "udtryk": "erfaring med",
+      "praeposition": "med",
+      "saetning": "Har du erfaring ___ projektledelse?",
+      "forkerte": [
+        "til",
+        "af",
+        "for"
+      ],
+      "forklaring": "erfaring med noget",
+      "ukrainsk": "досвід роботи з (чимось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 110,
+      "udtryk": "et krav om",
+      "praeposition": "om",
+      "saetning": "Der er et krav ___, at man taler dansk.",
+      "forkerte": [
+        "på",
+        "for",
+        "til"
+      ],
+      "forklaring": "et krav om noget",
+      "ukrainsk": "вимога (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 111,
+      "udtryk": "adgang til",
+      "praeposition": "til",
+      "saetning": "Alle har adgang ___ referaterne.",
+      "forkerte": [
+        "for",
+        "på",
+        "i"
+      ],
+      "forklaring": "adgang til noget",
+      "ukrainsk": "доступ до (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 112,
+      "udtryk": "en undersøgelse af",
+      "praeposition": "af",
+      "saetning": "Avisen lavede en undersøgelse ___ danskernes vaner.",
+      "forkerte": [
+        "til",
+        "på",
+        "for"
+      ],
+      "forklaring": "en undersøgelse af noget",
+      "ukrainsk": "дослідження (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 113,
+      "udtryk": "en forskel på",
+      "praeposition": "på",
+      "saetning": "Der er stor forskel ___ by og land.",
+      "forkerte": [
+        "af",
+        "for",
+        "til"
+      ],
+      "forklaring": "en forskel på to ting (eller mellem)",
+      "ukrainsk": "різниця між (чимось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 114,
+      "udtryk": "ansvar for",
+      "praeposition": "for",
+      "saetning": "Hver person har et ansvar ___ sit eget liv.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "ansvar for noget",
+      "ukrainsk": "відповідальність за (щось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 115,
+      "udtryk": "tillid til",
+      "praeposition": "til",
+      "saetning": "Jeg har tillid ___ min læge.",
+      "forkerte": [
+        "på",
+        "for",
+        "i"
+      ],
+      "forklaring": "tillid til nogen",
+      "ukrainsk": "довіра до (когось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 116,
+      "udtryk": "en debat om",
+      "praeposition": "om",
+      "saetning": "Der er en stor debat ___ vindmøllerne.",
+      "forkerte": [
+        "på",
+        "af",
+        "for"
+      ],
+      "forklaring": "en debat om noget",
+      "ukrainsk": "дискусія про (щось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 117,
+      "udtryk": "modstand mod",
+      "praeposition": "mod",
+      "saetning": "Der er stor modstand ___ projektet.",
+      "forkerte": [
+        "for",
+        "på",
+        "til"
+      ],
+      "forklaring": "modstand mod noget",
+      "ukrainsk": "спротив (чомусь)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 118,
+      "udtryk": "støtte til",
+      "praeposition": "til",
+      "saetning": "Kommunen giver støtte ___ projektet.",
+      "forkerte": [
+        "for",
+        "på",
+        "af"
+      ],
+      "forklaring": "støtte til noget",
+      "ukrainsk": "підтримка (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 119,
+      "udtryk": "en sammenhæng mellem",
+      "praeposition": "mellem",
+      "saetning": "Der er en sammenhæng ___ alder og holdning.",
+      "forkerte": [
+        "af",
+        "for",
+        "med"
+      ],
+      "forklaring": "en sammenhæng mellem to ting",
+      "ukrainsk": "зв’язок між (чимось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 120,
+      "udtryk": "tak for",
+      "praeposition": "for",
+      "saetning": "Tak ___ din mail!",
+      "forkerte": [
+        "til",
+        "om",
+        "på"
+      ],
+      "forklaring": "tak for noget",
+      "ukrainsk": "дякую за (щось)",
+      "kategori": "navneord",
+      "mine_fejl": true
+    },
+    {
+      "id": 121,
+      "udtryk": "tillykke med",
+      "praeposition": "med",
+      "saetning": "Tillykke ___ fødselsdagen!",
+      "forkerte": [
+        "for",
+        "til",
+        "på"
+      ],
+      "forklaring": "tillykke med noget",
+      "ukrainsk": "вітаю з (чимось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 122,
+      "udtryk": "for … siden",
+      "praeposition": "for",
+      "saetning": "Jeg flyttede til Danmark ___ tre år siden.",
+      "forkerte": [
+        "i",
+        "på",
+        "om"
+      ],
+      "forklaring": "for … siden = tilbage i tiden",
+      "ukrainsk": "… тому (напр. два роки тому)",
+      "kategori": "tid",
+      "mine_fejl": true
+    },
+    {
+      "id": 123,
+      "udtryk": "om morgenen",
+      "praeposition": "om",
+      "saetning": "Jeg drikker altid kaffe ___ morgenen.",
+      "forkerte": [
+        "i",
+        "på",
+        "ved"
+      ],
+      "forklaring": "om morgenen/aftenen = hver gang (vane)",
+      "ukrainsk": "вранці (щоранку)",
+      "kategori": "tid",
+      "mine_fejl": true
+    },
+    {
+      "id": 124,
+      "udtryk": "om ugen",
+      "praeposition": "om",
+      "saetning": "Jeg løber to gange ___ ugen.",
+      "forkerte": [
+        "på",
+        "ved",
+        "til"
+      ],
+      "forklaring": "to gange om ugen/dagen/året",
+      "ukrainsk": "на тиждень (двічі на тиждень)",
+      "kategori": "tid",
+      "mine_fejl": true
+    },
+    {
+      "id": 125,
+      "udtryk": "i weekenden",
+      "praeposition": "i",
+      "saetning": "Hvad skal du lave ___ weekenden?",
+      "forkerte": [
+        "på",
+        "ved",
+        "med"
+      ],
+      "forklaring": "i weekenden = denne weekend",
+      "ukrainsk": "у ці вихідні",
+      "kategori": "tid",
+      "mine_fejl": false
+    },
+    {
+      "id": 126,
+      "udtryk": "på mandag",
+      "praeposition": "på",
+      "saetning": "Vi ses ___ mandag!",
+      "forkerte": [
+        "i",
+        "om",
+        "til"
+      ],
+      "forklaring": "på mandag = næste mandag",
+      "ukrainsk": "у (найближчий) понеділок",
+      "kategori": "tid",
+      "mine_fejl": false
+    },
+    {
+      "id": 127,
+      "udtryk": "om mandagen",
+      "praeposition": "om",
+      "saetning": "Jeg arbejder hjemme ___ mandagen.",
+      "forkerte": [
+        "på",
+        "i",
+        "ved"
+      ],
+      "forklaring": "om mandagen = hver mandag",
+      "ukrainsk": "щопонеділка, по понеділках",
+      "kategori": "tid",
+      "mine_fejl": true
+    },
+    {
+      "id": 128,
+      "udtryk": "i tirsdags",
+      "praeposition": "i",
+      "saetning": "Jeg holdt min præsentation ___ tirsdags.",
+      "forkerte": [
+        "på",
+        "om",
+        "sidste"
+      ],
+      "forklaring": "i tirsdags = sidste tirsdag",
+      "ukrainsk": "минулого вівторка",
+      "kategori": "tid",
+      "mine_fejl": true
+    },
+    {
+      "id": 129,
+      "udtryk": "i aften",
+      "praeposition": "i",
+      "saetning": "Hvad skal du lave ___ aften?",
+      "forkerte": [
+        "på",
+        "om",
+        "med"
+      ],
+      "forklaring": "i aften = denne aften",
+      "ukrainsk": "сьогодні ввечері",
+      "kategori": "tid",
+      "mine_fejl": true
+    },
+    {
+      "id": 130,
+      "udtryk": "om vinteren",
+      "praeposition": "om",
+      "saetning": "Det regner meget her ___ vinteren.",
+      "forkerte": [
+        "i",
+        "på",
+        "ved"
+      ],
+      "forklaring": "om vinteren = hver vinter",
+      "ukrainsk": "взимку (щозими)",
+      "kategori": "tid",
+      "mine_fejl": true
+    },
+    {
+      "id": 131,
+      "udtryk": "i løbet af",
+      "praeposition": "i",
+      "saetning": "Han blev bedre ___ løbet af bogen.",
+      "forkerte": [
+        "på",
+        "under",
+        "om"
+      ],
+      "forklaring": "i løbet af = mens tiden går",
+      "ukrainsk": "протягом (чогось)",
+      "kategori": "tid",
+      "mine_fejl": true
+    },
+    {
+      "id": 132,
+      "udtryk": "til tiden",
+      "praeposition": "til",
+      "saetning": "Toget kom ikke ___ tiden.",
+      "forkerte": [
+        "på",
+        "i",
+        "om"
+      ],
+      "forklaring": "komme til tiden = ikke for sent",
+      "ukrainsk": "вчасно",
+      "kategori": "tid",
+      "mine_fejl": false
+    },
+    {
+      "id": 133,
+      "udtryk": "på arbejde",
+      "praeposition": "på",
+      "saetning": "Jeg er ___ arbejde fra klokken 8 til 16.",
+      "forkerte": [
+        "til",
+        "i",
+        "ved"
+      ],
+      "forklaring": "være på arbejde",
+      "ukrainsk": "на роботі",
+      "kategori": "sted",
+      "mine_fejl": true
+    },
+    {
+      "id": 134,
+      "udtryk": "på kontoret",
+      "praeposition": "på",
+      "saetning": "Vi skal møde ___ kontoret fire dage om ugen.",
+      "forkerte": [
+        "i",
+        "til",
+        "ved"
+      ],
+      "forklaring": "på kontoret",
+      "ukrainsk": "в офісі",
+      "kategori": "sted",
+      "mine_fejl": true
+    },
+    {
+      "id": 135,
+      "udtryk": "i skole",
+      "praeposition": "i",
+      "saetning": "Min datter går ___ skole i København.",
+      "forkerte": [
+        "om",
+        "til",
+        "ved"
+      ],
+      "forklaring": "gå i skole",
+      "ukrainsk": "ходити до школи",
+      "kategori": "sted",
+      "mine_fejl": false
+    },
+    {
+      "id": 136,
+      "udtryk": "på universitetet",
+      "praeposition": "på",
+      "saetning": "Mine børn læser ___ universitetet i Polen.",
+      "forkerte": [
+        "i",
+        "om",
+        "til"
+      ],
+      "forklaring": "på universitetet",
+      "ukrainsk": "в університеті",
+      "kategori": "sted",
+      "mine_fejl": true
+    },
+    {
+      "id": 137,
+      "udtryk": "på Amager",
+      "praeposition": "på",
+      "saetning": "De har fundet en lejlighed ___ Amager.",
+      "forkerte": [
+        "i",
+        "ved",
+        "til"
+      ],
+      "forklaring": "på en ø (Amager, Fyn), i en by eller et land",
+      "ukrainsk": "на Амагері (на острові)",
+      "kategori": "sted",
+      "mine_fejl": true
+    },
+    {
+      "id": 138,
+      "udtryk": "i København",
+      "praeposition": "i",
+      "saetning": "Jeg har boet ___ København i tre år.",
+      "forkerte": [
+        "på",
+        "ved",
+        "til"
+      ],
+      "forklaring": "i en by eller et land, på en ø",
+      "ukrainsk": "у Копенгагені",
+      "kategori": "sted",
+      "mine_fejl": false
+    },
+    {
+      "id": 139,
+      "udtryk": "på landet",
+      "praeposition": "på",
+      "saetning": "Mange ældre flytter ud ___ landet.",
+      "forkerte": [
+        "i",
+        "til",
+        "ved"
+      ],
+      "forklaring": "på landet, i byen",
+      "ukrainsk": "у селі, за містом",
+      "kategori": "sted",
+      "mine_fejl": true
+    },
+    {
+      "id": 140,
+      "udtryk": "uden for byen",
+      "praeposition": "uden for",
+      "saetning": "Vi bor lidt ___ byen.",
+      "forkerte": [
+        "uden af",
+        "udenfor af",
+        "ude af"
+      ],
+      "forklaring": "uden for byen",
+      "ukrainsk": "за містом",
+      "kategori": "sted",
+      "mine_fejl": true
+    },
+    {
+      "id": 141,
+      "udtryk": "i nærheden af",
+      "praeposition": "i",
+      "saetning": "Der er en park ___ nærheden af min lejlighed.",
+      "forkerte": [
+        "på",
+        "ved",
+        "til"
+      ],
+      "forklaring": "i nærheden af",
+      "ukrainsk": "поблизу (чогось), неподалік від",
+      "kategori": "sted",
+      "mine_fejl": true
+    },
+    {
+      "id": 142,
+      "udtryk": "på cykel",
+      "praeposition": "på",
+      "saetning": "Det tager ti minutter ___ cykel.",
+      "forkerte": [
+        "med",
+        "i",
+        "ved"
+      ],
+      "forklaring": "på cykel, med bus/tog",
+      "ukrainsk": "на велосипеді",
+      "kategori": "sted",
+      "mine_fejl": true
+    },
+    {
+      "id": 143,
+      "udtryk": "med bussen",
+      "praeposition": "med",
+      "saetning": "Det tager tyve minutter ___ bussen.",
+      "forkerte": [
+        "på",
+        "til",
+        "ved"
+      ],
+      "forklaring": "med bus/tog, på cykel",
+      "ukrainsk": "автобусом",
+      "kategori": "sted",
+      "mine_fejl": false
+    },
+    {
+      "id": 144,
+      "udtryk": "til fods",
+      "praeposition": "til",
+      "saetning": "Vi gik ___ fods hele vejen.",
+      "forkerte": [
+        "på",
+        "med",
+        "i"
+      ],
+      "forklaring": "til fods = gående",
+      "ukrainsk": "пішки",
+      "kategori": "sted",
+      "mine_fejl": false
+    },
+    {
+      "id": 145,
+      "udtryk": "på nettet",
+      "praeposition": "på",
+      "saetning": "Jeg læste artiklen ___ nettet.",
+      "forkerte": [
+        "i",
+        "ved",
+        "om"
+      ],
+      "forklaring": "på nettet",
+      "ukrainsk": "в інтернеті",
+      "kategori": "sted",
+      "mine_fejl": false
+    },
+    {
+      "id": 146,
+      "udtryk": "på grund af",
+      "praeposition": "på",
+      "saetning": "Jeg flyttede ___ grund af mit arbejde.",
+      "forkerte": [
+        "i",
+        "for",
+        "af"
+      ],
+      "forklaring": "på grund af",
+      "ukrainsk": "через (щось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": true
+    },
+    {
+      "id": 147,
+      "udtryk": "i stedet for",
+      "praeposition": "i",
+      "saetning": "Vi tager toget ___ stedet for bilen.",
+      "forkerte": [
+        "på",
+        "for",
+        "til"
+      ],
+      "forklaring": "i stedet for",
+      "ukrainsk": "замість (чогось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": true
+    },
+    {
+      "id": 148,
+      "udtryk": "i forhold til",
+      "praeposition": "i",
+      "saetning": "Prisen er høj ___ forhold til kvaliteten.",
+      "forkerte": [
+        "på",
+        "med",
+        "til"
+      ],
+      "forklaring": "i forhold til",
+      "ukrainsk": "порівняно з (чимось), щодо (чогось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 149,
+      "udtryk": "med hensyn til",
+      "praeposition": "med",
+      "saetning": "Jeg har ingen spørgsmål ___ hensyn til prisen.",
+      "forkerte": [
+        "på",
+        "i",
+        "til"
+      ],
+      "forklaring": "med hensyn til = hvad angår",
+      "ukrainsk": "щодо (чогось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 150,
+      "udtryk": "på den ene side",
+      "praeposition": "på",
+      "saetning": "Det er ___ den ene side dyrt, men på den anden side godt.",
+      "forkerte": [
+        "i",
+        "til",
+        "ved"
+      ],
+      "forklaring": "på den ene side … på den anden side",
+      "ukrainsk": "з одного боку",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 151,
+      "udtryk": "til gengæld",
+      "praeposition": "til",
+      "saetning": "Antallet af biler faldt, men antallet af cykler steg ___ gengæld.",
+      "forkerte": [
+        "i",
+        "på",
+        "med"
+      ],
+      "forklaring": "til gengæld",
+      "ukrainsk": "натомість, зате",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 152,
+      "udtryk": "på trods af",
+      "praeposition": "på",
+      "saetning": "Vi gik en tur ___ trods af regnen.",
+      "forkerte": [
+        "i",
+        "til",
+        "med"
+      ],
+      "forklaring": "på trods af = selvom der var …",
+      "ukrainsk": "попри (щось), незважаючи на",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 153,
+      "udtryk": "efter min mening",
+      "praeposition": "efter",
+      "saetning": "Tre dage er ___ min mening nok.",
+      "forkerte": [
+        "i",
+        "på",
+        "til"
+      ],
+      "forklaring": "efter min mening (ikke \"i min mening\")",
+      "ukrainsk": "на мою думку",
+      "kategori": "faste vendinger",
+      "mine_fejl": true
+    },
+    {
+      "id": 154,
+      "udtryk": "i hvert fald",
+      "praeposition": "i",
+      "saetning": "Det tror jeg ___ hvert fald.",
+      "forkerte": [
+        "på",
+        "til",
+        "for"
+      ],
+      "forklaring": "i hvert fald = i alle tilfælde",
+      "ukrainsk": "принаймні, у кожному разі",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 155,
+      "udtryk": "på forhånd",
+      "praeposition": "på",
+      "saetning": "Tak ___ forhånd for hjælpen.",
+      "forkerte": [
+        "i",
+        "til",
+        "for"
+      ],
+      "forklaring": "på forhånd = før det sker",
+      "ukrainsk": "заздалегідь",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 156,
+      "udtryk": "i forvejen",
+      "praeposition": "i",
+      "saetning": "Vi burde have tænkt os bedre om ___ forvejen.",
+      "forkerte": [
+        "på",
+        "til",
+        "for"
+      ],
+      "forklaring": "i forvejen = på forhånd",
+      "ukrainsk": "заздалегідь; і так (уже)",
+      "kategori": "faste vendinger",
+      "mine_fejl": true
+    },
+    {
+      "id": 157,
+      "udtryk": "til sidst",
+      "praeposition": "til",
+      "saetning": "De blev ___ sidst enige.",
+      "forkerte": [
+        "på",
+        "i",
+        "ved"
+      ],
+      "forklaring": "til sidst = endelig",
+      "ukrainsk": "зрештою, наостанок",
+      "kategori": "faste vendinger",
+      "mine_fejl": true
+    },
+    {
+      "id": 158,
+      "udtryk": "gå i seng",
+      "praeposition": "i",
+      "saetning": "Jeg går ___ seng klokken elleve.",
+      "forkerte": [
+        "til",
+        "på",
+        "ved"
+      ],
+      "forklaring": "gå i seng",
+      "ukrainsk": "лягати спати",
+      "kategori": "faste vendinger",
+      "mine_fejl": true
+    },
+    {
+      "id": 159,
+      "udtryk": "tage på ferie",
+      "praeposition": "på",
+      "saetning": "Vi tager ___ ferie i juli.",
+      "forkerte": [
+        "til",
+        "i",
+        "med"
+      ],
+      "forklaring": "tage på ferie",
+      "ukrainsk": "поїхати у відпустку",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 160,
+      "udtryk": "komme til orde",
+      "praeposition": "til",
+      "saetning": "Alle skal komme ___ orde på mødet.",
+      "forkerte": [
+        "på",
+        "i",
+        "ved"
+      ],
+      "forklaring": "komme til orde = få lov at sige noget",
+      "ukrainsk": "отримати слово",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 161,
+      "udtryk": "det fremgår af",
+      "praeposition": "af",
+      "saetning": "Det fremgår ___ rapporten, at prisen stiger.",
+      "forkerte": [
+        "i",
+        "fra",
+        "på"
+      ],
+      "forklaring": "det fremgår af noget = det står i",
+      "ukrainsk": "з (чогось) випливає",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 162,
+      "udtryk": "have ret i",
+      "praeposition": "i",
+      "saetning": "Du har ret ___, at det er dyrt.",
+      "forkerte": [
+        "på",
+        "om",
+        "til"
+      ],
+      "forklaring": "have ret i noget",
+      "ukrainsk": "мати рацію щодо (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 163,
+      "udtryk": "en kilde til",
+      "praeposition": "til",
+      "saetning": "En journalist skal altid have en kilde ___ sine oplysninger.",
+      "forkerte": [
+        "på",
+        "af",
+        "om"
+      ],
+      "forklaring": "en kilde til noget",
+      "ukrainsk": "джерело (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 164,
+      "udtryk": "der går et rygte om",
+      "praeposition": "om",
+      "saetning": "Der går et rygte ___, at chefen stopper.",
+      "forkerte": [
+        "på",
+        "for",
+        "af"
+      ],
+      "forklaring": "der går et rygte om noget",
+      "ukrainsk": "ходять чутки про (щось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 165,
+      "udtryk": "en erstatning for",
+      "praeposition": "for",
+      "saetning": "Han fik en erstatning ___ den ødelagte bil.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "en erstatning for noget",
+      "ukrainsk": "заміна (чогось), компенсація за (щось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 166,
+      "udtryk": "give udtryk for",
+      "praeposition": "for",
+      "saetning": "Hun gav udtryk ___ sin skuffelse.",
+      "forkerte": [
+        "til",
+        "om",
+        "af"
+      ],
+      "forklaring": "give udtryk for noget",
+      "ukrainsk": "висловлювати (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 167,
+      "udtryk": "tage afstand fra",
+      "praeposition": "fra",
+      "saetning": "Byrådet tog afstand ___ brevet.",
+      "forkerte": [
+        "af",
+        "mod",
+        "til"
+      ],
+      "forklaring": "tage afstand fra noget",
+      "ukrainsk": "дистанціюватися від (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 168,
+      "udtryk": "uenig med (person)",
+      "praeposition": "med",
+      "saetning": "Jeg er uenig ___ min kollega.",
+      "forkerte": [
+        "i",
+        "til",
+        "på"
+      ],
+      "forklaring": "uenig med en person, uenig i en sag",
+      "ukrainsk": "не погоджуватися з (кимось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 169,
+      "udtryk": "et angreb på",
+      "praeposition": "på",
+      "saetning": "Brevet var et angreb ___ borgmesteren.",
+      "forkerte": [
+        "af",
+        "til",
+        "om"
+      ],
+      "forklaring": "et angreb på nogen",
+      "ukrainsk": "напад на (когось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 170,
+      "udtryk": "svare til",
+      "praeposition": "til",
+      "saetning": "Det svarer ___ en stigning på 20 procent.",
+      "forkerte": [
+        "på",
+        "med",
+        "for"
+      ],
+      "forklaring": "svare til = være lig med (men: svare på et spørgsmål)",
+      "ukrainsk": "відповідати (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 171,
+      "udtryk": "et flertal for",
+      "praeposition": "for",
+      "saetning": "Der er et flertal ___ forslaget i byrådet.",
+      "forkerte": [
+        "til",
+        "på",
+        "af"
+      ],
+      "forklaring": "et flertal for/imod noget",
+      "ukrainsk": "більшість за (щось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 172,
+      "udtryk": "sammenlignet med",
+      "praeposition": "med",
+      "saetning": "Prisen er lav sammenlignet ___ sidste år.",
+      "forkerte": [
+        "til",
+        "af",
+        "for"
+      ],
+      "forklaring": "sammenlignet med",
+      "ukrainsk": "порівняно з (чимось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 173,
+      "udtryk": "i takt med",
+      "praeposition": "i",
+      "saetning": "Priserne stiger ___ takt med lønningerne.",
+      "forkerte": [
+        "på",
+        "med",
+        "til"
+      ],
+      "forklaring": "i takt med = samtidig med",
+      "ukrainsk": "у міру (чогось), разом із",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 174,
+      "udtryk": "have indflydelse på",
+      "praeposition": "på",
+      "saetning": "Borgerne skal have indflydelse ___ beslutningen.",
+      "forkerte": [
+        "til",
+        "om",
+        "for"
+      ],
+      "forklaring": "have indflydelse på noget",
+      "ukrainsk": "впливати на (щось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 175,
+      "udtryk": "gå op for nogen",
+      "praeposition": "op for",
+      "saetning": "Det gik pludselig ___ mig, at jeg havde glemt nøglerne.",
+      "forkerte": [
+        "op til",
+        "op på",
+        "op i"
+      ],
+      "forklaring": "det går op for mig = jeg forstår det pludselig (men: gå op i = interessere sig for)",
+      "ukrainsk": "доходити до (когось) (= усвідомити)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 176,
+      "udtryk": "sætte spørgsmålstegn ved",
+      "praeposition": "ved",
+      "saetning": "Han satte spørgsmålstegn ___ tallene.",
+      "forkerte": [
+        "til",
+        "på",
+        "om"
+      ],
+      "forklaring": "sætte spørgsmålstegn ved noget = tvivle på det",
+      "ukrainsk": "ставити під сумнів (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 177,
+      "udtryk": "stå til ansvar for",
+      "praeposition": "for",
+      "saetning": "Politikerne skal stå til ansvar ___ deres beslutninger.",
+      "forkerte": [
+        "til",
+        "på",
+        "om"
+      ],
+      "forklaring": "stå til ansvar for noget",
+      "ukrainsk": "нести відповідальність за (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 178,
+      "udtryk": "give nogen ret i",
+      "praeposition": "i",
+      "saetning": "Jeg må give dig ret ___ det.",
+      "forkerte": [
+        "på",
+        "om",
+        "til"
+      ],
+      "forklaring": "give nogen ret i noget",
+      "ukrainsk": "визнати, що (хтось) має рацію",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 179,
+      "udtryk": "være flov over",
+      "praeposition": "over",
+      "saetning": "Han var flov ___ sin fejl.",
+      "forkerte": [
+        "af",
+        "for",
+        "på"
+      ],
+      "forklaring": "være flov over noget",
+      "ukrainsk": "соромитися (чогось)",
+      "kategori": "tillægsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 180,
+      "udtryk": "holde fast i",
+      "praeposition": "i",
+      "saetning": "Hun holdt fast ___ sin holdning.",
+      "forkerte": [
+        "på",
+        "til",
+        "om"
+      ],
+      "forklaring": "holde fast i noget",
+      "ukrainsk": "триматися (чогось), наполягати на",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 181,
+      "udtryk": "have svært ved",
+      "praeposition": "ved",
+      "saetning": "Jeg har svært ___ at forstå dialekter.",
+      "forkerte": [
+        "for",
+        "til",
+        "på"
+      ],
+      "forklaring": "have svært ved noget",
+      "ukrainsk": "мати труднощі з (чимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 182,
+      "udtryk": "lade være med",
+      "praeposition": "med",
+      "saetning": "Lad være ___ at råbe!",
+      "forkerte": [
+        "for",
+        "af",
+        "til"
+      ],
+      "forklaring": "lade være med at gøre noget",
+      "ukrainsk": "не робити (чогось), утримуватися від",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 183,
+      "udtryk": "komme i tanke om",
+      "praeposition": "i",
+      "saetning": "Jeg kom ___ tanke om, at jeg havde glemt mødet.",
+      "forkerte": [
+        "på",
+        "til",
+        "ved"
+      ],
+      "forklaring": "komme i tanke om = pludselig huske",
+      "ukrainsk": "згадати (про щось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 184,
+      "udtryk": "gå på kompromis med",
+      "praeposition": "med",
+      "saetning": "Han ville ikke gå på kompromis ___ sine principper.",
+      "forkerte": [
+        "for",
+        "til",
+        "af"
+      ],
+      "forklaring": "gå på kompromis med nogen",
+      "ukrainsk": "іти на компроміс з (кимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 185,
+      "udtryk": "komme frem til",
+      "praeposition": "til",
+      "saetning": "Efter lang tid kom de frem ___ en løsning.",
+      "forkerte": [
+        "på",
+        "med",
+        "for"
+      ],
+      "forklaring": "komme frem til noget",
+      "ukrainsk": "дійти до (висновку)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 186,
+      "udtryk": "tage initiativ til",
+      "praeposition": "til",
+      "saetning": "Gitte tog initiativ ___ mødet.",
+      "forkerte": [
+        "på",
+        "for",
+        "om"
+      ],
+      "forklaring": "tage initiativ til noget",
+      "ukrainsk": "виступити ініціатором (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 187,
+      "udtryk": "bidrage til",
+      "praeposition": "til",
+      "saetning": "Alle kan bidrage ___ en bedre by.",
+      "forkerte": [
+        "for",
+        "på",
+        "om"
+      ],
+      "forklaring": "bidrage til noget",
+      "ukrainsk": "сприяти (чомусь), робити внесок у",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 188,
+      "udtryk": "eje en andel i",
+      "praeposition": "i",
+      "saetning": "Borgerne kan eje en andel ___ møllerne.",
+      "forkerte": [
+        "på",
+        "til",
+        "ved"
+      ],
+      "forklaring": "eje en andel i noget",
+      "ukrainsk": "мати частку в (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 189,
+      "udtryk": "investere i",
+      "praeposition": "i",
+      "saetning": "Kommunen vil investere ___ grøn energi.",
+      "forkerte": [
+        "på",
+        "til",
+        "med"
+      ],
+      "forklaring": "investere i noget",
+      "ukrainsk": "інвестувати в (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 190,
+      "udtryk": "et tilbud om",
+      "praeposition": "om",
+      "saetning": "Hun fik et tilbud ___ et nyt job.",
+      "forkerte": [
+        "til",
+        "for",
+        "af"
+      ],
+      "forklaring": "et tilbud om noget (men: et tilbud på en vare i butikken)",
+      "ukrainsk": "пропозиція (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 191,
+      "udtryk": "have betydning for",
+      "praeposition": "for",
+      "saetning": "Vejret har stor betydning ___ landbruget.",
+      "forkerte": [
+        "til",
+        "på",
+        "i"
+      ],
+      "forklaring": "have betydning for noget",
+      "ukrainsk": "мати значення для (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 192,
+      "udtryk": "på vegne af",
+      "praeposition": "på",
+      "saetning": "Jeg skriver ___ vegne af naboforeningen.",
+      "forkerte": [
+        "i",
+        "for",
+        "med"
+      ],
+      "forklaring": "på vegne af nogen",
+      "ukrainsk": "від імені (когось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 193,
+      "udtryk": "i håb om",
+      "praeposition": "i",
+      "saetning": "Han skrev til avisen ___ håb om et svar.",
+      "forkerte": [
+        "på",
+        "med",
+        "for"
+      ],
+      "forklaring": "i håb om noget",
+      "ukrainsk": "в надії на (щось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 194,
+      "udtryk": "i tilfælde af",
+      "praeposition": "i",
+      "saetning": "Man skal ringe 112 ___ tilfælde af brand.",
+      "forkerte": [
+        "på",
+        "ved",
+        "for"
+      ],
+      "forklaring": "i tilfælde af = hvis der sker",
+      "ukrainsk": "у разі (чогось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 195,
+      "udtryk": "føle sig presset af",
+      "praeposition": "af",
+      "saetning": "Hun følte sig presset ___ sin chef.",
+      "forkerte": [
+        "på",
+        "til",
+        "om"
+      ],
+      "forklaring": "føle sig presset af nogen",
+      "ukrainsk": "відчувати тиск з боку (когось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 196,
+      "udtryk": "tænke tilbage på",
+      "praeposition": "på",
+      "saetning": "Jeg tænker tit tilbage ___ min barndom.",
+      "forkerte": [
+        "til",
+        "om",
+        "over"
+      ],
+      "forklaring": "tænke tilbage på noget",
+      "ukrainsk": "згадувати (щось), повертатися думками до",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 197,
+      "udtryk": "lægge skjul på",
+      "praeposition": "på",
+      "saetning": "Han lagde ikke skjul ___ sin vrede.",
+      "forkerte": [
+        "over",
+        "for",
+        "om"
+      ],
+      "forklaring": "ikke lægge skjul på noget = vise det åbent",
+      "ukrainsk": "приховувати (щось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 198,
+      "udtryk": "tage imod",
+      "praeposition": "imod",
+      "saetning": "Hun tog ___ gaven med et smil.",
+      "forkerte": [
+        "ved",
+        "for",
+        "til"
+      ],
+      "forklaring": "tage imod noget",
+      "ukrainsk": "приймати (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 199,
+      "udtryk": "række hånden ud til",
+      "praeposition": "til",
+      "saetning": "Han rakte hånden ud ___ sin gamle ven.",
+      "forkerte": [
+        "for",
+        "på",
+        "om"
+      ],
+      "forklaring": "række hånden ud til nogen = tilbyde forsoning",
+      "ukrainsk": "простягнути руку (комусь)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 200,
+      "udtryk": "slå en streg over",
+      "praeposition": "over",
+      "saetning": "Lad os slå en streg ___ det, der skete.",
+      "forkerte": [
+        "på",
+        "for",
+        "ved"
+      ],
+      "forklaring": "slå en streg over noget = glemme det",
+      "ukrainsk": "поставити крапку на (чомусь), забути про",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 201,
+      "udtryk": "forsone sig med",
+      "praeposition": "med",
+      "saetning": "Til sidst forsonede han sig ___ sin nabo.",
+      "forkerte": [
+        "til",
+        "for",
+        "på"
+      ],
+      "forklaring": "forsone sig med nogen",
+      "ukrainsk": "помиритися з (кимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 202,
+      "udtryk": "tale ud om",
+      "praeposition": "ud om",
+      "saetning": "De satte sig ned og talte ___ det, der var sket.",
+      "forkerte": [
+        "ud af",
+        "ud for",
+        "ind om"
+      ],
+      "forklaring": "tale ud om noget = tale færdig om et problem",
+      "ukrainsk": "обговорити (щось) до кінця",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 203,
+      "udtryk": "være i tvivl om",
+      "praeposition": "i",
+      "saetning": "Jeg er ___ tvivl om, hvad jeg skal vælge.",
+      "forkerte": [
+        "på",
+        "til",
+        "ved"
+      ],
+      "forklaring": "være i tvivl om noget",
+      "ukrainsk": "сумніватися щодо (чогось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 204,
+      "udtryk": "stemme for",
+      "praeposition": "for",
+      "saetning": "Ni byrådsmedlemmer stemte ___ forslaget.",
+      "forkerte": [
+        "til",
+        "om",
+        "af"
+      ],
+      "forklaring": "stemme for/imod et forslag",
+      "ukrainsk": "голосувати за (щось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 205,
+      "udtryk": "med et snævert flertal",
+      "praeposition": "med",
+      "saetning": "Forslaget blev vedtaget ___ et snævert flertal.",
+      "forkerte": [
+        "på",
+        "i",
+        "ved"
+      ],
+      "forklaring": "med et snævert flertal",
+      "ukrainsk": "незначною більшістю",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 206,
+      "udtryk": "på betingelse af",
+      "praeposition": "på",
+      "saetning": "Han siger ja ___ betingelse af, at naboerne får penge.",
+      "forkerte": [
+        "i",
+        "med",
+        "under"
+      ],
+      "forklaring": "på betingelse af = kun hvis",
+      "ukrainsk": "за умови (чогось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 207,
+      "udtryk": "sætte noget i gang",
+      "praeposition": "i",
+      "saetning": "Kommunen satte projektet ___ gang i foråret.",
+      "forkerte": [
+        "på",
+        "til",
+        "ved"
+      ],
+      "forklaring": "sætte noget i gang = starte det",
+      "ukrainsk": "запустити (щось), розпочати",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 208,
+      "udtryk": "få medhold i",
+      "praeposition": "i",
+      "saetning": "Naboerne fik medhold ___ deres klage.",
+      "forkerte": [
+        "på",
+        "til",
+        "for"
+      ],
+      "forklaring": "få medhold i noget = få ret",
+      "ukrainsk": "отримати визнання своєї правоти в (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 209,
+      "udtryk": "gå videre med",
+      "praeposition": "med",
+      "saetning": "Byrådet vil gå videre ___ planen.",
+      "forkerte": [
+        "på",
+        "til",
+        "for"
+      ],
+      "forklaring": "gå videre med noget",
+      "ukrainsk": "продовжувати (щось), дати хід (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 210,
+      "udtryk": "glæde sig over",
+      "praeposition": "over",
+      "saetning": "Hun glædede sig ___ det gode resultat, hun lige havde fået.",
+      "forkerte": [
+        "til",
+        "på",
+        "for"
+      ],
+      "forklaring": "glæde sig over noget, der er sket (men: glæde sig til noget i fremtiden)",
+      "ukrainsk": "радіти (чомусь)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 211,
+      "udtryk": "få konsekvenser for",
+      "praeposition": "for",
+      "saetning": "Beslutningen får konsekvenser ___ hele byen.",
+      "forkerte": [
+        "til",
+        "på",
+        "i"
+      ],
+      "forklaring": "få konsekvenser for nogen",
+      "ukrainsk": "мати наслідки для (когось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 212,
+      "udtryk": "lægge op til",
+      "praeposition": "op til",
+      "saetning": "Planen lægger ___ en lang debat.",
+      "forkerte": [
+        "op for",
+        "op på",
+        "ud til"
+      ],
+      "forklaring": "lægge op til noget = gøre det sandsynligt",
+      "ukrainsk": "підводити до (чогось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 213,
+      "udtryk": "være til stede",
+      "praeposition": "til",
+      "saetning": "Borgmesteren var ikke ___ stede.",
+      "forkerte": [
+        "på",
+        "i",
+        "ved"
+      ],
+      "forklaring": "være til stede",
+      "ukrainsk": "бути присутнім",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 214,
+      "udtryk": "træffe en beslutning om",
+      "praeposition": "om",
+      "saetning": "Byrådet skal træffe en beslutning ___ møllerne.",
+      "forkerte": [
+        "på",
+        "for",
+        "til"
+      ],
+      "forklaring": "træffe en beslutning om noget",
+      "ukrainsk": "ухвалити рішення щодо (чогось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 215,
+      "udtryk": "takke ja til",
+      "praeposition": "til",
+      "saetning": "Hun takkede ja ___ jobbet.",
+      "forkerte": [
+        "for",
+        "på",
+        "om"
+      ],
+      "forklaring": "takke ja/nej til noget",
+      "ukrainsk": "погодитися на (щось), прийняти",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 216,
+      "udtryk": "falde til",
+      "praeposition": "til",
+      "saetning": "Det tog lang tid at falde ___ i Danmark.",
+      "forkerte": [
+        "ind",
+        "på",
+        "om"
+      ],
+      "forklaring": "falde til = føle sig hjemme et nyt sted",
+      "ukrainsk": "освоїтися (на новому місці)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 217,
+      "udtryk": "gå glip af",
+      "praeposition": "af",
+      "saetning": "Jeg vil ikke gå glip ___ festen.",
+      "forkerte": [
+        "på",
+        "for",
+        "om"
+      ],
+      "forklaring": "gå glip af noget",
+      "ukrainsk": "пропустити (щось), проґавити",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 218,
+      "udtryk": "tage afsked med",
+      "praeposition": "med",
+      "saetning": "Han tog afsked ___ sine kolleger.",
+      "forkerte": [
+        "til",
+        "af",
+        "for"
+      ],
+      "forklaring": "tage afsked med nogen",
+      "ukrainsk": "попрощатися з (кимось)",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 219,
+      "udtryk": "have ry for",
+      "praeposition": "for",
+      "saetning": "Restauranten har ry ___ at være den bedste i byen.",
+      "forkerte": [
+        "til",
+        "af",
+        "om"
+      ],
+      "forklaring": "have ry for noget",
+      "ukrainsk": "славитися (чимось), мати репутацію",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 220,
+      "udtryk": "sige fra over for",
+      "praeposition": "over for",
+      "saetning": "Man skal sige fra ___ mobning.",
+      "forkerte": [
+        "på",
+        "om",
+        "for"
+      ],
+      "forklaring": "sige fra over for noget",
+      "ukrainsk": "сказати «ні» (чомусь), виступити проти",
+      "kategori": "udsagnsord",
+      "mine_fejl": false
+    },
+    {
+      "id": 221,
+      "udtryk": "set i lyset af",
+      "praeposition": "i",
+      "saetning": "Set ___ lyset af de høje priser er det en god idé.",
+      "forkerte": [
+        "på",
+        "med",
+        "af"
+      ],
+      "forklaring": "set i lyset af = når man tænker på",
+      "ukrainsk": "з огляду на (щось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 222,
+      "udtryk": "et hav af",
+      "praeposition": "af",
+      "saetning": "Hun fik et hav ___ blomster.",
+      "forkerte": [
+        "med",
+        "på",
+        "til"
+      ],
+      "forklaring": "et hav af = rigtig mange",
+      "ukrainsk": "безліч (чогось), море (чогось)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 223,
+      "udtryk": "have ret til",
+      "praeposition": "til",
+      "saetning": "Alle har ret ___ at sige deres mening.",
+      "forkerte": [
+        "på",
+        "for",
+        "om"
+      ],
+      "forklaring": "have ret til noget (en rettighed)",
+      "ukrainsk": "мати право на (щось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 224,
+      "udtryk": "have krav på",
+      "praeposition": "på",
+      "saetning": "Man har krav ___ erstatning, hvis huset falder i værdi.",
+      "forkerte": [
+        "til",
+        "om",
+        "for"
+      ],
+      "forklaring": "have krav på noget",
+      "ukrainsk": "мати законне право на (щось)",
+      "kategori": "navneord",
+      "mine_fejl": false
+    },
+    {
+      "id": 225,
+      "udtryk": "langt fra alene om",
+      "praeposition": "om",
+      "saetning": "Hun er langt fra alene ___ at tænke sådan.",
+      "forkerte": [
+        "med",
+        "i",
+        "på"
+      ],
+      "forklaring": "være (langt fra) alene om noget",
+      "ukrainsk": "далеко не єдиний у (чомусь)",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 226,
+      "udtryk": "i fortrolighed",
+      "praeposition": "i",
+      "saetning": "Han fortalte mig det ___ fortrolighed.",
+      "forkerte": [
+        "på",
+        "med",
+        "til"
+      ],
+      "forklaring": "i fortrolighed = som en hemmelighed",
+      "ukrainsk": "конфіденційно, по секрету",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 227,
+      "udtryk": "for længst",
+      "praeposition": "for",
+      "saetning": "Det burde være sket ___ længst.",
+      "forkerte": [
+        "i",
+        "på",
+        "til"
+      ],
+      "forklaring": "for længst = for lang tid siden",
+      "ukrainsk": "давно",
+      "kategori": "tid",
+      "mine_fejl": false
+    },
+    {
+      "id": 228,
+      "udtryk": "med tiden",
+      "praeposition": "med",
+      "saetning": "Det bliver lettere ___ tiden.",
+      "forkerte": [
+        "i",
+        "på",
+        "efter"
+      ],
+      "forklaring": "med tiden = efterhånden",
+      "ukrainsk": "з часом",
+      "kategori": "tid",
+      "mine_fejl": false
+    },
+    {
+      "id": 229,
+      "udtryk": "i det hele taget",
+      "praeposition": "i",
+      "saetning": "Jeg er ___ det hele taget glad for at bo her.",
+      "forkerte": [
+        "på",
+        "for",
+        "med"
+      ],
+      "forklaring": "i det hele taget = generelt",
+      "ukrainsk": "загалом",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    },
+    {
+      "id": 230,
+      "udtryk": "i sidste ende",
+      "praeposition": "i",
+      "saetning": "Det er ___ sidste ende byrådet, der beslutter.",
+      "forkerte": [
+        "på",
+        "til",
+        "ved"
+      ],
+      "forklaring": "i sidste ende = til sidst",
+      "ukrainsk": "зрештою, врешті-решт",
+      "kategori": "faste vendinger",
+      "mine_fejl": false
+    }
+  ]
+}
