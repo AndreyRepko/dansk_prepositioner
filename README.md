@@ -37,6 +37,19 @@ npm run start:api                                    # app on :4200, /api proxie
 cd api && npm test                                   # API unit tests
 ```
 
+## Sharing
+
+**Share** in the header opens a dialog with a QR code (scan it from a phone to open the app),
+**Copy link**, and **Share…** (the device's share sheet, shown only where the browser supports it).
+It always shares the production URL in `src/app/share/share-url.ts`, never the current page, so links
+shared from a PR preview still work. The link does not carry progress: each person picks their own name.
+
+`public/qr.svg` encodes that URL. If the URL changes, regenerate it:
+
+```bash
+npx qrcode@1.5.4 -t svg -o public/qr.svg "<APP_URL>"
+```
+
 ## Data
 
 `data/praepositioner.json` is the source the app loads (`data/praepositioner.csv` has the same

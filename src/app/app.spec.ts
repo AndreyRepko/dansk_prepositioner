@@ -55,11 +55,12 @@ describe('App', () => {
     expect(el.querySelector('.warning')?.textContent).toContain('not being saved');
   });
 
-  it('shows the current name with a switch link, and no navigation without a name', async () => {
+  it('shows the current name with a switch link, and only Share without a name', async () => {
     localStorage.clear();
     TestBed.inject(ExpressionService).expressions.set([testExpression(1)]);
     let el = await render();
-    expect(el.querySelector('nav')).toBeNull();
+    expect(el.querySelectorAll('nav a').length).toBe(0);
+    expect(el.querySelector('nav .share')).toBeTruthy();
 
     TestBed.inject(UserService).select('Andrii');
     el = await render();

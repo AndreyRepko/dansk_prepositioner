@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
           lfs: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -31,8 +31,9 @@ jobs:
         run: |
           test -s dist/dansk-prepositioner/browser/index.html
           test -s dist/dansk-prepositioner/browser/data/praepositioner.json
+          test -s dist/dansk-prepositioner/browser/qr.svg
       # The API runs on the managed Functions runtime node:22 (staticwebapp.config.json), so build it with 22.
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm

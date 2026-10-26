@@ -3,23 +3,28 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 import { ExpressionService } from './services/expression.service';
 import { QuizService } from './services/quiz.service';
 import { UserService } from './services/user.service';
+import { ShareDialog } from './share/share-dialog';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, ShareDialog],
   selector: 'app-root',
   host: { '(document:visibilitychange)': 'onVisibilityChange()' },
   template: `
     <header class="top">
       <a routerLink="/" class="brand">Præpositioner</a>
-      @if (user(); as name) {
-        <nav>
+      <nav>
+        @if (user(); as name) {
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Practice</a>
           <a routerLink="/stats" routerLinkActive="active">Statistics</a>
+        }
+        <button class="share" (click)="share.open()">Share</button>
+        @if (user(); as name) {
           <span class="user">{{ name }} · <a routerLink="/who" class="switch">switch</a></span>
-        </nav>
-      }
+        }
+      </nav>
     </header>
+    <app-share-dialog #share />
     <main>
       @if (expressions().length === 0) {
         <div class="card error">
@@ -75,6 +80,12 @@ import { UserService } from './services/user.service';
     nav a {
       color: var(--muted);
       text-decoration: none;
+    }
+    nav .share {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--muted);
     }
     nav a.active {
       color: var(--accent);
