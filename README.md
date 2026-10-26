@@ -42,7 +42,7 @@ cd api && npm test                                   # API unit tests
 **Share** in the header opens a dialog with a QR code (scan it from a phone to open the app),
 **Copy link**, and **Share…** (the device's share sheet, shown only where the browser supports it).
 It always shares the production URL in `src/app/share/share-url.ts`, never the current page, so links
-shared from a PR preview still work. The link does not carry progress: each person picks their own name.
+shared from a PR preview still work. The link does not carry progress: each person practises as guest or signs in with their own name.
 
 `public/qr.svg` encodes that URL. If the URL changes, regenerate it:
 
@@ -87,25 +87,38 @@ items → new items (`mine_fejl` first) → least recently seen items. Within a 
 answer is asked again at the end until it is answered correctly (only the first attempt
 counts for the statistics).
 
-## Names and storage
+## Guests, accounts and storage
 
-There is no login. On the first visit the app asks for a name (`/who`); the browser remembers it
-and the names used before, and the header has a *switch* link. Progress belongs to the name, so
-the same name on another device shows the same progress. Names are case-insensitive, 1–30
-letters/digits/spaces/`. _ ' -`. Anyone who types the same name shares that progress, and when
-one name is used on two devices at once the last save wins. Progress is reloaded when the tab
-becomes visible again (outside a running session), so a tab left open picks up practice done elsewhere.
+The app opens straight into practice as a **guest**: progress stays in this browser only. To keep
+progress across devices, **sign in** (`/who`, header link) with a name and a password. An unknown
+name gets a one-click *Create account* (so a typo in an existing name does not silently make a new
+one). On signing in, guest progress is merged into the account (per expression the newer answer sets
+the box and due date, counts add up, sessions interleave) and removed from the browser only after the
+account has saved it. Each merge is marked (a local copy of what was added, and an id kept in the
+account), so a retried or interrupted sign-in adds only guest practice that is new since. Removing
+the signed-in name from the list on `/who` signs out. *Sign out* returns to guest mode.
 
-Storage goes through `ProgressStore` (chosen in `app.config.ts` by the `USE_API` build define):
+The password only keeps a name from being reused by accident; it is not real security. The browser
+sends and remembers `SHA-256(password + lower-case name)` (hex, `X-Password-Hash` header), never the
+password; the server stores that hash with the progress and answers 401 when none is sent and 403
+for a different one. A name saved before passwords existed is claimed by the first password used with
+it (only the hash is written, and only if the row did not change meanwhile; a new name is created
+only if it does not exist yet, so two devices cannot both take a name: the loser gets 409). Such names
+are still listed on `/who`, and while practising as guest a notice asks to sign in with one of them. Names are case-insensitive, 1–30
+letters/digits/spaces/`. _ ' -`. When one account is used on two devices at once the last save wins.
+Progress is reloaded when the tab becomes visible again (outside a running session).
+
+Account storage goes through `ProgressStore` (chosen in `app.config.ts` by the `USE_API` build define):
 
 - **Production** (`ApiProgressStore`): `GET/PUT /api/progress/{name}` (Azure Functions in `api/`),
   stored in Azure Table Storage, table `progress`, one row per name (`PartitionKey` = lower-case
-  name). The JSON is split over `data0..dataN` properties because a table property holds at most
-  64 KiB; the app keeps the last 200 sessions so a row stays small.
-- **`npm start`** (`LocalStorageProgressStore`): browser `localStorage`, one key per name.
+  name, `passwordHash` column). The JSON is split over `data0..dataN` properties because a table
+  property holds at most 64 KiB; the app keeps the last 200 sessions so a row stays small.
+- **`npm start`** (`LocalStorageProgressStore`): browser `localStorage`, one key per name, with the
+  same password rules, so signing in can be tried without the API.
 
-Progress saved before names existed (one unnamed `localStorage` entry) is moved to the first
-name entered in that browser that has no progress yet.
+Guest progress (`GuestProgressStore`) is the `localStorage` key `dansk-prep-progress-v1`, the same
+place progress lived before names existed, so such old progress shows up as guest progress.
 
 ## Deployment (Azure Static Web Apps)
 

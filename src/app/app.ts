@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ExpressionService } from './services/expression.service';
 import { QuizService } from './services/quiz.service';
@@ -14,13 +14,16 @@ import { ShareDialog } from './share/share-dialog';
     <header class="top">
       <a routerLink="/" class="brand">Præpositioner</a>
       <nav>
-        @if (user(); as name) {
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Practice</a>
-          <a routerLink="/stats" routerLinkActive="active">Statistics</a>
-        }
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Practice</a>
+        <a routerLink="/stats" routerLinkActive="active">Statistics</a>
         <button class="share" (click)="share.open()">Share</button>
-        @if (user(); as name) {
-          <span class="user">{{ name }} · <a routerLink="/who" class="switch">switch</a></span>
+        @if (user(); as account) {
+          <span class="user">
+            {{ account.name }} · <a routerLink="/who" class="switch">switch</a> ·
+            <button class="link sign-out" (click)="signOut()">sign out</button>
+          </span>
+        } @else {
+          <span class="user">Guest · <a routerLink="/who" class="switch">sign in</a></span>
         }
       </nav>
     </header>
@@ -33,10 +36,16 @@ import { ShareDialog } from './share/share-dialog';
         </div>
       } @else if (loadError()) {
         <div class="card error">
-          <p>Could not load the saved progress for {{ user() }}.</p>
+          @if (user(); as account) {
+            <p>Could not load the saved progress for {{ account.name }}.</p>
+          } @else {
+            <p>Could not load the progress saved in this browser.</p>
+          }
           <div class="actions">
             <button (click)="retry()">Retry</button>
-            <button (click)="otherName()">Use another name</button>
+            @if (user()) {
+              <button (click)="signOut()">Continue as guest</button>
+            }
           </div>
         </div>
       } @else if (loading()) {
@@ -44,6 +53,13 @@ import { ShareDialog } from './share/share-dialog';
       } @else {
         @if (saveError()) {
           <p class="card warning">Progress is not being saved.</p>
+        }
+        @if (!user() && needsPassword(); as name) {
+          <p class="card notice">
+            Progress saved under a name now needs a password.
+            <a routerLink="/who" [queryParams]="{ name }">Sign in as {{ name }}</a> with a password
+            of your choice to keep it yours.
+          </p>
         }
         <router-outlet />
       }
@@ -81,11 +97,15 @@ import { ShareDialog } from './share/share-dialog';
       color: var(--muted);
       text-decoration: none;
     }
-    nav .share {
+    nav .share,
+    nav .link {
       padding: 0;
       border: 0;
       background: none;
       color: var(--muted);
+    }
+    nav .sign-out {
+      color: var(--accent);
     }
     nav a.active {
       color: var(--accent);
@@ -102,7 +122,10 @@ export class App {
   private readonly quiz = inject(QuizService);
   private readonly router = inject(Router);
   protected readonly expressions = inject(ExpressionService).expressions;
-  protected readonly user = inject(UserService).current;
+  private readonly users = inject(UserService);
+  protected readonly user = this.users.current;
+  /** A name used before passwords existed (its server progress waits for a password). */
+  protected readonly needsPassword = computed(() => this.users.known().find((u) => !u.hash)?.name ?? null);
   protected readonly loading = this.quiz.loading;
   protected readonly loadError = this.quiz.loadError;
   protected readonly saveError = this.quiz.saveError;
@@ -116,8 +139,8 @@ export class App {
     if (document.visibilityState === 'visible') void this.quiz.refresh();
   }
 
-  protected otherName(): void {
-    this.quiz.signOut();
-    void this.router.navigate(['/who']);
+  protected signOut(): void {
+    this.quiz.signOut().catch((e) => console.error(e)); // shown by loadError
+    void this.router.navigate(['/']);
   }
 }

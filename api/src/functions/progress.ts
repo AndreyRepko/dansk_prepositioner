@@ -18,7 +18,13 @@ app.http('progress', {
   handler: async (request, context): Promise<HttpResponseInit> => {
     try {
       const body = request.method === 'PUT' ? await request.text() : undefined;
-      const reply = await handleProgress(request.method, request.params['name'], body, getRepo());
+      const reply = await handleProgress(
+        request.method,
+        request.params['name'],
+        body,
+        request.headers.get('x-password-hash'),
+        getRepo(),
+      );
       return {
         status: reply.status,
         body: reply.body,
