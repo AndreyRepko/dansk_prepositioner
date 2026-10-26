@@ -43,6 +43,7 @@ import { QuizService } from '../services/quiz.service';
           <p class="verdict">{{ correct() ? 'Rigtigt!' : 'Forkert — the answer is “' + q.expression.praeposition + '”' }}</p>
           <p><strong>{{ q.expression.udtryk }}</strong> — {{ q.expression.forklaring }}</p>
           <p class="muted">{{ q.expression.ukrainsk }}</p>
+          <p class="muted">{{ q.expression.engelsk }}</p>
           <div class="actions">
             <button class="primary" (click)="next()" autofocus>Next ↵</button>
           </div>

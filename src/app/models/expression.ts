@@ -16,6 +16,7 @@ export interface Expression {
   forkerte: string[];
   forklaring: string;
   ukrainsk: string;
+  engelsk: string;
   kategori: Category;
   mine_fejl: boolean;
 }

@@ -53,7 +53,7 @@ import { byCategory, hardest, overview, percent, totals } from '../services/stat
           <tbody>
             @for (h of hard(); track h.expression.id) {
               <tr>
-                <td>{{ h.expression.udtryk }}<br /><span class="muted">{{ h.expression.ukrainsk }}</span></td>
+                <td>{{ h.expression.udtryk }}<br /><span class="muted">{{ h.expression.ukrainsk }}</span><br /><span class="muted">{{ h.expression.engelsk }}</span></td>
                 <td class="num">{{ h.correct }}</td>
                 <td class="num">{{ h.wrong }}</td>
               </tr>

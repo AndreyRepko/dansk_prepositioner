@@ -10,6 +10,7 @@ export function testExpression(id: number, overrides: Partial<Expression> = {}):
     forkerte: ['i', 'til', 'om'],
     forklaring: 'forklaring',
     ukrainsk: 'переклад',
+    engelsk: 'translation',
     kategori: 'udsagnsord',
     mine_fejl: false,
     ...overrides,

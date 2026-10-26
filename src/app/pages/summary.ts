@@ -25,6 +25,7 @@ import { percent } from '../services/stats';
             <span class="muted">(you chose “{{ m.chosen }}”)</span>
           </p>
           <p class="muted">{{ m.expression.ukrainsk }}</p>
+          <p class="muted">{{ m.expression.engelsk }}</p>
         </section>
       }
     } @else {
