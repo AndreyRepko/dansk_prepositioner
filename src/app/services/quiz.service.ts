@@ -1,10 +1,12 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Expression } from '../models/expression';
-import { emptyProgress, ProgressState } from '../models/progress';
+import { emptyProgress, isEmptyProgress, MAX_SESSIONS, mergeProgress, ProgressState } from '../models/progress';
 import { ExpressionService } from './expression.service';
-import { readLegacyProgress, restoreLegacyProgress, retireLegacyProgress } from './local-storage-progress-store';
-import { ProgressStore } from './progress-store';
+import { GuestProgressStore } from './local-storage-progress-store';
+import { passwordHash } from './password-hash';
+import { Account, ProgressStore, WrongPasswordError } from './progress-store';
 import { applyAnswer, buildOptions, Rng, selectSession, SessionFilter } from './srs';
+import { cleanName } from './user-name';
 import { UserService } from './user.service';
 
 export interface QuizSettings extends SessionFilter {
@@ -26,14 +28,14 @@ export interface AnswerRecord {
 
 export const DEFAULT_SETTINGS: QuizSettings = { size: 10 };
 
-/** Older sessions are dropped so saved progress stays small (Table Storage row limit). */
-export const MAX_SESSIONS = 200;
-
-const isEmpty = (p: ProgressState) => Object.keys(p.items).length === 0 && p.sessions.length === 0;
+/** `unknown`: the name has no account yet (sign in again with `create` to make one). */
+export type SignInResult = 'ok' | 'unknown' | 'wrong-password';
 
 @Injectable({ providedIn: 'root' })
 export class QuizService {
+  /** Accounts (the API in production). */
   private readonly store = inject(ProgressStore);
+  private readonly guest = inject(GuestProgressStore);
   private readonly expressionService = inject(ExpressionService);
   private readonly users = inject(UserService);
   private saving: Promise<void> = Promise.resolve();
@@ -41,6 +43,8 @@ export class QuizService {
   private loadToken = 0;
   /** Increments per save so a refresh does not replace changes made while it was loading. */
   private edits = 0;
+  /** Increments per sign-in so only the last of several quick ones takes effect. */
+  private signInToken = 0;
 
   /** Overridable in tests. */
   now: () => number = Date.now;
@@ -55,7 +59,7 @@ export class QuizService {
   /** First attempts only, in the order they were answered. */
   readonly results = signal<AnswerRecord[]>([]);
   readonly finished = signal(false);
-  /** Progress for the current user is being fetched. */
+  /** Progress for the current user (or guest) is being fetched. */
   readonly loading = signal(false);
   /** Saved progress could not be loaded; saving is disabled so it is not overwritten. */
   readonly loadError = signal(false);
@@ -70,27 +74,62 @@ export class QuizService {
     return q && c !== null ? c === q.expression.praeposition : null;
   });
 
-  /** Loads the expressions and the current user's progress (if a name is chosen). */
+  /** Loads the expressions and the progress of the current user, or of the guest. */
   async init(): Promise<void> {
     await Promise.all([this.expressionService.load(), this.loadProgress()]);
   }
 
-  /** Makes `name` the current user and loads their progress. Returns false for an invalid name. */
-  async switchUser(name: string): Promise<boolean> {
-    if (!this.users.select(name)) return false;
-    await this.loadProgress();
-    return true;
+  /** Signs in with a name and password (see `signInAs`); null for an invalid name or empty password. */
+  async signIn(rawName: string, password: string, create = false): Promise<SignInResult | null> {
+    const name = cleanName(rawName);
+    if (!name || !password) return null;
+    return this.signInAs({ name, hash: await passwordHash(name, password) }, create);
   }
 
-  /** Forgets the current name after its progress could not be loaded. */
-  signOut(): void {
+  /**
+   * Makes `account` the current user. Guest progress is added to the account and removed from this
+   * browser only once the account has saved it, so nothing is lost or counted twice. Nothing changes
+   * unless it resolves to 'ok'; it rejects when the account cannot be reached or saved.
+   */
+  async signInAs(account: Account, create = false): Promise<SignInResult> {
+    const token = ++this.signInToken;
+    await this.saving; // a guest answer just given is included
+    let server: ProgressState | null;
+    try {
+      server = await this.store.load(account);
+    } catch (error) {
+      if (error instanceof WrongPasswordError) return 'wrong-password';
+      throw error;
+    }
+    if (!server && !create) return 'unknown';
+
+    const edits = this.edits;
+    // Unreadable guest progress (blocked storage) cannot be added; it is left where it is.
+    const guest = await this.guest.load().catch(() => null);
+    const adding = !!guest && !isEmptyProgress(guest);
+    const progress = adding ? mergeProgress(server ?? emptyProgress(), guest) : (server ?? emptyProgress());
+    if (!server || adding) await this.store.save(account, progress); // creates the account
+    if (token !== this.signInToken) return 'ok'; // a later sign-in (or sign-out) decides who is current
+    // An answer given as guest meanwhile is not in the account, so then the guest progress stays.
+    if (adding && edits === this.edits) {
+      await this.guest.clear().catch((e) => console.error('Could not clear guest progress', e));
+    }
+
     this.loadToken++;
-    this.users.clear();
+    this.users.signIn(account);
     this.resetSession();
-    this.progress.set(emptyProgress());
+    this.progress.set(progress);
     this.loading.set(false);
     this.loadError.set(false);
     this.saveError.set(false);
+    return 'ok';
+  }
+
+  /** Back to practising as guest (also after the account's progress could not be loaded). */
+  async signOut(): Promise<void> {
+    this.signInToken++;
+    this.users.signOut();
+    await this.loadProgress();
   }
 
   private async loadProgress(): Promise<void> {
@@ -100,7 +139,6 @@ export class QuizService {
     this.progress.set(emptyProgress());
     this.loadError.set(false);
     this.saveError.set(false);
-    if (!user) return;
 
     this.loading.set(true);
     // Saves still running (e.g. for this name before a quick switch away and back) land first.
@@ -108,7 +146,7 @@ export class QuizService {
     if (token !== this.loadToken) return;
     let progress: ProgressState;
     try {
-      progress = await this.store.load(user);
+      progress = await this.load(user);
     } catch (error) {
       if (token === this.loadToken) {
         this.loadError.set(true);
@@ -117,30 +155,28 @@ export class QuizService {
       throw error;
     }
     if (token !== this.loadToken) return;
-
-    // Progress saved before names existed goes to the first name that has none yet.
-    const legacy = isEmpty(progress) ? readLegacyProgress() : null;
-    const importing = !!legacy && !isEmpty(legacy);
-    // Claimed before saving so a name chosen during the save does not import it too.
-    if (importing) retireLegacyProgress();
-    this.progress.set(importing ? legacy : progress);
+    this.progress.set(progress);
     this.loading.set(false);
-    if (importing && !(await this.persist())) restoreLegacyProgress();
+  }
+
+  /** Progress of `user`, or of the guest for null. */
+  private async load(user: Account | null): Promise<ProgressState> {
+    return user ? ((await this.store.load(user)) ?? emptyProgress()) : this.guest.load();
   }
 
   /**
-   * Reloads the current user's progress (e.g. when the tab is shown again after practice on
-   * another device). Skipped during a session; kept as is when it fails or something was saved meanwhile.
+   * Reloads the current progress (e.g. when the tab is shown again after practice on another
+   * device or tab). Skipped during a session; kept as is when it fails or something was saved meanwhile.
    */
   async refresh(): Promise<void> {
     const user = this.users.current();
-    if (!user || this.loading() || this.loadError() || this.active()) return;
+    if (this.loading() || this.loadError() || this.active()) return;
     const token = this.loadToken;
     const edits = this.edits;
     await this.saving;
     let progress: ProgressState;
     try {
-      progress = await this.store.load(user);
+      progress = await this.load(user);
     } catch (error) {
       console.error('Could not refresh progress', error);
       return;
@@ -219,17 +255,17 @@ export class QuizService {
   }
 
   /**
-   * Saves the current progress for the current user; saves run one after another so
+   * Saves the current progress for the current user (or guest); saves run one after another so
    * they cannot land out of order. Each save is bound to the user it was made for.
    */
   private persist(): Promise<boolean> {
     const user = this.users.current();
-    if (!user || this.loadError() || this.loading()) return Promise.resolve(false);
+    if (this.loadError() || this.loading()) return Promise.resolve(false);
     const state = this.progress();
     const token = this.loadToken;
     this.edits++;
     const saved = this.saving
-      .then(() => this.store.save(user, state))
+      .then(() => (user ? this.store.save(user, state) : this.guest.save(state)))
       .then(
         () => {
           if (token === this.loadToken) this.saveError.set(false);

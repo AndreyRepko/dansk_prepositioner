@@ -17,6 +17,8 @@ class FakeTable implements TableLike {
   }
 }
 
+const HASH = 'ab'.repeat(32);
+
 describe('TableProgressRepo', () => {
   it('returns null for an unknown key', async () => {
     expect(await new TableProgressRepo(new FakeTable()).get('andrii')).toBeNull();
@@ -26,29 +28,35 @@ describe('TableProgressRepo', () => {
     const table = new FakeTable();
     const repo = new TableProgressRepo(table);
     const json = JSON.stringify({ text: 'æøå'.repeat(CHUNK_CHARS) });
-    await repo.put('andrii', 'Andrii', json);
+    await repo.put('andrii', 'Andrii', json, HASH);
 
     const entity = table.entities.get('andrii|progress')!;
     expect(entity['chunks']).toBe(4);
     expect(entity['name']).toBe('Andrii');
-    expect(await repo.get('andrii')).toBe(json);
+    expect(await repo.get('andrii')).toEqual({ json, passwordHash: HASH });
+  });
+
+  it('reads rows saved before passwords existed', async () => {
+    const table = new FakeTable();
+    table.entities.set('a|progress', { partitionKey: 'a', rowKey: 'progress', chunks: 1, data0: '{}' });
+    expect(await new TableProgressRepo(table).get('a')).toEqual({ json: '{}' });
   });
 
   it('drops chunks left over from a longer earlier value', async () => {
     const table = new FakeTable();
     const repo = new TableProgressRepo(table);
-    await repo.put('andrii', 'Andrii', 'x'.repeat(CHUNK_CHARS * 2 + 1));
-    await repo.put('andrii', 'Andrii', '{}');
+    await repo.put('andrii', 'Andrii', 'x'.repeat(CHUNK_CHARS * 2 + 1), HASH);
+    await repo.put('andrii', 'Andrii', '{}', HASH);
 
     expect(table.entities.get('andrii|progress')!['data1']).toBeUndefined();
-    expect(await repo.get('andrii')).toBe('{}');
+    expect((await repo.get('andrii'))?.json).toBe('{}');
   });
 
   it('creates the table once', async () => {
     const table = new FakeTable();
     const repo = new TableProgressRepo(table);
     await repo.get('a');
-    await repo.put('a', 'a', '{}');
+    await repo.put('a', 'a', '{}', HASH);
     expect(table.createCalls).toBe(1);
   });
 

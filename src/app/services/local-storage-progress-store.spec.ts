@@ -1,13 +1,15 @@
 import { emptyProgress, ProgressState } from '../models/progress';
 import { testProgress } from '../testing/fixtures';
 import {
+  GuestProgressStore,
   LocalStorageProgressStore,
-  readLegacyProgress,
-  restoreLegacyProgress,
-  retireLegacyProgress,
+  passwordKey,
   STORAGE_KEY,
   storageKey,
 } from './local-storage-progress-store';
+import { WrongPasswordError } from './progress-store';
+
+const ANDRII = { name: 'Andrii', hash: 'a'.repeat(64) };
 
 describe('LocalStorageProgressStore', () => {
   const store = new LocalStorageProgressStore();
@@ -20,8 +22,8 @@ describe('LocalStorageProgressStore', () => {
 
   const backups = () => Object.keys(localStorage).filter((k) => k.startsWith(`${key}-corrupt-`));
 
-  it('returns empty progress when nothing is stored', async () => {
-    expect(await store.load('Andrii')).toEqual(emptyProgress());
+  it('returns null for a name without an account', async () => {
+    expect(await store.load(ANDRII)).toBeNull();
   });
 
   it('round-trips saved progress', async () => {
@@ -30,16 +32,29 @@ describe('LocalStorageProgressStore', () => {
       items: { 7: testProgress({ box: 3 }) },
       sessions: [{ date: 1, total: 10, correct: 8 }],
     };
-    await store.save('Andrii', state);
-    expect(await store.load('Andrii')).toEqual(state);
+    await store.save(ANDRII, state);
+    expect(await store.load(ANDRII)).toEqual(state);
   });
 
   it('keeps names apart and ignores case', async () => {
     const state: ProgressState = { version: 1, items: { 7: testProgress() }, sessions: [] };
-    await store.save('Andrii', state);
-    expect(await store.load('ANDRII')).toEqual(state);
-    expect(await store.load('Olena')).toEqual(emptyProgress());
+    await store.save(ANDRII, state);
+    expect(await store.load({ ...ANDRII, name: 'ANDRII' })).toEqual(state);
+    expect(await store.load({ ...ANDRII, name: 'Olena' })).toBeNull();
     expect(key).toBe(`${STORAGE_KEY}:andrii`);
+  });
+
+  it('rejects a wrong password like the API', async () => {
+    await store.save(ANDRII, emptyProgress());
+    const other = { ...ANDRII, hash: 'b'.repeat(64) };
+    await expect(store.load(other)).rejects.toBeInstanceOf(WrongPasswordError);
+    await expect(store.save(other, emptyProgress())).rejects.toBeInstanceOf(WrongPasswordError);
+  });
+
+  it('lets the first password claim progress saved before passwords existed', async () => {
+    localStorage.setItem(key, JSON.stringify(emptyProgress()));
+    expect(await store.load(ANDRII)).toEqual(emptyProgress());
+    expect(localStorage.getItem(passwordKey('Andrii'))).toBe(ANDRII.hash);
   });
 
   it.each(['{not json', JSON.stringify({ version: 99 }), JSON.stringify({ version: 1, items: null, sessions: [] })])(
@@ -48,7 +63,7 @@ describe('LocalStorageProgressStore', () => {
       vi.spyOn(console, 'error').mockImplementation(() => {});
       localStorage.setItem(key, raw);
 
-      expect(await store.load('Andrii')).toEqual(emptyProgress());
+      expect(await store.load(ANDRII)).toEqual(emptyProgress());
       expect(backups().map((k) => localStorage.getItem(k))).toEqual([raw]);
       expect(console.error).toHaveBeenCalled();
     },
@@ -64,7 +79,7 @@ describe('LocalStorageProgressStore', () => {
         sessions: [{ date: 1, total: 2, correct: 1 }, { date: 'x' }],
       }),
     );
-    expect(await store.load('Andrii')).toEqual({
+    expect(await store.load(ANDRII)).toEqual({
       version: 1,
       items: { 1: good },
       sessions: [{ date: 1, total: 2, correct: 1 }],
@@ -75,8 +90,8 @@ describe('LocalStorageProgressStore', () => {
   it('keeps only one backup of the same unreadable data', async () => {
     vi.spyOn(console, 'error').mockImplementation(() => {});
     localStorage.setItem(key, '{not json');
-    await store.load('Andrii');
-    await store.load('Andrii');
+    await store.load(ANDRII);
+    await store.load(ANDRII);
     expect(backups().length).toBe(1);
   });
 
@@ -84,49 +99,43 @@ describe('LocalStorageProgressStore', () => {
     vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new DOMException('blocked', 'SecurityError');
     });
-    await expect(store.load('Andrii')).rejects.toThrow('blocked');
+    await expect(store.load(ANDRII)).rejects.toThrow('blocked');
   });
 
   it('rejects when saving fails', async () => {
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
       throw new Error('QuotaExceededError');
     });
-    await expect(store.save('Andrii', emptyProgress())).rejects.toThrow('QuotaExceededError');
+    await expect(store.save(ANDRII, emptyProgress())).rejects.toThrow('QuotaExceededError');
   });
 });
 
-describe('legacy progress (saved before names existed)', () => {
+describe('GuestProgressStore', () => {
+  const guest = new GuestProgressStore();
+  const state: ProgressState = { version: 1, items: { 1: testProgress() }, sessions: [] };
+
   beforeEach(() => {
     vi.restoreAllMocks();
     localStorage.clear();
   });
 
-  it('is null when there is none', () => {
-    expect(readLegacyProgress()).toBeNull();
+  it('is empty when nothing is stored', async () => {
+    expect(await guest.load()).toEqual(emptyProgress());
   });
 
-  it('is read from the old key and retired to an "-imported" copy', () => {
-    const state: ProgressState = { version: 1, items: { 1: testProgress() }, sessions: [] };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    expect(readLegacyProgress()).toEqual(state);
+  it('round-trips under the key used before names existed, and clears', async () => {
+    await guest.save(state);
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!)).toEqual(state);
+    expect(await guest.load()).toEqual(state);
 
-    retireLegacyProgress();
-    expect(localStorage.getItem(STORAGE_KEY)).toBeNull();
-    expect(JSON.parse(localStorage.getItem(`${STORAGE_KEY}-imported`)!)).toEqual(state);
-    expect(readLegacyProgress()).toBeNull();
+    await guest.clear();
+    expect(await guest.load()).toEqual(emptyProgress());
   });
 
-  it('is put back by restore, unless the old key was written again', () => {
-    const state: ProgressState = { version: 1, items: { 1: testProgress() }, sessions: [] };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    retireLegacyProgress();
-    restoreLegacyProgress();
-    expect(readLegacyProgress()).toEqual(state);
-    expect(localStorage.getItem(`${STORAGE_KEY}-imported`)).toBeNull();
-
-    retireLegacyProgress();
-    localStorage.setItem(STORAGE_KEY, '{}');
-    restoreLegacyProgress();
-    expect(localStorage.getItem(STORAGE_KEY)).toBe('{}');
+  it('keeps a backup of unreadable data', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    localStorage.setItem(STORAGE_KEY, '{not json');
+    expect(await guest.load()).toEqual(emptyProgress());
+    expect(Object.keys(localStorage).some((k) => k.startsWith(`${STORAGE_KEY}-corrupt-`))).toBe(true);
   });
 });

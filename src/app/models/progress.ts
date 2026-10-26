@@ -63,3 +63,32 @@ export function parseProgress(raw: unknown): ProgressState | null {
     sessions: sessions.filter(isSessionRecord),
   };
 }
+
+/** Older sessions are dropped so saved progress stays small (Table Storage row limit). */
+export const MAX_SESSIONS = 200;
+
+export const isEmptyProgress = (p: ProgressState) => Object.keys(p.items).length === 0 && p.sessions.length === 0;
+
+/**
+ * Combines two separate histories (guest practice added to an account): per expression the
+ * newer answer decides box and due date, and answer counts add up; sessions are interleaved by date.
+ */
+export function mergeProgress(a: ProgressState, b: ProgressState): ProgressState {
+  const items: Record<number, ItemProgress> = { ...a.items };
+  for (const [id, theirs] of Object.entries(b.items) as unknown as [number, ItemProgress][]) {
+    const ours = items[id];
+    if (!ours) {
+      items[id] = theirs;
+      continue;
+    }
+    const newer = theirs.lastSeen > ours.lastSeen ? theirs : ours;
+    items[id] = {
+      ...newer,
+      seen: ours.seen + theirs.seen,
+      correct: ours.correct + theirs.correct,
+      wrong: ours.wrong + theirs.wrong,
+    };
+  }
+  const sessions = [...a.sessions, ...b.sessions].sort((x, y) => x.date - y.date).slice(-MAX_SESSIONS);
+  return { version: 1, items, sessions };
+}

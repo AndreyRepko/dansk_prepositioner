@@ -1,22 +1,34 @@
 import { TestBed } from '@angular/core/testing';
-import { provideRouter, Router } from '@angular/router';
-import { requireUser } from '../app.routes';
-import { emptyProgress } from '../models/progress';
-import { ProgressStore } from '../services/progress-store';
-import { UserService } from '../services/user.service';
+import { ActivatedRoute, convertToParamMap, provideRouter, Router } from '@angular/router';
+import { ProgressState } from '../models/progress';
+import { passwordHash } from '../services/password-hash';
+import { Account, ProgressStore, WrongPasswordError } from '../services/progress-store';
+import { QuizService } from '../services/quiz.service';
+import { CURRENT_USER_KEY, UserService } from '../services/user.service';
+import { testProgress } from '../testing/fixtures';
 import { WhoPage } from './who';
 
 describe('WhoPage', () => {
-  let load: ReturnType<typeof vi.fn>;
+  let load: ReturnType<typeof vi.fn<(account: Account) => Promise<ProgressState | null>>>;
+  let save: ReturnType<typeof vi.fn<(account: Account, state: ProgressState) => Promise<void>>>;
+  let navigate: ReturnType<typeof vi.spyOn>;
 
-  beforeEach(() => {
+  function setup(query: Record<string, string> = {}) {
     localStorage.clear();
-    load = vi.fn(async () => emptyProgress());
+    load = vi.fn(async () => null);
+    save = vi.fn(async () => {});
     TestBed.configureTestingModule({
       imports: [WhoPage],
-      providers: [provideRouter([]), { provide: ProgressStore, useValue: { load, save: async () => {} } }],
+      providers: [
+        provideRouter([]),
+        { provide: ProgressStore, useValue: { load, save } },
+        { provide: ActivatedRoute, useValue: { snapshot: { queryParamMap: convertToParamMap(query) } } },
+      ],
     });
-  });
+    navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+  }
+
+  beforeEach(() => setup());
 
   async function render() {
     const fixture = TestBed.createComponent(WhoPage);
@@ -24,85 +36,134 @@ describe('WhoPage', () => {
     return { fixture, el: fixture.nativeElement as HTMLElement };
   }
 
-  function type(el: HTMLElement, value: string) {
-    const input = el.querySelector('input')!;
-    input.value = value;
-    input.dispatchEvent(new Event('input'));
+  async function submit(fixture: { whenStable(): Promise<unknown> }, el: HTMLElement, name: string, password: string) {
+    const [nameInput, passwordInput] = el.querySelectorAll('input');
+    nameInput.value = name;
+    nameInput.dispatchEvent(new Event('input'));
+    passwordInput.value = password;
+    passwordInput.dispatchEvent(new Event('input'));
     el.querySelector('form')!.dispatchEvent(new Event('submit'));
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve));
+    await fixture.whenStable();
   }
 
-  it('selects a typed name, loads its progress and goes home', async () => {
-    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
-    const { fixture, el } = await render();
-    type(el, '  Olena ');
-    await fixture.whenStable();
+  const button = (el: HTMLElement, text: string) =>
+    [...el.querySelectorAll('button')].find((b) => b.textContent?.includes(text));
 
-    expect(TestBed.inject(UserService).current()).toBe('Olena');
-    expect(load).toHaveBeenCalledWith('Olena');
+  it('signs in to an existing account and goes home', async () => {
+    load.mockResolvedValue({ version: 1, items: { 1: testProgress() }, sessions: [] });
+    const { fixture, el } = await render();
+    await submit(fixture, el, '  Olena ', 'pw');
+
+    const hash = await passwordHash('Olena', 'pw');
+    expect(load).toHaveBeenCalledWith({ name: 'Olena', hash });
+    expect(TestBed.inject(UserService).current()).toEqual({ name: 'Olena', hash });
     expect(navigate).toHaveBeenCalledWith(['/']);
   });
 
-  it('shows an error for an invalid name and stays', async () => {
-    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+  it('asks before creating an account for an unknown name, then creates it with one click', async () => {
     const { fixture, el } = await render();
-    type(el, 'a/b');
-    await fixture.whenStable();
+    await submit(fixture, el, 'Olena', 'pw');
 
-    expect(el.querySelector('.error')).toBeTruthy();
+    expect(el.textContent).toContain('No account “Olena” yet');
+    expect(save).not.toHaveBeenCalled();
+    expect(navigate).not.toHaveBeenCalled();
+
+    button(el, 'Create account')!.click();
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve));
+
+    expect(save).toHaveBeenCalledTimes(1);
+    expect(TestBed.inject(UserService).current()?.name).toBe('Olena');
+    expect(navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  it('shows a wrong password and stays', async () => {
+    load.mockRejectedValue(new WrongPasswordError('Olena'));
+    const { fixture, el } = await render();
+    await submit(fixture, el, 'Olena', 'nope');
+
+    expect(el.querySelector('.error')?.textContent).toContain('Wrong password for Olena');
     expect(TestBed.inject(UserService).current()).toBeNull();
     expect(navigate).not.toHaveBeenCalled();
   });
 
-  it('shows an error for an invalid name while someone is signed in, and stays', async () => {
-    const users = TestBed.inject(UserService);
-    users.select('Andrii');
-    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+  it('shows when the server cannot be reached', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    load.mockRejectedValue(new Error('offline'));
     const { fixture, el } = await render();
-    type(el, '@@@');
-    await fixture.whenStable();
+    await submit(fixture, el, 'Olena', 'pw');
+    expect(el.querySelector('.error')?.textContent).toContain('Could not reach the server');
+    vi.restoreAllMocks();
+  });
 
-    expect(el.querySelector('.error')).toBeTruthy();
-    expect(users.current()).toBe('Andrii');
+  it.each([
+    ['a/b', 'pw', 'letters, digits'],
+    ['Olena', '', 'any password'],
+  ])('checks the form first (%j / %j)', async (name, password, message) => {
+    const { fixture, el } = await render();
+    await submit(fixture, el, name, password);
+    expect(el.querySelector('.error')?.textContent).toContain(message);
+    expect(load).not.toHaveBeenCalled();
+  });
+
+  it('keeps the current account for an invalid name', async () => {
+    const users = TestBed.inject(UserService);
+    users.signIn({ name: 'Andrii', hash: 'a'.repeat(64) });
+    const { fixture, el } = await render();
+    await submit(fixture, el, '@@@', 'pw');
+    expect(users.current()?.name).toBe('Andrii');
     expect(navigate).not.toHaveBeenCalled();
   });
 
-  it('lists names used before and switches with one click', async () => {
+  it('mentions that guest progress is added', async () => {
+    TestBed.inject(QuizService).progress.set({ version: 1, items: { 1: testProgress(), 2: testProgress() }, sessions: [] });
+    const { el } = await render();
+    expect(el.textContent).toContain('The 2 expressions you practised as guest are added');
+  });
+
+  it('lists accounts used before and switches with one click', async () => {
     const users = TestBed.inject(UserService);
-    users.select('Olena');
-    users.select('Andrii');
-    vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const olena = { name: 'Olena', hash: 'b'.repeat(64) };
+    users.signIn(olena);
+    users.signIn({ name: 'Andrii', hash: 'a'.repeat(64) });
+    load.mockResolvedValue({ version: 1, items: {}, sessions: [] });
     const { fixture, el } = await render();
 
     const buttons = [...el.querySelectorAll<HTMLButtonElement>('.known .name')];
     expect(buttons.map((b) => b.textContent?.trim())).toEqual(['Andrii', 'Olena']);
     buttons[1].click();
     await fixture.whenStable();
-    expect(users.current()).toBe('Olena');
+    await new Promise((resolve) => setTimeout(resolve));
+    expect(users.current()).toEqual(olena);
+    expect(navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  it('asks for a password for a name used before passwords existed', async () => {
+    localStorage.setItem(CURRENT_USER_KEY, 'Olena'); // read when UserService is first created
+    const { fixture, el } = await render();
+    el.querySelector<HTMLButtonElement>('.known .name')!.click();
+    await fixture.whenStable();
+
+    const [nameInput, passwordInput] = el.querySelectorAll('input');
+    expect(nameInput.value).toBe('Olena');
+    expect(document.activeElement).toBe(passwordInput);
+    expect(load).not.toHaveBeenCalled();
+  });
+
+  it('prefills the name from the link', async () => {
+    TestBed.resetTestingModule();
+    setup({ name: 'Olena' });
+    const { el } = await render();
+    expect(el.querySelector('input')!.value).toBe('Olena');
   });
 
   it('removes a name from the list', async () => {
-    TestBed.inject(UserService).select('Olena');
+    TestBed.inject(UserService).signIn({ name: 'Olena', hash: 'b'.repeat(64) });
     const { fixture, el } = await render();
     el.querySelector<HTMLButtonElement>('.known .forget')!.click();
     await fixture.whenStable();
     expect(el.querySelector('.known')).toBeNull();
-  });
-});
-
-describe('requireUser', () => {
-  beforeEach(() => {
-    localStorage.clear();
-    TestBed.configureTestingModule({ providers: [provideRouter([])] });
-  });
-
-  const run = () => TestBed.runInInjectionContext(() => requireUser({} as never, {} as never));
-
-  it('sends people without a name to /who', () => {
-    expect(TestBed.inject(Router).serializeUrl(run() as never)).toBe('/who');
-  });
-
-  it('lets people with a name through', () => {
-    TestBed.inject(UserService).select('Andrii');
-    expect(run()).toBe(true);
   });
 });

@@ -1,9 +1,15 @@
 import { TableClient } from '@azure/data-tables';
 
+export interface StoredProgress {
+  json: string;
+  /** SHA-256 hex of password + name key; missing for names saved before passwords existed. */
+  passwordHash?: string;
+}
+
 export interface ProgressRepo {
-  /** The stored progress JSON, or null for an unknown name. */
-  get(key: string): Promise<string | null>;
-  put(key: string, displayName: string, json: string): Promise<void>;
+  /** The stored progress, or null for an unknown name. */
+  get(key: string): Promise<StoredProgress | null>;
+  put(key: string, displayName: string, json: string, passwordHash: string): Promise<void>;
 }
 
 /** Table string properties hold at most 64 KiB (32K UTF-16 chars), so the JSON is split. */
@@ -32,7 +38,7 @@ export class TableProgressRepo implements ProgressRepo {
     return new TableProgressRepo(client);
   }
 
-  async get(key: string): Promise<string | null> {
+  async get(key: string): Promise<StoredProgress | null> {
     await this.ensureTable();
     let entity: Record<string, unknown>;
     try {
@@ -49,12 +55,13 @@ export class TableProgressRepo implements ProgressRepo {
       if (typeof part !== 'string') throw new Error(`progress row "${key}" is missing data${i}`);
       json += part;
     }
-    return json;
+    const passwordHash = entity['passwordHash'];
+    return typeof passwordHash === 'string' ? { json, passwordHash } : { json };
   }
 
-  async put(key: string, displayName: string, json: string): Promise<void> {
+  async put(key: string, displayName: string, json: string, passwordHash: string): Promise<void> {
     await this.ensureTable();
-    const entity: Entity = { partitionKey: key, rowKey: ROW, name: displayName, updated: new Date() };
+    const entity: Entity = { partitionKey: key, rowKey: ROW, name: displayName, passwordHash, updated: new Date() };
     let chunks = 0;
     for (let start = 0; start < json.length; start += CHUNK_CHARS) {
       entity[`data${chunks++}`] = json.slice(start, start + CHUNK_CHARS);

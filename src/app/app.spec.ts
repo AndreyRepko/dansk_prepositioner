@@ -5,11 +5,14 @@ import { emptyProgress } from './models/progress';
 import { ExpressionService } from './services/expression.service';
 import { ProgressStore } from './services/progress-store';
 import { QuizService } from './services/quiz.service';
-import { UserService } from './services/user.service';
+import { CURRENT_USER_KEY, UserService } from './services/user.service';
 import { testExpression } from './testing/fixtures';
 
 describe('App', () => {
+  const ANDRII = { name: 'Andrii', hash: 'a'.repeat(64) };
+
   beforeEach(async () => {
+    localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [App],
       providers: [
@@ -55,17 +58,37 @@ describe('App', () => {
     expect(el.querySelector('.warning')?.textContent).toContain('not being saved');
   });
 
-  it('shows the current name with a switch link, and only Share without a name', async () => {
+  it('shows Guest with a sign-in link, or the name with switch and sign out', async () => {
     localStorage.clear();
     TestBed.inject(ExpressionService).expressions.set([testExpression(1)]);
     let el = await render();
-    expect(el.querySelectorAll('nav a').length).toBe(0);
-    expect(el.querySelector('nav .share')).toBeTruthy();
+    expect(el.querySelector('.user')?.textContent).toContain('Guest');
+    expect(el.querySelector('a.switch')?.getAttribute('href')).toBe('/who');
+    expect(el.querySelector('nav a[href="/stats"]')).toBeTruthy();
 
-    TestBed.inject(UserService).select('Andrii');
+    TestBed.inject(UserService).signIn(ANDRII);
     el = await render();
     expect(el.querySelector('.user')?.textContent).toContain('Andrii');
-    expect(el.querySelector('a.switch')?.getAttribute('href')).toBe('/who');
+    expect(el.querySelector('.sign-out')).toBeTruthy();
+  });
+
+  it('signs out to guest', async () => {
+    TestBed.inject(ExpressionService).expressions.set([testExpression(1)]);
+    TestBed.inject(UserService).signIn(ANDRII);
+    vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const el = await render();
+    el.querySelector<HTMLButtonElement>('.sign-out')!.click();
+    expect(TestBed.inject(UserService).current()).toBeNull();
+  });
+
+  it('points a name from before passwords to signing in', async () => {
+    localStorage.clear();
+    localStorage.setItem(CURRENT_USER_KEY, 'Andrii');
+    TestBed.inject(ExpressionService).expressions.set([testExpression(1)]);
+    const el = await render();
+    const link = el.querySelector('.notice a');
+    expect(link?.textContent).toContain('Sign in as Andrii');
+    expect(link?.getAttribute('href')).toBe('/who?name=Andrii');
   });
 
   it('shows a loading card while progress is fetched', async () => {
@@ -76,17 +99,17 @@ describe('App', () => {
     expect(el.querySelector('router-outlet')).toBeNull();
   });
 
-  it('offers another name when progress could not be loaded', async () => {
+  it('offers to continue as guest when the account progress could not be loaded', async () => {
     TestBed.inject(ExpressionService).expressions.set([testExpression(1)]);
-    TestBed.inject(UserService).select('Andrii');
+    TestBed.inject(UserService).signIn(ANDRII);
     TestBed.inject(QuizService).loadError.set(true);
     const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     const el = await render();
 
-    const other = [...el.querySelectorAll('button')].find((b) => b.textContent?.includes('another name'))!;
-    other.click();
+    const guest = [...el.querySelectorAll('button')].find((b) => b.textContent?.includes('Continue as guest'))!;
+    guest.click();
     expect(TestBed.inject(UserService).current()).toBeNull();
     expect(TestBed.inject(QuizService).loadError()).toBe(false);
-    expect(navigate).toHaveBeenCalledWith(['/who']);
+    expect(navigate).toHaveBeenCalledWith(['/']);
   });
 });

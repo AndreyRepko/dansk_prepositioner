@@ -29,64 +29,86 @@ describe('cleanName', () => {
 describe('UserService', () => {
   beforeEach(() => localStorage.clear());
 
+  const ANDRII = { name: 'Andrii', hash: 'a'.repeat(64) };
+  const OLENA = { name: 'Olena', hash: 'b'.repeat(64) };
+
   const create = () => {
     TestBed.resetTestingModule();
     return TestBed.inject(UserService);
   };
 
-  it('starts without a user', () => {
+  it('starts as guest', () => {
     const users = create();
     expect(users.current()).toBeNull();
     expect(users.known()).toEqual([]);
   });
 
-  it('remembers the selected name and the list of names across visits', () => {
+  it('remembers the signed-in account and the list of accounts across visits', () => {
     const users = create();
-    expect(users.select(' Olena ')).toBe('Olena');
-    users.select('Andrii');
+    users.signIn(OLENA);
+    users.signIn(ANDRII);
 
     const again = create();
-    expect(again.current()).toBe('Andrii');
-    expect(again.known()).toEqual(['Andrii', 'Olena']);
+    expect(again.current()).toEqual(ANDRII);
+    expect(again.known()).toEqual([ANDRII, OLENA]);
   });
 
-  it('moves a re-selected name to the front without duplicating it (case-insensitive)', () => {
+  it('moves a re-used name to the front without duplicating it (case-insensitive)', () => {
     const users = create();
-    users.select('Andrii');
-    users.select('Olena');
-    users.select('andrii');
-    expect(users.known()).toEqual(['andrii', 'Olena']);
+    users.signIn(ANDRII);
+    users.signIn(OLENA);
+    const lower = { name: 'andrii', hash: ANDRII.hash };
+    users.signIn(lower);
+    expect(users.known()).toEqual([lower, OLENA]);
   });
 
-  it('rejects an invalid name and keeps the current one', () => {
+  it('signs out to guest, keeping the name in the list', () => {
     const users = create();
-    users.select('Andrii');
-    expect(users.select('a/b')).toBeNull();
-    expect(users.current()).toBe('Andrii');
+    users.signIn(ANDRII);
+    users.signOut();
+    expect(users.current()).toBeNull();
+    expect(users.known()).toEqual([ANDRII]);
+    expect(create().current()).toBeNull();
   });
 
-  it('forgets a name; forgetting the current one clears it', () => {
+  it('forgets a name; forgetting the current one signs out', () => {
     const users = create();
-    users.select('Olena');
-    users.select('Andrii');
+    users.signIn(OLENA);
+    users.signIn(ANDRII);
     users.forget('Olena');
-    expect(users.known()).toEqual(['Andrii']);
-    expect(users.current()).toBe('Andrii');
+    expect(users.known()).toEqual([ANDRII]);
+    expect(users.current()).toEqual(ANDRII);
 
     users.forget('ANDRII');
     expect(users.current()).toBeNull();
     expect(create().current()).toBeNull();
   });
 
+  it('keeps names stored before passwords existed, as guest, without a password', () => {
+    localStorage.setItem(CURRENT_USER_KEY, 'Andrii');
+    localStorage.setItem(KNOWN_USERS_KEY, JSON.stringify(['Andrii', 'Olena']));
+    const users = create();
+    expect(users.current()).toBeNull();
+    expect(users.known()).toEqual([
+      { name: 'Andrii', hash: null },
+      { name: 'Olena', hash: null },
+    ]);
+  });
+
+  it('keeps an old current name that was missing from the list, even one that looks like JSON', () => {
+    localStorage.setItem(CURRENT_USER_KEY, '123');
+    expect(create().known()).toEqual([{ name: '123', hash: null }]);
+  });
+
   it('ignores unreadable stored values', () => {
-    localStorage.setItem(CURRENT_USER_KEY, '???');
+    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify({ name: 'Andrii', hash: 'nope' }));
     localStorage.setItem(KNOWN_USERS_KEY, '{not json');
     const users = create();
     expect(users.current()).toBeNull();
     expect(users.known()).toEqual([]);
 
-    localStorage.setItem(KNOWN_USERS_KEY, JSON.stringify(['Andrii', 5, 'a/b']));
-    expect(create().known()).toEqual(['Andrii']);
+    localStorage.setItem(KNOWN_USERS_KEY, JSON.stringify([ANDRII, 5, 'a/b', { name: 'x/y', hash: OLENA.hash }]));
+    expect(create().known()).toEqual([ANDRII]);
   });
 
   it('works for this visit when storage is blocked', () => {
@@ -94,8 +116,8 @@ describe('UserService', () => {
       throw new DOMException('blocked', 'SecurityError');
     });
     const users = create();
-    expect(users.select('Andrii')).toBe('Andrii');
-    expect(users.current()).toBe('Andrii');
+    users.signIn(ANDRII);
+    expect(users.current()).toEqual(ANDRII);
     vi.restoreAllMocks();
   });
 });
