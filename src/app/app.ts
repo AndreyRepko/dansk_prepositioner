@@ -57,7 +57,8 @@ import { ShareDialog } from './share/share-dialog';
         @if (!user() && needsPassword(); as name) {
           <p class="card notice">
             Progress saved under a name now needs a password.
-            <a routerLink="/who" [queryParams]="{ name }">Sign in as {{ name }}</a> with any password to keep it yours.
+            <a routerLink="/who" [queryParams]="{ name }">Sign in as {{ name }}</a> with a password
+            of your choice to keep it yours.
           </p>
         }
         <router-outlet />

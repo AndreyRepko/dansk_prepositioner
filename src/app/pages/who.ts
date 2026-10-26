@@ -1,11 +1,21 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { InsecureContextError } from '../services/password-hash';
+import { Account, ConflictError } from '../services/progress-store';
 import { QuizService, SignInResult } from '../services/quiz.service';
-import { Account } from '../services/progress-store';
 import { cleanName, MAX_NAME_LENGTH, nameKey } from '../services/user-name';
 import { KnownUser, UserService } from '../services/user.service';
 
-type Problem = 'invalid-name' | 'no-password' | 'unknown' | 'wrong-password' | 'offline';
+type Problem =
+  | 'invalid-name'
+  | 'no-password'
+  | 'unknown'
+  | 'wrong-password'
+  | 'offline'
+  | 'conflict'
+  | 'insecure'
+  | 'failed';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,7 +40,8 @@ type Problem = 'invalid-name' | 'no-password' | 'unknown' | 'wrong-password' | '
               <button
                 class="forget"
                 [attr.aria-label]="'Remove ' + user.name + ' from this list'"
-                (click)="users.forget(user.name)"
+                [disabled]="busy()"
+                (click)="forget(user.name)"
               >
                 ×
               </button>
@@ -78,6 +89,19 @@ type Problem = 'invalid-name' | 'no-password' | 'unknown' | 'wrong-password' | '
         @case ('offline') {
           <p class="error">Could not reach the server. Your progress is unchanged; try again.</p>
         }
+        @case ('conflict') {
+          <p class="error">{{ name() }} was just set up on another device. Try again.</p>
+        }
+        @case ('insecure') {
+          <p class="error">
+            Signing in needs a secure (https) page. Open the app over https or on localhost.
+          </p>
+        }
+        @case ('failed') {
+          <p class="error">
+            Something went wrong on the server. Your progress is unchanged; try again later.
+          </p>
+        }
         @case ('unknown') {
           <div class="create">
             <p>No account “{{ name() }}” yet.</p>
@@ -87,8 +111,9 @@ type Problem = 'invalid-name' | 'no-password' | 'unknown' | 'wrong-password' | '
       }
 
       <p class="muted small">
-        New here? Pick a name and any password. The password only keeps someone else from using your
-        name by mistake. Sign in with the same name and password on your phone and laptop to share progress.
+        New here? Pick a name and a password of your choice. The password only keeps someone else
+        from using your name by mistake. Sign in with the same name and password on your phone and
+        laptop to share progress.
         @if (guestPractised() > 0) {
           The {{ guestPractised() }} expressions you practised as guest are added to the account.
         }
@@ -184,6 +209,10 @@ export class WhoPage {
     this.problem.set(null);
   }
 
+  protected forget(name: string): void {
+    this.quiz.forget(name).catch((e) => console.error(e)); // shown by loadError
+  }
+
   protected submit(event: Event): void {
     event.preventDefault();
     void this.signIn(false);
@@ -216,12 +245,19 @@ export class WhoPage {
         void this.router.navigate(['/']);
         return;
       }
-      this.problem.set(result);
+      if (result !== 'superseded') this.problem.set(result);
     } catch (e) {
       console.error(e);
-      this.problem.set('offline');
+      this.problem.set(problemFor(e));
     } finally {
       this.busy.set(false);
     }
   }
+}
+
+function problemFor(error: unknown): Problem {
+  if (error instanceof ConflictError) return 'conflict';
+  if (error instanceof InsecureContextError) return 'insecure';
+  if (error instanceof HttpErrorResponse && error.status === 0) return 'offline';
+  return 'failed';
 }

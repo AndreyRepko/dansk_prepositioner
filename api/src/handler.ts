@@ -1,6 +1,6 @@
 import { timingSafeEqual } from 'node:crypto';
 import { cleanName, nameKey } from './names.js';
-import { ProgressRepo } from './progress-repo.js';
+import { ProgressRepo, RowConflictError } from './progress-repo.js';
 
 /** Real progress for 230 expressions is ~30K chars; this leaves plenty of room. */
 export const MAX_BODY_CHARS = 200_000;
@@ -24,9 +24,26 @@ const sameHash = (a: string, b: string) => a.length === b.length && timingSafeEq
 
 /**
  * The password only keeps a name from being reused by accident; it is not meant as real security.
- * A name saved before passwords existed is claimed by the first password used with it.
+ * A name saved before passwords existed is claimed by the first password used with it. Creating
+ * and claiming a name only succeed if nobody else did so meanwhile (409 otherwise).
  */
 export async function handleProgress(
+  method: string,
+  rawName: string | undefined,
+  body: string | undefined,
+  passwordHash: string | null | undefined,
+  repo: ProgressRepo,
+): Promise<Reply> {
+  try {
+    return await handle(method, rawName, body, passwordHash, repo);
+  } catch (e) {
+    if (e instanceof RowConflictError)
+      return { status: 409, body: JSON.stringify({ error: 'conflict' }) };
+    throw e;
+  }
+}
+
+async function handle(
   method: string,
   rawName: string | undefined,
   body: string | undefined,
@@ -47,7 +64,7 @@ export async function handleProgress(
 
   if (method === 'GET') {
     if (stored === null) return { status: 404 };
-    if (stored.passwordHash === undefined) await repo.put(key, name, stored.json, passwordHash);
+    if (stored.passwordHash === undefined) await repo.claim(key, passwordHash, stored.etag);
     return { status: 200, body: stored.json };
   }
 
@@ -60,6 +77,9 @@ export async function handleProgress(
     return { status: 400, body: JSON.stringify({ error: 'body is not JSON' }) };
   }
   if (!isProgress(parsed)) return { status: 400, body: JSON.stringify({ error: 'not progress data' }) };
-  await repo.put(key, name, JSON.stringify(parsed), passwordHash);
+  // A new or unclaimed name is written only if nobody took it meanwhile.
+  const expected =
+    stored === null ? null : stored.passwordHash === undefined ? stored.etag : undefined;
+  await repo.put(key, name, JSON.stringify(parsed), passwordHash, expected);
   return { status: 204 };
 }

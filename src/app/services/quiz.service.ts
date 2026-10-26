@@ -1,12 +1,20 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Expression } from '../models/expression';
-import { emptyProgress, isEmptyProgress, MAX_SESSIONS, mergeProgress, ProgressState } from '../models/progress';
+import {
+  emptyProgress,
+  isEmptyProgress,
+  MAX_MERGED,
+  MAX_SESSIONS,
+  mergeProgress,
+  progressSince,
+  ProgressState,
+} from '../models/progress';
 import { ExpressionService } from './expression.service';
-import { GuestProgressStore } from './local-storage-progress-store';
+import { GuestMerge, GuestProgressStore } from './local-storage-progress-store';
 import { passwordHash } from './password-hash';
 import { Account, ProgressStore, WrongPasswordError } from './progress-store';
 import { applyAnswer, buildOptions, Rng, selectSession, SessionFilter } from './srs';
-import { cleanName } from './user-name';
+import { cleanName, nameKey } from './user-name';
 import { UserService } from './user.service';
 
 export interface QuizSettings extends SessionFilter {
@@ -28,8 +36,14 @@ export interface AnswerRecord {
 
 export const DEFAULT_SETTINGS: QuizSettings = { size: 10 };
 
-/** `unknown`: the name has no account yet (sign in again with `create` to make one). */
-export type SignInResult = 'ok' | 'unknown' | 'wrong-password';
+/**
+ * `unknown`: the name has no account yet (sign in again with `create` to make one).
+ * `superseded`: a later sign-in or sign-out took over before this one finished.
+ */
+export type SignInResult = 'ok' | 'unknown' | 'wrong-password' | 'superseded';
+
+/** Unique enough to tell this browser's merges apart (crypto.randomUUID needs HTTPS). */
+const mergeId = (now: number) => `${now.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
 
 @Injectable({ providedIn: 'root' })
 export class QuizService {
@@ -88,8 +102,10 @@ export class QuizService {
 
   /**
    * Makes `account` the current user. Guest progress is added to the account and removed from this
-   * browser only once the account has saved it, so nothing is lost or counted twice. Nothing changes
-   * unless it resolves to 'ok'; it rejects when the account cannot be reached or saved.
+   * browser once the account has saved it. A marker of each merge (with a copy of what was added)
+   * stays until then, so a retried, interrupted or overtaken sign-in adds only what is new since.
+   * Nothing changes unless it resolves to 'ok'; 'superseded' when a later sign-in (or sign-out) took
+   * over meanwhile. It rejects when the account cannot be reached or saved.
    */
   async signInAs(account: Account, create = false): Promise<SignInResult> {
     const token = ++this.signInToken;
@@ -102,18 +118,43 @@ export class QuizService {
       throw error;
     }
     if (!server && !create) return 'unknown';
+    if (token !== this.signInToken) return 'superseded';
 
-    const edits = this.edits;
-    // Unreadable guest progress (blocked storage) cannot be added; it is left where it is.
-    const guest = await this.guest.load().catch(() => null);
-    const adding = !!guest && !isEmptyProgress(guest);
-    const progress = adding ? mergeProgress(server ?? emptyProgress(), guest) : (server ?? emptyProgress());
-    if (!server || adding) await this.store.save(account, progress); // creates the account
-    if (token !== this.signInToken) return 'ok'; // a later sign-in (or sign-out) decides who is current
-    // An answer given as guest meanwhile is not in the account, so then the guest progress stays.
-    if (adding && edits === this.edits) {
-      await this.guest.clear().catch((e) => console.error('Could not clear guest progress', e));
+    const guest = await this.guest.load().catch((e) => {
+      // Unreadable guest progress (blocked storage) cannot be added; it is left where it is.
+      console.error('Could not read guest progress to add it to the account', e);
+      return null;
+    });
+    const { adding, inAccount } = guest
+      ? await this.guestToAdd(guest, account, server)
+      : { adding: null, inAccount: null };
+    let progress = server ?? emptyProgress();
+    let merge: GuestMerge | null = null;
+    if (adding) {
+      merge = {
+        id: mergeId(this.now()),
+        account: nameKey(account.name),
+        snapshot: guest!,
+        done: false,
+      };
+      await this.guest.saveMerge(merge);
+      const merged = mergeProgress(progress, adding);
+      progress = { ...merged, merged: [...(merged.merged ?? []), merge.id].slice(-MAX_MERGED) };
     }
+    if (!server || adding) {
+      try {
+        await this.store.save(account, progress); // creates the account
+      } catch (error) {
+        if (error instanceof WrongPasswordError) return 'wrong-password'; // claimed meanwhile
+        throw error;
+      }
+    }
+    if (merge) await this.guest.saveMerge({ ...merge, done: true });
+    // The merge marker covers the guest progress for a later sign-in; it is not touched here
+    // because a sign-out meanwhile may already practise on it.
+    if (token !== this.signInToken) return 'superseded';
+    const added = merge?.snapshot ?? inAccount;
+    if (added) await this.keepGuestSince(added);
 
     this.loadToken++;
     this.users.signIn(account);
@@ -123,6 +164,47 @@ export class QuizService {
     this.loadError.set(false);
     this.saveError.set(false);
     return 'ok';
+  }
+
+  /**
+   * `adding`: the guest progress not yet in any account (null for none): all of it, or only what is
+   * new since the last merge when that one is known to have reached its account (`inAccount`).
+   */
+  private async guestToAdd(guest: ProgressState, account: Account, server: ProgressState | null) {
+    const last = await this.guest.loadMerge();
+    const landed =
+      !!last &&
+      (last.done ||
+        (last.account === nameKey(account.name) && !!server?.merged?.includes(last.id)));
+    const adding = landed ? progressSince(guest, last.snapshot) : guest;
+    return {
+      adding: isEmptyProgress(adding) ? null : adding,
+      inAccount: landed ? last.snapshot : null,
+    };
+  }
+
+  /** After a merge: only guest answers given since `snapshot` stay in this browser. */
+  private async keepGuestSince(snapshot: ProgressState): Promise<void> {
+    // Let guest saves started meanwhile land first; from here on, nothing else runs until done.
+    for (let edits = -1; edits !== this.edits;) {
+      edits = this.edits;
+      await this.saving;
+    }
+    try {
+      const rest = progressSince(await this.guest.load(), snapshot);
+      await (isEmptyProgress(rest) ? this.guest.clear() : this.guest.save(rest));
+      await this.guest.clearMerge();
+    } catch (e) {
+      // The merge marker stays, so the next sign-in still adds only what is new.
+      console.error('Could not clear guest progress', e);
+    }
+  }
+
+  /** Removes a name from this browser's list; removing the current one goes back to guest. */
+  async forget(name: string): Promise<void> {
+    const wasSignedIn = !!this.users.current();
+    this.users.forget(name);
+    if (wasSignedIn && !this.users.current()) await this.signOut();
   }
 
   /** Back to practising as guest (also after the account's progress could not be loaded). */

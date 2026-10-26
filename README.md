@@ -90,17 +90,21 @@ counts for the statistics).
 ## Guests, accounts and storage
 
 The app opens straight into practice as a **guest**: progress stays in this browser only. To keep
-progress across devices, **sign in** (`/who`, header link) with a name and any password. An unknown
+progress across devices, **sign in** (`/who`, header link) with a name and a password. An unknown
 name gets a one-click *Create account* (so a typo in an existing name does not silently make a new
 one). On signing in, guest progress is merged into the account (per expression the newer answer sets
 the box and due date, counts add up, sessions interleave) and removed from the browser only after the
-account has saved it. *Sign out* returns to guest mode.
+account has saved it. Each merge is marked (a local copy of what was added, and an id kept in the
+account), so a retried or interrupted sign-in adds only guest practice that is new since. Removing
+the signed-in name from the list on `/who` signs out. *Sign out* returns to guest mode.
 
 The password only keeps a name from being reused by accident; it is not real security. The browser
 sends and remembers `SHA-256(password + lower-case name)` (hex, `X-Password-Hash` header), never the
-password; the server stores that hash with the progress and answers 403 for a different one. A name
-saved before passwords existed is claimed by the first password used with it; such names are still
-listed on `/who` and a notice asks to sign in with them. Names are case-insensitive, 1–30
+password; the server stores that hash with the progress and answers 401 when none is sent and 403
+for a different one. A name saved before passwords existed is claimed by the first password used with
+it (only the hash is written, and only if the row did not change meanwhile; a new name is created
+only if it does not exist yet, so two devices cannot both take a name: the loser gets 409). Such names
+are still listed on `/who`, and while practising as guest a notice asks to sign in with one of them. Names are case-insensitive, 1–30
 letters/digits/spaces/`. _ ' -`. When one account is used on two devices at once the last save wins.
 Progress is reloaded when the tab becomes visible again (outside a running session).
 

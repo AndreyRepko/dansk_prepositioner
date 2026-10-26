@@ -1,8 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter, Router } from '@angular/router';
 import { ProgressState } from '../models/progress';
-import { passwordHash } from '../services/password-hash';
-import { Account, ProgressStore, WrongPasswordError } from '../services/progress-store';
+import { InsecureContextError, passwordHash } from '../services/password-hash';
+import {
+  Account,
+  ConflictError,
+  ProgressStore,
+  WrongPasswordError,
+} from '../services/progress-store';
 import { QuizService } from '../services/quiz.service';
 import { CURRENT_USER_KEY, UserService } from '../services/user.service';
 import { testProgress } from '../testing/fixtures';
@@ -89,13 +95,47 @@ describe('WhoPage', () => {
     expect(navigate).not.toHaveBeenCalled();
   });
 
-  it('shows when the server cannot be reached', async () => {
+  it.each([
+    [
+      'the server cannot be reached',
+      new HttpErrorResponse({ status: 0 }),
+      'Could not reach the server',
+    ],
+    [
+      'the server fails',
+      new HttpErrorResponse({ status: 500 }),
+      'Something went wrong on the server',
+    ],
+    [
+      'the data cannot be read',
+      new Error('could not be read'),
+      'Something went wrong on the server',
+    ],
+    [
+      'the name was taken meanwhile',
+      new ConflictError('Olena'),
+      'Olena was just set up on another device',
+    ],
+    ['the page is not secure', new InsecureContextError(), 'needs a secure (https) page'],
+  ])('shows when %s', async (_, error, message) => {
     vi.spyOn(console, 'error').mockImplementation(() => {});
-    load.mockRejectedValue(new Error('offline'));
+    load.mockRejectedValue(error);
     const { fixture, el } = await render();
     await submit(fixture, el, 'Olena', 'pw');
-    expect(el.querySelector('.error')?.textContent).toContain('Could not reach the server');
+    expect(el.querySelector('.error')?.textContent).toContain(message);
+    expect(TestBed.inject(UserService).current()).toBeNull();
     vi.restoreAllMocks();
+  });
+
+  it('shows a wrong password when the name was claimed while the account was being saved', async () => {
+    save.mockRejectedValue(new WrongPasswordError('Olena'));
+    const { fixture, el } = await render();
+    await submit(fixture, el, 'Olena', 'pw');
+    button(el, 'Create account')!.click();
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve));
+    await fixture.whenStable();
+    expect(el.querySelector('.error')?.textContent).toContain('Wrong password for Olena');
   });
 
   it.each([
@@ -165,5 +205,33 @@ describe('WhoPage', () => {
     el.querySelector<HTMLButtonElement>('.known .forget')!.click();
     await fixture.whenStable();
     expect(el.querySelector('.known')).toBeNull();
+  });
+
+  it('goes back to guest progress when the current name is removed', async () => {
+    const users = TestBed.inject(UserService);
+    const quiz = TestBed.inject(QuizService);
+    users.signIn({ name: 'Olena', hash: 'b'.repeat(64) });
+    quiz.progress.set({ version: 1, items: { 1: testProgress() }, sessions: [] }); // Olena's
+    const { fixture, el } = await render();
+    el.querySelector<HTMLButtonElement>('.known .forget')!.click();
+    await fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve));
+
+    expect(users.current()).toBeNull();
+    expect(quiz.progress().items).toEqual({}); // the guest's, not Olena's
+    expect(el.textContent).not.toContain('practised as guest');
+  });
+
+  it('cannot remove a name or submit again while signing in', async () => {
+    let finish!: () => void;
+    load.mockReturnValue(new Promise((resolve) => (finish = () => resolve(null))));
+    TestBed.inject(UserService).signIn({ name: 'Olena', hash: 'b'.repeat(64) });
+    const { fixture, el } = await render();
+    await submit(fixture, el, 'Andrii', 'pw');
+
+    expect(el.querySelector<HTMLButtonElement>('.known .forget')!.disabled).toBe(true);
+    el.querySelector('form')!.dispatchEvent(new Event('submit'));
+    expect(load).toHaveBeenCalledTimes(1);
+    finish();
   });
 });

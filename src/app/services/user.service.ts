@@ -74,12 +74,12 @@ function readKnown(): KnownUser[] {
   return known;
 }
 
-/** Stored JSON, or the raw text for an old plain name (which may not be JSON, or be JSON like "123"). */
+/** Stored JSON, or the raw text for an old plain name (which may not be JSON, or be JSON like "123" or "null"). */
 function parse(raw: string | null): unknown {
   if (raw === null) return null;
   try {
     const value: unknown = JSON.parse(raw);
-    return typeof value === 'object' ? value : raw;
+    return typeof value === 'object' && value !== null ? value : raw;
   } catch {
     return raw;
   }

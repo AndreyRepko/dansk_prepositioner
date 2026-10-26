@@ -1,18 +1,47 @@
 import { describe, expect, it } from 'vitest';
 import { handleProgress, MAX_BODY_CHARS } from '../src/handler.js';
-import { ProgressRepo, StoredProgress } from '../src/progress-repo.js';
+import { ProgressRepo, RowConflictError, StoredProgress } from '../src/progress-repo.js';
+
+type Row = { name: string; json: string; passwordHash?: string; etag: string };
 
 class MemoryRepo implements ProgressRepo {
-  rows = new Map<string, { name: string; json: string; passwordHash?: string }>();
+  rows = new Map<string, Row>();
   puts = 0;
+  claims = 0;
+  private version = 0;
+  /** Runs between the handler's read and its write, like another request would. */
+  beforeWrite?: () => void;
+  set(key: string, row: Omit<Row, 'etag'>) {
+    this.rows.set(key, { ...row, etag: `v${++this.version}` });
+  }
   async get(key: string): Promise<StoredProgress | null> {
     const row = this.rows.get(key);
     if (!row) return null;
-    return row.passwordHash === undefined ? { json: row.json } : { json: row.json, passwordHash: row.passwordHash };
+    const { json, passwordHash, etag } = row;
+    return passwordHash === undefined ? { json, etag } : { json, passwordHash, etag };
   }
-  async put(key: string, name: string, json: string, passwordHash: string) {
+  async put(
+    key: string,
+    name: string,
+    json: string,
+    passwordHash: string,
+    expected?: string | null,
+  ) {
+    this.check(key, expected);
     this.puts++;
-    this.rows.set(key, { name, json, passwordHash });
+    this.set(key, { name, json, passwordHash });
+  }
+  async claim(key: string, passwordHash: string, etag: string) {
+    this.check(key, etag);
+    this.claims++;
+    this.set(key, { ...this.rows.get(key)!, passwordHash });
+  }
+  private check(key: string, expected: string | null | undefined) {
+    this.beforeWrite?.();
+    this.beforeWrite = undefined;
+    if (expected !== undefined && (this.rows.get(key)?.etag ?? null) !== expected) {
+      throw new RowConflictError(key);
+    }
   }
 }
 
@@ -65,17 +94,61 @@ describe('handleProgress', () => {
 
   it('lets the first password used claim a name saved before passwords existed (GET)', async () => {
     const repo = new MemoryRepo();
-    repo.rows.set('andrii', { name: 'Andrii', json: JSON.stringify(progress) });
+    repo.set('andrii', { name: 'Andrii', json: JSON.stringify(progress) });
     const reply = await handleProgress('GET', 'Andrii', undefined, PW, repo);
     expect(JSON.parse(reply.body!)).toEqual(progress);
     expect(repo.rows.get('andrii')?.passwordHash).toBe(PW);
+    expect(repo).toMatchObject({ claims: 1, puts: 0 }); // only the hash is written
     expect((await handleProgress('GET', 'Andrii', undefined, OTHER, repo)).status).toBe(403);
+  });
+
+  it('answers 409 when a new name is created on two devices at once, keeping the first', async () => {
+    const repo = new MemoryRepo();
+    repo.beforeWrite = () =>
+      repo.set('andrii', { name: 'Andrii', json: '{"first":1}', passwordHash: OTHER });
+    expect((await handleProgress('PUT', 'Andrii', JSON.stringify(progress), PW, repo)).status).toBe(
+      409,
+    );
+    expect(repo.rows.get('andrii')).toMatchObject({ json: '{"first":1}', passwordHash: OTHER });
+  });
+
+  it.each(['GET', 'PUT'])(
+    'answers 409 when an old name is claimed on two devices at once (%s)',
+    async (method) => {
+      const repo = new MemoryRepo();
+      repo.set('andrii', { name: 'Andrii', json: '{}' });
+      repo.beforeWrite = () =>
+        repo.set('andrii', { name: 'Andrii', json: '{}', passwordHash: OTHER });
+      const body = method === 'PUT' ? JSON.stringify(progress) : undefined;
+      expect((await handleProgress(method, 'Andrii', body, PW, repo)).status).toBe(409);
+      expect(repo.rows.get('andrii')?.passwordHash).toBe(OTHER);
+    },
+  );
+
+  it('a claim on GET does not undo a save made meanwhile', async () => {
+    const repo = new MemoryRepo();
+    repo.set('andrii', { name: 'Andrii', json: '{}' });
+    repo.beforeWrite = () =>
+      repo.set('andrii', { name: 'Andrii', json: JSON.stringify(progress), passwordHash: PW });
+    expect((await handleProgress('GET', 'Andrii', undefined, PW, repo)).status).toBe(409);
+    expect(repo.rows.get('andrii')?.json).toBe(JSON.stringify(progress));
+  });
+
+  it('saves over a change made meanwhile once the name has a password (last save wins)', async () => {
+    const repo = new MemoryRepo();
+    await handleProgress('PUT', 'Andrii', JSON.stringify(progress), PW, repo);
+    repo.beforeWrite = () => repo.set('andrii', { name: 'Andrii', json: '{}', passwordHash: PW });
+    expect((await handleProgress('PUT', 'Andrii', JSON.stringify(progress), PW, repo)).status).toBe(
+      204,
+    );
   });
 
   it('lets the first password used claim a name saved before passwords existed (PUT)', async () => {
     const repo = new MemoryRepo();
-    repo.rows.set('andrii', { name: 'Andrii', json: '{}' });
-    expect((await handleProgress('PUT', 'Andrii', JSON.stringify(progress), PW, repo)).status).toBe(204);
+    repo.set('andrii', { name: 'Andrii', json: '{}' });
+    expect((await handleProgress('PUT', 'Andrii', JSON.stringify(progress), PW, repo)).status).toBe(
+      204,
+    );
     expect(repo.rows.get('andrii')?.passwordHash).toBe(PW);
   });
 
@@ -83,7 +156,7 @@ describe('handleProgress', () => {
     const repo = new MemoryRepo();
     await handleProgress('PUT', 'Andrii', JSON.stringify(progress), PW, repo);
     await handleProgress('GET', 'Andrii', undefined, PW, repo);
-    expect(repo.puts).toBe(1);
+    expect(repo).toMatchObject({ puts: 1, claims: 0 });
   });
 
   it.each(['', ' ', '.hidden', 'a/b', 'a#b', 'what?', 'x'.repeat(31), 'bell\u0007'])(

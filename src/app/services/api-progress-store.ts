@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { parseProgress, ProgressState } from '../models/progress';
-import { Account, ProgressStore, WrongPasswordError } from './progress-store';
+import { Account, ConflictError, ProgressStore, WrongPasswordError } from './progress-store';
 
 export const progressUrl = (user: string) => `/api/progress/${encodeURIComponent(user)}`;
 
@@ -35,8 +35,11 @@ export class ApiProgressStore extends ProgressStore {
     }
   }
 
+  /** 401 (no valid hash sent) is a bug in the app, not a wrong password, so it stays an HTTP error. */
   private failure(e: unknown, account: Account): unknown {
-    if (e instanceof HttpErrorResponse && (e.status === 401 || e.status === 403)) return new WrongPasswordError(account.name);
+    if (e instanceof HttpErrorResponse && e.status === 403)
+      return new WrongPasswordError(account.name);
+    if (e instanceof HttpErrorResponse && e.status === 409) return new ConflictError(account.name);
     return e;
   }
 }

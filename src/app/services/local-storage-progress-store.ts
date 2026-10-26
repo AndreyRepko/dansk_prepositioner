@@ -5,6 +5,8 @@ import { nameKey } from './user-name';
 
 /** Guest progress (and, before names existed, everyone's progress) is stored under this key alone. */
 export const STORAGE_KEY = 'dansk-prep-progress-v1';
+/** The last time guest progress was added to an account (see `GuestMerge`). */
+export const MERGE_KEY = 'dansk-prep-guest-merge';
 
 export const storageKey = (user: string) => `${STORAGE_KEY}:${nameKey(user)}`;
 export const passwordKey = (user: string) => `${storageKey(user)}:pw`;
@@ -38,6 +40,17 @@ export class LocalStorageProgressStore extends ProgressStore {
   }
 }
 
+/**
+ * Guest progress `snapshot` added to `account` under merge id `id`. `done` once the account saved it;
+ * until then it may or may not have landed (a lost response), which the account's merge ids tell.
+ */
+export interface GuestMerge {
+  id: string;
+  account: string;
+  snapshot: ProgressState;
+  done: boolean;
+}
+
 /** Progress of practice without signing in; it stays in this browser. */
 @Injectable({ providedIn: 'root' })
 export class GuestProgressStore {
@@ -54,6 +67,29 @@ export class GuestProgressStore {
   /** After guest progress was added to an account, so it is not added twice. */
   async clear(): Promise<void> {
     localStorage.removeItem(STORAGE_KEY);
+  }
+
+  /** The last merge into an account, or null (also when unreadable). */
+  async loadMerge(): Promise<GuestMerge | null> {
+    const raw = localStorage.getItem(MERGE_KEY);
+    if (!raw) return null;
+    try {
+      const value = JSON.parse(raw) as Partial<GuestMerge>;
+      const snapshot = parseProgress(value.snapshot);
+      if (typeof value.id !== 'string' || typeof value.account !== 'string' || !snapshot)
+        return null;
+      return { id: value.id, account: value.account, snapshot, done: value.done === true };
+    } catch {
+      return null;
+    }
+  }
+
+  async saveMerge(merge: GuestMerge): Promise<void> {
+    localStorage.setItem(MERGE_KEY, JSON.stringify(merge));
+  }
+
+  async clearMerge(): Promise<void> {
+    localStorage.removeItem(MERGE_KEY);
   }
 }
 

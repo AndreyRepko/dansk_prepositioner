@@ -1,10 +1,10 @@
-import { provideHttpClient } from '@angular/common/http';
+import { HttpErrorResponse, provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ProgressState } from '../models/progress';
 import { testProgress } from '../testing/fixtures';
 import { ApiProgressStore } from './api-progress-store';
-import { WrongPasswordError } from './progress-store';
+import { ConflictError, WrongPasswordError } from './progress-store';
 
 describe('ApiProgressStore', () => {
   let store: ApiProgressStore;
@@ -42,16 +42,20 @@ describe('ApiProgressStore', () => {
     expect(await loading).toBeNull();
   });
 
-  it.each([401, 403])('rejects with WrongPasswordError on %i', async (status) => {
+  it.each([
+    [403, WrongPasswordError],
+    [409, ConflictError],
+    [401, HttpErrorResponse], // no valid hash sent: a bug, not a wrong password
+  ])('rejects on %i with %O', async (status, type) => {
     const loading = store.load(ANDRII);
     await tick();
     http.expectOne('/api/progress/Andrii').flush(null, { status, statusText: 'No' });
-    await expect(loading).rejects.toBeInstanceOf(WrongPasswordError);
+    await expect(loading).rejects.toBeInstanceOf(type);
 
     const saving = store.save(ANDRII, state);
     await tick();
     http.expectOne('/api/progress/Andrii').flush(null, { status, statusText: 'No' });
-    await expect(saving).rejects.toBeInstanceOf(WrongPasswordError);
+    await expect(saving).rejects.toBeInstanceOf(type);
   });
 
   it('rejects on other errors', async () => {

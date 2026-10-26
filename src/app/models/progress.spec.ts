@@ -1,5 +1,13 @@
 import { testProgress } from '../testing/fixtures';
-import { emptyProgress, MAX_SESSIONS, mergeProgress, ProgressState } from './progress';
+import {
+  emptyProgress,
+  isEmptyProgress,
+  MAX_SESSIONS,
+  mergeProgress,
+  parseProgress,
+  progressSince,
+  ProgressState,
+} from './progress';
 
 describe('mergeProgress', () => {
   it('keeps items only one side has', () => {
@@ -39,5 +47,70 @@ describe('mergeProgress', () => {
     mergeProgress(a, a);
     mergeProgress(emptyProgress(), a);
     expect(a).toEqual(copy);
+  });
+});
+
+describe('progressSince', () => {
+  const snapshot: ProgressState = {
+    version: 1,
+    items: {
+      1: testProgress({ seen: 2, correct: 1, wrong: 1, lastSeen: 10 }),
+      2: testProgress({ lastSeen: 10 }),
+    },
+    sessions: [{ date: 10, total: 2, correct: 1 }],
+  };
+
+  it('is empty when nothing happened since the snapshot', () => {
+    expect(isEmptyProgress(progressSince(snapshot, snapshot))).toBe(true);
+  });
+
+  it('keeps new items, and only the answers since for items answered again', () => {
+    const now: ProgressState = {
+      version: 1,
+      items: {
+        ...snapshot.items,
+        1: testProgress({ box: 3, seen: 3, correct: 2, wrong: 1, lastSeen: 20, due: 30 }),
+        3: testProgress({ lastSeen: 20 }),
+      },
+      sessions: [...snapshot.sessions, { date: 20, total: 1, correct: 1 }],
+    };
+    expect(progressSince(now, snapshot)).toEqual({
+      version: 1,
+      items: {
+        1: testProgress({ box: 3, seen: 1, correct: 1, wrong: 0, lastSeen: 20, due: 30 }),
+        3: now.items[3],
+      },
+      sessions: [{ date: 20, total: 1, correct: 1 }],
+    });
+  });
+
+  it('adds nothing twice when merged again', () => {
+    const account: ProgressState = {
+      version: 1,
+      items: { 1: testProgress({ seen: 5, lastSeen: 5 }) },
+      sessions: [],
+    };
+    const now: ProgressState = {
+      ...snapshot,
+      items: { ...snapshot.items, 3: testProgress({ lastSeen: 20 }) },
+    };
+    const once = mergeProgress(mergeProgress(account, snapshot), progressSince(now, snapshot));
+    expect(once).toEqual(mergeProgress(account, now));
+  });
+});
+
+describe('parseProgress', () => {
+  it('keeps the merge ids of an account', () => {
+    expect(parseProgress({ version: 1, items: {}, sessions: [], merged: ['a', 1, 'b'] })).toEqual({
+      version: 1,
+      items: {},
+      sessions: [],
+      merged: ['a', 'b'],
+    });
+  });
+
+  it('is kept through a merge into the account', () => {
+    const account: ProgressState = { ...emptyProgress(), merged: ['a'] };
+    expect(mergeProgress(account, emptyProgress()).merged).toEqual(['a']);
   });
 });

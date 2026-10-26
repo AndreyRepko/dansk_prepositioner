@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { emptyProgress, MAX_SESSIONS, ProgressState } from '../models/progress';
 import { seededRng, testExpression, testProgress } from '../testing/fixtures';
 import { ExpressionService } from './expression.service';
-import { STORAGE_KEY } from './local-storage-progress-store';
+import { GuestProgressStore, MERGE_KEY, STORAGE_KEY } from './local-storage-progress-store';
 import { passwordHash } from './password-hash';
 import { Account, ProgressStore, WrongPasswordError } from './progress-store';
 import { QuizService } from './quiz.service';
@@ -18,6 +18,8 @@ class FakeStore extends ProgressStore {
   /** Load fails only for this name. */
   loadFailsFor?: string;
   saveFails = false;
+  /** save() stores, then rejects as if the response never arrived. */
+  loseResponse = false;
   loads = 0;
   /** When set, load() waits for this before answering. */
   gate?: Promise<void>;
@@ -38,6 +40,7 @@ class FakeStore extends ProgressStore {
     this.savedFor.push(account.name);
     this.stored[account.name] = state;
     this.hashes[account.name] = account.hash;
+    if (this.loseResponse) throw new Error('response lost');
   }
   private check(account: Account) {
     const hash = this.hashes[account.name];
@@ -54,6 +57,9 @@ function gate(): [Promise<void>, () => void] {
   const promise = new Promise<void>((resolve) => (release = resolve));
   return [promise, release];
 }
+
+/** Answers counted over all items. */
+const seen = (p: ProgressState) => Object.values(p.items).reduce((n, item) => n + item.seen, 0);
 
 const NOW = 1_000_000_000_000;
 const expressions = [1, 2, 3].map((id) => testExpression(id));
@@ -449,9 +455,10 @@ describe('QuizService', () => {
       expect(await quiz.signInAs(OLENA, true)).toBe('ok');
 
       expect(users.current()).toEqual(OLENA);
-      expect(store.stored['Olena']).toEqual(guestState);
-      expect(quiz.progress()).toEqual(guestState);
+      expect(store.stored['Olena']).toEqual({ ...guestState, merged: [expect.any(String)] });
+      expect(quiz.progress()).toEqual(store.stored['Olena']);
       expect(storedGuest()).toBeNull();
+      expect(localStorage.getItem(MERGE_KEY)).toBeNull();
     });
 
     it('creates an empty account when there is no guest progress', async () => {
@@ -515,7 +522,7 @@ describe('QuizService', () => {
       expect(store.stored['Olena'].items[id]).toBeDefined();
     });
 
-    it('keeps guest progress given while the account was being saved', async () => {
+    it('keeps only guest answers given while the account was being saved, and adds them once', async () => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(guestState));
       await quiz.init();
       const [held, release] = gate();
@@ -523,13 +530,108 @@ describe('QuizService', () => {
       const signingIn = quiz.signInAs(OLENA, true);
       await flush();
       quiz.start({ size: 1 });
+      const id = quiz.current()!.expression.id;
       quiz.answer('på');
       release();
       await signingIn;
       await flush();
 
       expect(users.current()).toEqual(OLENA);
-      expect(storedGuest()).not.toBeNull();
+      expect(Object.keys(storedGuest().items)).toEqual([String(id)]);
+      expect(seen(storedGuest())).toBe(1);
+      expect(seen(store.stored['Olena'])).toBe(2);
+
+      await quiz.signOut();
+      expect(await quiz.signInAs(OLENA)).toBe('ok');
+      expect(seen(store.stored['Olena'])).toBe(3); // 2 before signing in + 1 meanwhile
+      expect(storedGuest()).toBeNull();
+    });
+
+    it('adds guest progress once when a sign-out overtakes the sign-in', async () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(guestState));
+      await quiz.init();
+      const [held, release] = gate();
+      store.saveGate = held;
+      const signingIn = quiz.signInAs(OLENA, true);
+      await flush();
+      const signingOut = quiz.signOut();
+      release();
+      expect(await signingIn).toBe('superseded');
+      await signingOut;
+
+      expect(users.current()).toBeNull();
+      expect(quiz.progress().items).toEqual(guestState.items); // still practising on it as guest
+      expect(await quiz.signInAs(OLENA)).toBe('ok');
+      expect(seen(store.stored['Olena'])).toBe(2);
+      expect(store.stored['Olena'].sessions).toEqual(guestState.sessions);
+      expect(storedGuest()).toBeNull();
+    });
+
+    it('does not add guest progress to a second account once it is in the first', async () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(guestState));
+      await quiz.init();
+      const [held, release] = gate();
+      store.saveGate = held;
+      const signingIn = quiz.signInAs(OLENA, true);
+      await flush();
+      const signingOut = quiz.signOut();
+      release();
+      await signingIn;
+      await signingOut;
+
+      expect(await quiz.signInAs(ANDRII, true)).toBe('ok');
+      expect(store.stored['Andrii'].items).toEqual({});
+    });
+
+    it('adds guest progress once when a sign-in is retried after its save reached the account', async () => {
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(guestState));
+      await quiz.init();
+      store.loseResponse = true;
+      await expect(quiz.signInAs(OLENA, true)).rejects.toThrow('response lost');
+      expect(storedGuest()).toEqual(guestState);
+      store.loseResponse = false;
+
+      expect(await quiz.signInAs(OLENA)).toBe('ok');
+      expect(seen(store.stored['Olena'])).toBe(2);
+      expect(storedGuest()).toBeNull();
+      vi.restoreAllMocks();
+    });
+
+    it('still adds guest progress after a failed sign-in to another account', async () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(guestState));
+      await quiz.init();
+      store.saveFails = true;
+      await expect(quiz.signInAs(OLENA, true)).rejects.toThrow('save failed');
+      store.saveFails = false;
+
+      expect(await quiz.signInAs(ANDRII, true)).toBe('ok');
+      expect(seen(store.stored['Andrii'])).toBe(2);
+    });
+
+    it('signs in without guest progress it cannot read, leaving it where it is', async () => {
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(guestState));
+      await quiz.init();
+      vi.spyOn(TestBed.inject(GuestProgressStore), 'load').mockRejectedValue(new Error('blocked'));
+
+      expect(await quiz.signInAs(OLENA, true)).toBe('ok');
+      expect(store.stored['Olena']).toEqual(emptyProgress());
+      expect(storedGuest()).toEqual(guestState);
+      vi.restoreAllMocks();
+    });
+
+    it('reports a wrong password when the name is claimed while the account is saved', async () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(guestState));
+      await quiz.init();
+      const [held, release] = gate();
+      store.saveGate = held;
+      const signingIn = quiz.signInAs(OLENA, true);
+      await flush();
+      store.hashes['Olena'] = 'c'.repeat(64); // claimed by someone else between load and save
+      release();
+      expect(await signingIn).toBe('wrong-password');
+      expect(users.current()).toBeNull();
     });
   });
 

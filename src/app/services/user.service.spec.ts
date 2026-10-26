@@ -95,10 +95,13 @@ describe('UserService', () => {
     ]);
   });
 
-  it('keeps an old current name that was missing from the list, even one that looks like JSON', () => {
-    localStorage.setItem(CURRENT_USER_KEY, '123');
-    expect(create().known()).toEqual([{ name: '123', hash: null }]);
-  });
+  it.each(['123', 'null'])(
+    'keeps an old current name that was missing from the list, even %j',
+    (name) => {
+      localStorage.setItem(CURRENT_USER_KEY, name);
+      expect(create().known()).toEqual([{ name, hash: null }]);
+    },
+  );
 
   it('ignores unreadable stored values', () => {
     localStorage.setItem(CURRENT_USER_KEY, JSON.stringify({ name: 'Andrii', hash: 'nope' }));
