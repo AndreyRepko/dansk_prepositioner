@@ -13,15 +13,9 @@ export const storageKey = (user: string) => `${STORAGE_KEY}:${nameKey(user)}`;
 export class LocalStorageProgressStore extends ProgressStore {
   override async load(user: string): Promise<ProgressState> {
     const key = storageKey(user);
-    let raw: string | null;
-    try {
-      raw = localStorage.getItem(key);
-    } catch (e) {
-      // Storage blocked for this site: nothing can be read, so practice without it.
-      // The first save fails too and the app shows the "not being saved" warning.
-      console.error('Could not read stored progress', e);
-      return emptyProgress();
-    }
+    // Throws when storage is blocked or unreadable; the app then shows the load error
+    // instead of practising on empty progress that the next save would write over.
+    const raw = localStorage.getItem(key);
     return raw ? parseOrBackup(key, raw) : emptyProgress();
   }
 
@@ -40,15 +34,26 @@ export function readLegacyProgress(): ProgressState | null {
   }
 }
 
+const IMPORTED_KEY = `${STORAGE_KEY}-imported`;
+
 /** Marks the pre-names progress as imported so it is not imported into a second name. */
 export function retireLegacyProgress(): void {
+  move(STORAGE_KEY, IMPORTED_KEY, 'Could not mark old progress as imported');
+}
+
+/** Undoes `retireLegacyProgress` after its import could not be saved, so it is offered again. */
+export function restoreLegacyProgress(): void {
+  move(IMPORTED_KEY, STORAGE_KEY, 'Could not restore old progress', true);
+}
+
+function move(from: string, to: string, failure: string, keepExisting = false): void {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw === null) return;
-    localStorage.setItem(`${STORAGE_KEY}-imported`, raw);
-    localStorage.removeItem(STORAGE_KEY);
+    const raw = localStorage.getItem(from);
+    if (raw === null || (keepExisting && localStorage.getItem(to) !== null)) return;
+    localStorage.setItem(to, raw);
+    localStorage.removeItem(from);
   } catch (e) {
-    console.error('Could not mark old progress as imported', e);
+    console.error(failure, e);
   }
 }
 
@@ -60,7 +65,8 @@ function parseOrBackup(key: string, raw: string): ProgressState {
     // not JSON; handled below
   }
   if (parsed) return parsed;
-  // Keep unreadable data so the next save does not destroy it for good.
+  // Keep unreadable data so the next save does not destroy it for good (once per content).
+  if (hasBackup(key, raw)) return emptyProgress();
   const backupKey = `${key}-corrupt-${Date.now()}`;
   try {
     localStorage.setItem(backupKey, raw);
@@ -69,4 +75,12 @@ function parseOrBackup(key: string, raw: string): ProgressState {
     console.error('Stored progress could not be read, and no backup could be kept', e);
   }
   return emptyProgress();
+}
+
+function hasBackup(key: string, raw: string): boolean {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k?.startsWith(`${key}-corrupt-`) && localStorage.getItem(k) === raw) return true;
+  }
+  return false;
 }

@@ -52,6 +52,16 @@ describe('TableProgressRepo', () => {
     expect(table.createCalls).toBe(1);
   });
 
+  it.each([
+    { chunks: 2, data0: '{"a":' },
+    { chunks: 'x', data0: '{}' },
+    { data0: '{}' },
+  ])('throws for a damaged row instead of returning partial JSON: %o', async (fields) => {
+    const table = new FakeTable();
+    table.entities.set('a|progress', { partitionKey: 'a', rowKey: 'progress', ...fields });
+    await expect(new TableProgressRepo(table).get('a')).rejects.toThrow('progress row "a"');
+  });
+
   it('passes on errors other than not-found', async () => {
     const table = new FakeTable();
     table.getEntity = async () => {

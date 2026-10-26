@@ -53,6 +53,19 @@ describe('WhoPage', () => {
     expect(navigate).not.toHaveBeenCalled();
   });
 
+  it('shows an error for an invalid name while someone is signed in, and stays', async () => {
+    const users = TestBed.inject(UserService);
+    users.select('Andrii');
+    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const { fixture, el } = await render();
+    type(el, '@@@');
+    await fixture.whenStable();
+
+    expect(el.querySelector('.error')).toBeTruthy();
+    expect(users.current()).toBe('Andrii');
+    expect(navigate).not.toHaveBeenCalled();
+  });
+
   it('lists names used before and switches with one click', async () => {
     const users = TestBed.inject(UserService);
     users.select('Olena');

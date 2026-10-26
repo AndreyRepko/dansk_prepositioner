@@ -3,6 +3,7 @@ import { testProgress } from '../testing/fixtures';
 import {
   LocalStorageProgressStore,
   readLegacyProgress,
+  restoreLegacyProgress,
   retireLegacyProgress,
   STORAGE_KEY,
   storageKey,
@@ -71,12 +72,19 @@ describe('LocalStorageProgressStore', () => {
     expect(backups()).toEqual([]);
   });
 
-  it('returns empty progress when storage is blocked', async () => {
+  it('keeps only one backup of the same unreadable data', async () => {
     vi.spyOn(console, 'error').mockImplementation(() => {});
+    localStorage.setItem(key, '{not json');
+    await store.load('Andrii');
+    await store.load('Andrii');
+    expect(backups().length).toBe(1);
+  });
+
+  it('rejects when storage cannot be read', async () => {
     vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new DOMException('blocked', 'SecurityError');
     });
-    expect(await store.load('Andrii')).toEqual(emptyProgress());
+    await expect(store.load('Andrii')).rejects.toThrow('blocked');
   });
 
   it('rejects when saving fails', async () => {
@@ -106,5 +114,19 @@ describe('legacy progress (saved before names existed)', () => {
     expect(localStorage.getItem(STORAGE_KEY)).toBeNull();
     expect(JSON.parse(localStorage.getItem(`${STORAGE_KEY}-imported`)!)).toEqual(state);
     expect(readLegacyProgress()).toBeNull();
+  });
+
+  it('is put back by restore, unless the old key was written again', () => {
+    const state: ProgressState = { version: 1, items: { 1: testProgress() }, sessions: [] };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    retireLegacyProgress();
+    restoreLegacyProgress();
+    expect(readLegacyProgress()).toEqual(state);
+    expect(localStorage.getItem(`${STORAGE_KEY}-imported`)).toBeNull();
+
+    retireLegacyProgress();
+    localStorage.setItem(STORAGE_KEY, '{}');
+    restoreLegacyProgress();
+    expect(localStorage.getItem(STORAGE_KEY)).toBe('{}');
   });
 });

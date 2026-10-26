@@ -2,7 +2,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Expression } from '../models/expression';
 import { emptyProgress, ProgressState } from '../models/progress';
 import { ExpressionService } from './expression.service';
-import { readLegacyProgress, retireLegacyProgress } from './local-storage-progress-store';
+import { readLegacyProgress, restoreLegacyProgress, retireLegacyProgress } from './local-storage-progress-store';
 import { ProgressStore } from './progress-store';
 import { applyAnswer, buildOptions, Rng, selectSession, SessionFilter } from './srs';
 import { UserService } from './user.service';
@@ -39,6 +39,8 @@ export class QuizService {
   private saving: Promise<void> = Promise.resolve();
   /** Increments per load so a slow response for a previous name is ignored. */
   private loadToken = 0;
+  /** Increments per save so a refresh does not replace changes made while it was loading. */
+  private edits = 0;
 
   /** Overridable in tests. */
   now: () => number = Date.now;
@@ -101,6 +103,9 @@ export class QuizService {
     if (!user) return;
 
     this.loading.set(true);
+    // Saves still running (e.g. for this name before a quick switch away and back) land first.
+    await this.saving;
+    if (token !== this.loadToken) return;
     let progress: ProgressState;
     try {
       progress = await this.store.load(user);
@@ -115,12 +120,33 @@ export class QuizService {
 
     // Progress saved before names existed goes to the first name that has none yet.
     const legacy = isEmpty(progress) ? readLegacyProgress() : null;
-    this.progress.set(legacy && !isEmpty(legacy) ? legacy : progress);
+    const importing = !!legacy && !isEmpty(legacy);
+    // Claimed before saving so a name chosen during the save does not import it too.
+    if (importing) retireLegacyProgress();
+    this.progress.set(importing ? legacy : progress);
     this.loading.set(false);
-    if (legacy && !isEmpty(legacy)) {
-      await this.persist();
-      if (!this.saveError()) retireLegacyProgress();
+    if (importing && !(await this.persist())) restoreLegacyProgress();
+  }
+
+  /**
+   * Reloads the current user's progress (e.g. when the tab is shown again after practice on
+   * another device). Skipped during a session; kept as is when it fails or something was saved meanwhile.
+   */
+  async refresh(): Promise<void> {
+    const user = this.users.current();
+    if (!user || this.loading() || this.loadError() || this.active()) return;
+    const token = this.loadToken;
+    const edits = this.edits;
+    await this.saving;
+    let progress: ProgressState;
+    try {
+      progress = await this.store.load(user);
+    } catch (error) {
+      console.error('Could not refresh progress', error);
+      return;
     }
+    if (token !== this.loadToken || edits !== this.edits || this.active()) return;
+    this.progress.set(progress);
   }
 
   private resetSession(): void {
@@ -196,23 +222,27 @@ export class QuizService {
    * Saves the current progress for the current user; saves run one after another so
    * they cannot land out of order. Each save is bound to the user it was made for.
    */
-  private persist(): Promise<void> {
+  private persist(): Promise<boolean> {
     const user = this.users.current();
-    if (!user || this.loadError() || this.loading()) return Promise.resolve();
+    if (!user || this.loadError() || this.loading()) return Promise.resolve(false);
     const state = this.progress();
     const token = this.loadToken;
-    this.saving = this.saving
+    this.edits++;
+    const saved = this.saving
       .then(() => this.store.save(user, state))
       .then(
         () => {
           if (token === this.loadToken) this.saveError.set(false);
+          return true;
         },
         (error) => {
           console.error('Could not save progress', error);
           if (token === this.loadToken) this.saveError.set(true);
+          return false;
         },
       );
-    return this.saving;
+    this.saving = saved.then(() => undefined);
+    return saved;
   }
 
   private toQuestion(expression: Expression, retry: boolean): Question {

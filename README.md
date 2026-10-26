@@ -80,7 +80,8 @@ There is no login. On the first visit the app asks for a name (`/who`); the brow
 and the names used before, and the header has a *switch* link. Progress belongs to the name, so
 the same name on another device shows the same progress. Names are case-insensitive, 1–30
 letters/digits/spaces/`. _ ' -`. Anyone who types the same name shares that progress, and when
-one name is used on two devices at once the last save wins.
+one name is used on two devices at once the last save wins. Progress is reloaded when the tab
+becomes visible again (outside a running session), so a tab left open picks up practice done elsewhere.
 
 Storage goes through `ProgressStore` (chosen in `app.config.ts` by the `USE_API` build define):
 

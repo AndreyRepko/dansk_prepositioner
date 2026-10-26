@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../services/quiz.service';
-import { MAX_NAME_LENGTH } from '../services/user-name';
+import { cleanName, MAX_NAME_LENGTH } from '../services/user-name';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -101,14 +101,13 @@ export class WhoPage {
   }
 
   protected choose(name: string): void {
-    const switching = this.quiz.switchUser(name);
-    void switching.then(
-      (ok) => {
-        if (!ok) this.invalid.set(true);
-      },
-      (e) => console.error(e), // shown by the app shell (loadError)
-    );
+    // Checked first: an invalid name must not send someone already signed in back to their own progress.
+    if (!cleanName(name)) {
+      this.invalid.set(true);
+      return;
+    }
+    void this.quiz.switchUser(name).catch((e) => console.error(e)); // shown by the app shell (loadError)
     // Navigate right away; the shell shows "Loading…" until the progress arrives.
-    if (this.users.current()) void this.router.navigate(['/']);
+    void this.router.navigate(['/']);
   }
 }

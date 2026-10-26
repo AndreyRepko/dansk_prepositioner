@@ -42,8 +42,13 @@ export class TableProgressRepo implements ProgressRepo {
       throw e;
     }
     const chunks = Number(entity['chunks']);
+    if (!Number.isInteger(chunks) || chunks < 0) throw new Error(`progress row "${key}" has bad chunks value`);
     let json = '';
-    for (let i = 0; i < chunks; i++) json += String(entity[`data${i}`] ?? '');
+    for (let i = 0; i < chunks; i++) {
+      const part = entity[`data${i}`];
+      if (typeof part !== 'string') throw new Error(`progress row "${key}" is missing data${i}`);
+      json += part;
+    }
     return json;
   }
 

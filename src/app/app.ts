@@ -8,6 +8,7 @@ import { UserService } from './services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   selector: 'app-root',
+  host: { '(document:visibilitychange)': 'onVisibilityChange()' },
   template: `
     <header class="top">
       <a routerLink="/" class="brand">Præpositioner</a>
@@ -97,6 +98,11 @@ export class App {
 
   protected retry(): void {
     this.quiz.init().catch((e) => console.error(e));
+  }
+
+  /** Picks up practice done on another device while this tab was in the background. */
+  protected onVisibilityChange(): void {
+    if (document.visibilityState === 'visible') void this.quiz.refresh();
   }
 
   protected otherName(): void {

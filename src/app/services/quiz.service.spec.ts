@@ -12,19 +12,34 @@ class FakeStore extends ProgressStore {
   savedFor: string[] = [];
   stored: Record<string, ProgressState> = {};
   loadFails = false;
+  /** Load fails only for this name. */
+  loadFailsFor?: string;
   saveFails = false;
+  loads = 0;
   /** When set, load() waits for this before answering. */
   gate?: Promise<void>;
+  /** When set, save() waits for this before storing. */
+  saveGate?: Promise<void>;
   override async load(user: string) {
+    this.loads++;
     await this.gate;
-    if (this.loadFails) throw new Error('load failed');
+    if (this.loadFails || this.loadFailsFor === user) throw new Error('load failed');
     return this.stored[user] ?? emptyProgress();
   }
   override async save(user: string, state: ProgressState) {
+    await this.saveGate;
     if (this.saveFails) throw new Error('save failed');
     this.saved.push(state);
     this.savedFor.push(user);
+    this.stored[user] = state;
   }
+}
+
+/** A promise plus the function that resolves it. */
+function gate(): [Promise<void>, () => void] {
+  let release!: () => void;
+  const promise = new Promise<void>((resolve) => (release = resolve));
+  return [promise, release];
 }
 
 const NOW = 1_000_000_000_000;
@@ -286,6 +301,85 @@ describe('QuizService', () => {
       expect(quiz.loading()).toBe(false);
     });
 
+    it('ignores a slow failing load for a name that was switched away from', async () => {
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+      const [held, release] = gate();
+      store.gate = held;
+      store.loadFailsFor = 'Andrii';
+      const first = quiz.init();
+      await flush();
+      expect(store.loads).toBe(1);
+      const second = quiz.switchUser('Olena');
+      release();
+      await expect(first).rejects.toThrow('load failed');
+      await second;
+
+      expect(quiz.loadError()).toBe(false);
+      expect(quiz.loading()).toBe(false);
+      quiz.start({ size: 1 });
+      quiz.answer('på');
+      await flush();
+      expect(store.savedFor).toEqual(['Olena']);
+    });
+
+    it('does not save while progress is loading', async () => {
+      const [held, release] = gate();
+      store.gate = held;
+      const switching = quiz.switchUser('Olena');
+      expect(quiz.loading()).toBe(true);
+      await quiz.resetProgress();
+      release();
+      await switching;
+      expect(store.saved).toEqual([]);
+    });
+
+    it('a save still running when the user switches goes to the old name, with the old progress', async () => {
+      const [held, release] = gate();
+      store.saveGate = held;
+      quiz.start({ size: 1 });
+      const id = quiz.current()!.expression.id;
+      quiz.answer('på');
+      const switching = quiz.switchUser('Olena');
+      release();
+      await switching;
+
+      expect(store.savedFor).toEqual(['Andrii']);
+      expect(store.saved[0].items[id]).toBeDefined();
+      expect(quiz.progress()).toEqual(emptyProgress());
+    });
+
+    it('does not show a failed save for the previous name', async () => {
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+      const [held, release] = gate();
+      store.saveGate = held;
+      store.saveFails = true;
+      quiz.start({ size: 1 });
+      quiz.answer('på');
+      const switching = quiz.switchUser('Olena');
+      release();
+      await switching;
+
+      expect(users.current()).toBe('Olena');
+      expect(quiz.saveError()).toBe(false);
+    });
+
+    it('reloading a name waits for its save still in flight', async () => {
+      const [held, release] = gate();
+      store.saveGate = held;
+      quiz.start({ size: 1 });
+      const id = quiz.current()!.expression.id;
+      quiz.answer('på');
+      const away = quiz.switchUser('Olena');
+      const back = quiz.switchUser('Andrii');
+      await flush();
+      expect(store.loads).toBe(0);
+      release();
+      await Promise.all([away, back]);
+
+      expect(users.current()).toBe('Andrii');
+      expect(quiz.progress().items[id]).toBeDefined();
+    });
+
     it('sign-out clears the name and a load error', async () => {
       store.loadFails = true;
       await expect(quiz.init()).rejects.toThrow();
@@ -333,6 +427,86 @@ describe('QuizService', () => {
 
       expect(quiz.saveError()).toBe(true);
       expect(localStorage.getItem(STORAGE_KEY)).not.toBeNull();
+    });
+
+    it('is not imported into a second name chosen during the import save', async () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(legacy));
+      const [held, release] = gate();
+      store.saveGate = held;
+      const first = quiz.init();
+      await flush();
+      expect(quiz.loading()).toBe(false);
+
+      const second = quiz.switchUser('Olena');
+      release();
+      await Promise.all([first, second]);
+
+      expect(store.savedFor).toEqual(['Andrii']);
+      expect(quiz.progress()).toEqual(emptyProgress());
+    });
+
+    it('stays in place when the import save fails after a switch', async () => {
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(legacy));
+      const [held, release] = gate();
+      store.saveGate = held;
+      store.saveFails = true;
+      const first = quiz.init();
+      await flush();
+
+      const second = quiz.switchUser('Olena');
+      release();
+      await Promise.all([first, second]);
+
+      expect(localStorage.getItem(STORAGE_KEY)).toBe(JSON.stringify(legacy));
+    });
+  });
+
+  describe('refresh', () => {
+    const newer: ProgressState = { version: 1, items: { 2: testProgress({ box: 5 }) }, sessions: [] };
+
+    beforeEach(async () => {
+      await quiz.init();
+    });
+
+    it('applies progress saved on another device', async () => {
+      store.stored['Andrii'] = newer;
+      await quiz.refresh();
+      expect(quiz.progress()).toEqual(newer);
+    });
+
+    it('is skipped during a session', async () => {
+      store.stored['Andrii'] = newer;
+      quiz.start({ size: 1 });
+      await quiz.refresh();
+      expect(store.loads).toBe(1);
+      expect(quiz.progress()).toEqual(emptyProgress());
+    });
+
+    it('does not replace an answer given while it was loading', async () => {
+      store.stored['Andrii'] = newer;
+      const [held, release] = gate();
+      store.gate = held;
+      const refreshing = quiz.refresh();
+      quiz.start({ size: 1 });
+      quiz.answer('på');
+      quiz.next();
+      release();
+      await refreshing;
+      expect(quiz.progress().sessions.length).toBe(1);
+    });
+
+    it('keeps the current progress when loading fails', async () => {
+      vi.spyOn(console, 'error').mockImplementation(() => {});
+      quiz.start({ size: 1 });
+      quiz.answer('på');
+      quiz.next();
+      await flush();
+      const before = quiz.progress();
+      store.loadFails = true;
+      await quiz.refresh();
+      expect(quiz.progress()).toBe(before);
+      expect(quiz.loadError()).toBe(false);
     });
   });
 });
