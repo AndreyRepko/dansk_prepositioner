@@ -23,5 +23,6 @@ describe('data/praepositioner.json', () => {
     const options = [e.praeposition, ...e.forkerte].map((o) => o.trim().toLowerCase());
     expect(new Set(options).size).toBe(4);
     expect(CATEGORIES).toContain(e.kategori);
+    expect(e.engelsk?.trim()).toBeTruthy();
   });
 });

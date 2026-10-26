@@ -1,231 +1,231 @@
-﻿id;udtryk;praeposition;saetning;forkert1;forkert2;forkert3;forklaring;ukrainsk;kategori;mine_fejl
-1;godt for;for;Det er godt ___ samfundet, at unge får en uddannelse.;til;på;med;godt/dårligt/vigtigt for nogen eller noget;добре для (когось/чогось);tillægsord;ja
-2;dårligt for;for;Det er dårligt ___ de små byers økonomi.;til;på;af;godt/dårligt/vigtigt for nogen eller noget;погано для (когось/чогось);tillægsord;ja
-3;vigtigt for;for;Det er vigtigt ___ alle at dyrke motion.;til;på;med;godt/dårligt/vigtigt for nogen eller noget;важливо для (когось/чогось);tillægsord;ja
-4;afhængig af;af;Mange landmænd er afhængige ___ vejret.;på;til;for;være afhængig af noget;залежний від (чогось);tillægsord;ja
-5;glad for;for;Jeg er meget glad ___ min nye cykel.;med;på;til;være glad for noget;любити (щось), бути радим (чомусь);tillægsord;nej
-6;enig med (person);med;Jeg er enig ___ min chef.;i;på;til;enig med en person, enig i en sag;погоджуватися з (кимось);tillægsord;ja
-7;enig i (sag);i;Jeg er ikke enig ___ det, chefen siger.;med;på;til;enig med en person, enig i en sag;погоджуватися з (чимось);tillægsord;ja
-8;uenig i;i;Jeg er helt uenig ___, at vi skal sammenligne møllerne med kirketårne.;med;til;på;uenig i en sag, uenig med en person;не погоджуватися з (чимось);tillægsord;ja
-9;sikker på;på;Jeg er ikke helt sikker ___, om jeg kan komme.;om;i;af;være sikker på noget;бути впевненим у (чомусь);tillægsord;ja
-10;bekymret for;for;De er bekymrede ___ værdien af deres huse.;om;til;på;være bekymret for noget;хвилюватися за (когось/щось);tillægsord;nej
-11;tilfreds med;med;Er du tilfreds ___ dit nye job?;af;for;over;være tilfreds med noget;бути задоволеним (чимось);tillægsord;nej
-12;stolt af;af;Han er meget stolt ___ sin datter.;med;for;på;være stolt af nogen eller noget;пишатися (кимось/чимось);tillægsord;nej
-13;træt af;af;Jeg er træt ___ al den regn.;på;for;med;være træt af noget (= have fået nok);втомитися від (чогось);tillægsord;nej
-14;interesseret i;i;Hun er meget interesseret ___ politik.;for;på;om;være interesseret i noget (men: interessere sig for);зацікавлений у (чомусь);tillægsord;nej
-15;god til;til;Hun er god ___ at tale med kunderne.;for;på;i;være god til noget (en evne);добре вміти (щось), бути вправним у;tillægsord;nej
-16;vant til;til;Jeg er ikke vant ___ at cykle i sne.;med;på;for;være vant til noget;бути звиклим до (чогось);tillægsord;nej
-17;ked af;af;Oscar er ked ___ at skulle skifte skole.;for;over;med;være ked af noget;засмучений (чимось), шкодувати про;tillægsord;nej
-18;bange for;for;Mange børn er bange ___ mørket.;af;på;over;være bange for noget;боятися (чогось);tillægsord;nej
-19;taknemmelig for;for;Jeg er taknemmelig ___ din hjælp.;til;på;af;være taknemmelig for noget;бути вдячним за (щось);tillægsord;nej
-20;skuffet over;over;Borgerne var skuffede ___ byrådets beslutning.;af;for;på;være skuffet over noget;бути розчарованим (чимось);tillægsord;nej
-21;vred på (person);på;Hun var vred ___ sin bror.;over;for;til;vred på en person, vred over en sag;сердитися на (когось);tillægsord;nej
-22;vred over (sag);over;Mange er vrede ___ de høje priser.;på;for;af;vred på en person, vred over en sag;обурюватися (чимось), сердитися через;tillægsord;nej
-23;forelsket i;i;Han er forelsket ___ sin nabo.;på;med;til;være forelsket i nogen;бути закоханим у (когось);tillægsord;nej
-24;klar til;til;Er du klar ___ prøven?;for;på;med;være klar til noget;бути готовим до (чогось);tillægsord;nej
-25;ansvarlig for;for;Hvem er ansvarlig ___ projektet?;til;på;af;være ansvarlig for noget;відповідальний за (щось);tillægsord;nej
-26;typisk for;for;Det er typisk ___ Danmark, at mange cykler.;til;på;af;være typisk for noget;типовий для (чогось);tillægsord;nej
-27;lære af;af;Jeg har lært meget ___ Ullas rettelser.;fra;med;på;lære af nogen eller noget;вчитися в (когось) / на (чомусь);udsagnsord;ja
-28;holde øje med;med;Kan du holde øje ___ mine børn et øjeblik?;på;for;til;holde øje med nogen = passe på;стежити за (кимось/чимось);udsagnsord;ja
-29;gøre noget ved;ved;Kommunen skal gøre noget ___ problemet.;med;for;på;gøre noget ved et problem;щось робити з (проблемою);udsagnsord;ja
-30;bruge tid på;på;Jeg bruger meget tid ___ at lære dansk.;om;for;med;bruge tid på noget;витрачати час на (щось);udsagnsord;ja
-31;tænke over (problem);over;Jeg har ikke tænkt ___ det før.;om;af;med;tænke over et problem, tænke på en person;обмірковувати (щось), думати над (чимось);udsagnsord;ja
-32;tænke på (person);på;Jeg tænker tit ___ min familie i Ukraine.;over;om;af;tænke på en person, tænke over et problem;думати про (когось);udsagnsord;nej
-33;vente på;på;Vi venter ___ bussen.;for;til;efter;vente på nogen eller noget;чекати на (когось/щось);udsagnsord;nej
-34;passe på;på;Du skal passe ___ dig selv.;om;for;med;passe på nogen eller noget;берегти (когось), остерігатися (чогось);udsagnsord;nej
-35;glæde sig til;til;Jeg glæder mig ___ weekenden.;på;for;over;glæde sig til noget i fremtiden;з нетерпінням чекати (чогось);udsagnsord;ja
-36;have lyst til;til;Har du lyst ___ at tage på stranden?;på;for;med;have lyst til noget;хотіти (чогось), мати бажання;udsagnsord;nej
-37;have brug for;for;Byen har brug ___ flere unge familier.;til;på;af;have brug for noget;потребувати (чогось);udsagnsord;ja
-38;have tid til;til;Jeg har ikke tid ___ at lave mad i dag.;for;på;med;have tid til noget;мати час на (щось);udsagnsord;ja
-39;have overskud til;til;Efter arbejde har jeg ikke overskud ___ at lave mad.;for;på;med;have overskud til noget;мати сили на (щось);udsagnsord;ja
-40;deltage i;i;Mange borgere deltog ___ mødet.;ved;til;med;deltage i noget;брати участь у (чомусь);udsagnsord;nej
-41;tro på;på;Jeg tror ___, at det bliver bedre.;i;om;for;tro på noget;вірити в (щось);udsagnsord;nej
-42;drømme om;om;Hun drømmer ___ at åbne sin egen café.;på;for;af;drømme om noget;мріяти про (щось);udsagnsord;nej
-43;tale om;om;Hele aftenen talte vi ___ de nye planer for havnen.;på;for;af;tale om et emne, tale med en person;говорити про (щось);udsagnsord;nej
-44;snakke med (person);med;Jeg snakker tit ___ mine kolleger.;for;af;ved;snakke/tale med en person;розмовляти з (кимось);udsagnsord;nej
-45;spørge om;om;Må jeg spørge dig ___ noget?;på;for;til;spørge nogen om noget;питати (когось) про (щось);udsagnsord;nej
-46;bede om;om;Må jeg bede dig ___ et råd?;for;på;til;bede nogen om noget;просити (когось) про (щось);udsagnsord;ja
-47;sørge for;for;Kan du sørge ___, at døren er låst?;om;på;til;sørge for noget;подбати про (щось);udsagnsord;nej
-48;lede efter;efter;Jeg leder ___ mine nøgler.;for;på;om;lede efter noget;шукати (щось);udsagnsord;nej
-49;se frem til;til;Jeg ser frem ___ at møde dig.;på;for;mod;se frem til noget;з нетерпінням чекати (чогось);udsagnsord;nej
-50;fokusere på;på;Når jeg arbejder hjemme, fokuserer jeg ___ opgaverne.;om;til;i;fokusere på noget;зосереджуватися на (чомусь);udsagnsord;ja
-51;koncentrere sig om;om;Jeg kan ikke koncentrere mig ___ arbejdet.;på;til;i;koncentrere sig om noget;зосереджуватися на (чомусь);udsagnsord;nej
-52;interessere sig for;for;Han interesserer sig ___ dansk politik.;i;på;om;interessere sig for noget (men: interesseret i);цікавитися (чимось);udsagnsord;nej
-53;bestå af;af;Prøven består ___ en skriftlig og en mundtlig del.;med;i;på;bestå af dele;складатися з (чогось);udsagnsord;ja
-54;stamme fra;fra;"Ordet ""kaffe"" stammer ___ arabisk.";af;ud;på;stamme fra noget;походити з / від (чогось);udsagnsord;ja
-55;bygge på;på;Hans argument bygger ___ en ny undersøgelse.;af;med;om;bygge på noget (= have som grundlag);ґрунтуватися на (чомусь);udsagnsord;ja
-56;opfordre nogen til;til;Jeg opfordrer byrådet ___ at lytte til borgerne.;om;for;på;opfordre nogen til at gøre noget;закликати (когось) до (чогось);udsagnsord;ja
-57;overtale nogen til;til;Hun kan ikke overtale mig ___ at gå i seng.;om;for;på;overtale nogen til at gøre noget;умовити (когось) (щось зробити);udsagnsord;ja
-58;overbevise nogen om;om;Han overbeviste mig ___, at han havde ret.;til;for;på;overbevise nogen om, at noget er sandt;переконати (когось) у (чомусь);udsagnsord;ja
-59;forberede sig på;på;Man skal forberede sig ___ det værste.;om;for;med;forberede sig på noget;готуватися до (чогось);udsagnsord;ja
-60;gå op i;i;Han går meget op ___ fodbold.;på;til;med;gå op i noget = interessere sig meget;захоплюватися (чимось);udsagnsord;nej
-61;klage over;over;Naboerne klager ___ støjen.;om;på;af;klage over noget;скаржитися на (щось);udsagnsord;nej
-62;svare på;på;Kan du svare ___ mit spørgsmål?;til;om;for;svare på noget;відповідати на (щось);udsagnsord;nej
-63;reagere på;på;Hvordan reagerede han ___ nyheden?;til;om;over;reagere på noget;реагувати на (щось);udsagnsord;nej
-64;sammenligne med;med;Man kan ikke sammenligne møllerne ___ kirketårne.;til;af;for;sammenligne noget med noget;порівнювати з (чимось);udsagnsord;ja
-65;hjælpe med;med;Kan du hjælpe mig ___ at forstå reglen?;om;på;for;hjælpe nogen med noget;допомагати (комусь) з (чимось);udsagnsord;ja
-66;holde op med;med;Han holdt op ___ at ryge sidste år.;for;af;til;holde op med noget;припинити (щось робити), кинути;udsagnsord;ja
-67;begynde på;på;Hun begyndte ___ et nyt kursus i august.;for;i;til;begynde på et kursus/en uddannelse;почати (навчання, курс);udsagnsord;nej
-68;blande sig i;i;Du skal ikke blande dig ___ deres diskussion.;med;på;til;blande sig i noget;втручатися в (щось);udsagnsord;nej
-69;tage stilling til;til;Vi skal tage stilling ___ forslaget på mødet.;om;på;for;tage stilling til noget;визначитися щодо (чогось);udsagnsord;nej
-70;komme an på;an på;Det kommer ___ vejret.;på;an til;an i;det kommer an på noget = det afhænger af;залежати від (чогось);udsagnsord;ja
-71;sætte sig ind i;ind i;Jeg skal sætte mig ___ den nye arkitektur.;ind på;på;til;sætte sig ind i noget = lære det grundigt;розібратися в (чомусь);udsagnsord;ja
-72;have styr på;på;Jeg har styr ___ tallene.;med;over;om;have styr på noget;тримати (щось) під контролем;udsagnsord;ja
-73;tage sig af;af;Kan du tage dig ___ det med kunden?;om;med;for;tage sig af noget;подбати про (щось), займатися (чимось);udsagnsord;ja
-74;lytte til;til;Byrådet skal lytte ___ borgerne.;på;for;med;lytte til nogen;слухати (когось);udsagnsord;ja
-75;skamme sig over;over;Han skammede sig ___ det, han havde sagt.;af;for;på;skamme sig over noget;соромитися (чогось);udsagnsord;nej
-76;være skyld i;i;Hvem er skyld ___ problemet?;for;på;til;være skyld i noget;бути винним у (чомусь);udsagnsord;nej
-77;få øje på;på;Jeg fik øje ___ ham i mængden.;for;til;med;få øje på = se noget;помітити (щось), побачити;udsagnsord;ja
-78;få øje for;for;Firmaerne har fået øje ___ værdien af de ældre.;af;til;med;få øje for = forstå værdien af noget;усвідомити цінність (чогось);udsagnsord;ja
-79;lægge mærke til;til;Jeg lagde ikke mærke ___, at han var gået.;på;for;om;lægge mærke til noget;помічати (щось);udsagnsord;nej
-80;lægge vægt på;på;Mange lægger vægt ___ en kort vej til arbejde.;til;for;i;lægge vægt på noget;надавати значення (чомусь);udsagnsord;nej
-81;gå ud over;ud over;Nedskæringerne går ___ børnene.;ud af;over;ud for;gå ud over nogen = skade nogen;шкодити (комусь), відбиватися на (комусь);udsagnsord;nej
-82;få lov til;til;Børnene får ikke lov ___ at se tv om aftenen.;for;på;om;få lov til noget;отримати дозвіл на (щось);udsagnsord;ja
-83;have råd til;til;Vi har ikke råd ___ en ny bil.;for;på;med;have råd til noget;могти дозволити собі (щось);udsagnsord;nej
-84;stole på;på;Du kan godt stole ___ mig.;til;i;om;stole på nogen;довіряти (комусь);udsagnsord;nej
-85;have ondt af;af;Jeg har ondt ___ ham.;for;på;over;have ondt af nogen = have medlidenhed;співчувати (комусь);udsagnsord;nej
-86;tage hensyn til;til;Man skal tage hensyn ___ naboerne.;for;på;om;tage hensyn til nogen;зважати на (когось/щось);udsagnsord;nej
-87;takke for;for;Jeg vil gerne takke dig ___ hjælpen.;til;om;på;takke nogen for noget;дякувати (комусь) за (щось);udsagnsord;nej
-88;en løsning på;på;Det kan være en løsning ___ problemet med støj.;af;om;ved;en løsning på et problem;вирішення (проблеми);navneord;ja
-89;en forudsætning for;for;Tillid er en forudsætning ___ et godt samarbejde.;til;på;af;en forudsætning for noget;передумова (чогось);navneord;ja
-90;en betingelse for;for;Dansk er en betingelse ___ at få jobbet.;til;på;om;en betingelse for noget;умова для (чогось);navneord;ja
-91;en risiko for;for;Der er risiko ___ regn i morgen.;til;på;af;en risiko for noget;ризик (чогось);navneord;ja
-92;en fordel ved;ved;En fordel ___ at bo i byen er kulturlivet.;for;af;med;en fordel/ulempe ved noget;перевага (чогось);navneord;ja
-93;en ulempe ved;ved;En ulempe ___ ordningen er, at den er dyr.;for;af;med;en fordel/ulempe ved noget;недолік (чогось);navneord;ja
-94;en stigning i;i;Der var en stigning ___ antallet af cyklister.;af;på;for;en stigning/et fald i noget;зростання (чогось);navneord;ja
-95;et fald i;i;Vi kan se et betydeligt fald ___ antallet.;af;på;for;en stigning/et fald i noget;зниження (чогось);navneord;ja
-96;en tendens til;til;Der er en tendens ___, at flere arbejder hjemme.;for;på;af;en tendens til noget;тенденція до (чогось);navneord;ja
-97;en grund til;til;Dårligt vejr er en grund ___ at blive hjemme.;for;på;af;en grund/årsag til noget;підстава для (чогось), причина;navneord;ja
-98;en årsag til;til;Hvad er årsagen ___ faldet?;for;af;på;en grund/årsag til noget;причина (чогось);navneord;nej
-99;en opskrift på;på;Hermed sender jeg dig en opskrift ___ fiskesuppe.;for;til;af;en opskrift på en ret;рецепт (страви);navneord;ja
-100;et symbol på;på;Møllerne er et symbol ___ fremtiden.;af;om;til;et symbol på noget;символ (чогось);navneord;ja
-101;omsorg for;for;Det er vigtigt at vise omsorg ___ miljøet.;på;til;om;omsorg for noget;турбота про (когось/щось);navneord;ja
-102;en del af;af;Møllerne bliver en del ___ udsigten.;i;fra;på;en del af noget;частина (чогось);navneord;ja
-103;mulighed for;for;Vi skal have mulighed ___ at påvirke beslutningerne.;til;på;om;mulighed for at gøre noget;можливість (щось зробити);navneord;ja
-104;et svar på;på;Jeg har ikke fået svar ___ min mail.;til;om;for;et svar på noget;відповідь на (щось);navneord;nej
-105;et forslag om;om;Byrådet fik et forslag ___ en ny cykelsti.;på;for;af;et forslag om noget;пропозиція щодо (чогось);navneord;nej
-106;interesse for;for;Han har stor interesse ___ musik.;på;til;om;interesse for noget;інтерес до (чогось);navneord;nej
-107;respekt for;for;Vi skal have respekt ___ hinandens holdninger.;til;af;på;respekt for nogen eller noget;повага до (когось/чогось);navneord;nej
-108;kritik af;af;Der kom meget kritik ___ projektet.;til;på;over;kritik af noget;критика (чогось);navneord;nej
-109;erfaring med;med;Har du erfaring ___ projektledelse?;til;af;for;erfaring med noget;досвід роботи з (чимось);navneord;nej
-110;et krav om;om;Der er et krav ___, at man taler dansk.;på;for;til;et krav om noget;вимога (чогось);navneord;nej
-111;adgang til;til;Alle har adgang ___ referaterne.;for;på;i;adgang til noget;доступ до (чогось);navneord;nej
-112;en undersøgelse af;af;Avisen lavede en undersøgelse ___ danskernes vaner.;til;på;for;en undersøgelse af noget;дослідження (чогось);navneord;nej
-113;en forskel på;på;Der er stor forskel ___ by og land.;af;for;til;en forskel på to ting (eller mellem);різниця між (чимось);navneord;nej
-114;ansvar for;for;Hver person har et ansvar ___ sit eget liv.;til;på;af;ansvar for noget;відповідальність за (щось);navneord;ja
-115;tillid til;til;Jeg har tillid ___ min læge.;på;for;i;tillid til nogen;довіра до (когось);navneord;nej
-116;en debat om;om;Der er en stor debat ___ vindmøllerne.;på;af;for;en debat om noget;дискусія про (щось);navneord;nej
-117;modstand mod;mod;Der er stor modstand ___ projektet.;for;på;til;modstand mod noget;спротив (чомусь);navneord;nej
-118;støtte til;til;Kommunen giver støtte ___ projektet.;for;på;af;støtte til noget;підтримка (чогось);navneord;nej
-119;en sammenhæng mellem;mellem;Der er en sammenhæng ___ alder og holdning.;af;for;med;en sammenhæng mellem to ting;зв’язок між (чимось);navneord;nej
-120;tak for;for;Tak ___ din mail!;til;om;på;tak for noget;дякую за (щось);navneord;ja
-121;tillykke med;med;Tillykke ___ fødselsdagen!;for;til;på;tillykke med noget;вітаю з (чимось);navneord;nej
-122;for … siden;for;Jeg flyttede til Danmark ___ tre år siden.;i;på;om;for … siden = tilbage i tiden;… тому (напр. два роки тому);tid;ja
-123;om morgenen;om;Jeg drikker altid kaffe ___ morgenen.;i;på;ved;om morgenen/aftenen = hver gang (vane);вранці (щоранку);tid;ja
-124;om ugen;om;Jeg løber to gange ___ ugen.;på;ved;til;to gange om ugen/dagen/året;на тиждень (двічі на тиждень);tid;ja
-125;i weekenden;i;Hvad skal du lave ___ weekenden?;på;ved;med;i weekenden = denne weekend;у ці вихідні;tid;nej
-126;på mandag;på;Vi ses ___ mandag!;i;om;til;på mandag = næste mandag;у (найближчий) понеділок;tid;nej
-127;om mandagen;om;Jeg arbejder hjemme ___ mandagen.;på;i;ved;om mandagen = hver mandag;щопонеділка, по понеділках;tid;ja
-128;i tirsdags;i;Jeg holdt min præsentation ___ tirsdags.;på;om;sidste;i tirsdags = sidste tirsdag;минулого вівторка;tid;ja
-129;i aften;i;Hvad skal du lave ___ aften?;på;om;med;i aften = denne aften;сьогодні ввечері;tid;ja
-130;om vinteren;om;Det regner meget her ___ vinteren.;i;på;ved;om vinteren = hver vinter;взимку (щозими);tid;ja
-131;i løbet af;i;Han blev bedre ___ løbet af bogen.;på;under;om;i løbet af = mens tiden går;протягом (чогось);tid;ja
-132;til tiden;til;Toget kom ikke ___ tiden.;på;i;om;komme til tiden = ikke for sent;вчасно;tid;nej
-133;på arbejde;på;Jeg er ___ arbejde fra klokken 8 til 16.;til;i;ved;være på arbejde;на роботі;sted;ja
-134;på kontoret;på;Vi skal møde ___ kontoret fire dage om ugen.;i;til;ved;på kontoret;в офісі;sted;ja
-135;i skole;i;Min datter går ___ skole i København.;om;til;ved;gå i skole;ходити до школи;sted;nej
-136;på universitetet;på;Mine børn læser ___ universitetet i Polen.;i;om;til;på universitetet;в університеті;sted;ja
-137;på Amager;på;De har fundet en lejlighed ___ Amager.;i;ved;til;på en ø (Amager, Fyn), i en by eller et land;на Амагері (на острові);sted;ja
-138;i København;i;Jeg har boet ___ København i tre år.;på;ved;til;i en by eller et land, på en ø;у Копенгагені;sted;nej
-139;på landet;på;Mange ældre flytter ud ___ landet.;i;til;ved;på landet, i byen;у селі, за містом;sted;ja
-140;uden for byen;uden for;Vi bor lidt ___ byen.;uden af;udenfor af;ude af;uden for byen;за містом;sted;ja
-141;i nærheden af;i;Der er en park ___ nærheden af min lejlighed.;på;ved;til;i nærheden af;поблизу (чогось), неподалік від;sted;ja
-142;på cykel;på;Det tager ti minutter ___ cykel.;med;i;ved;på cykel, med bus/tog;на велосипеді;sted;ja
-143;med bussen;med;Det tager tyve minutter ___ bussen.;på;til;ved;med bus/tog, på cykel;автобусом;sted;nej
-144;til fods;til;Vi gik ___ fods hele vejen.;på;med;i;til fods = gående;пішки;sted;nej
-145;på nettet;på;Jeg læste artiklen ___ nettet.;i;ved;om;på nettet;в інтернеті;sted;nej
-146;på grund af;på;Jeg flyttede ___ grund af mit arbejde.;i;for;af;på grund af;через (щось);faste vendinger;ja
-147;i stedet for;i;Vi tager toget ___ stedet for bilen.;på;for;til;i stedet for;замість (чогось);faste vendinger;ja
-148;i forhold til;i;Prisen er høj ___ forhold til kvaliteten.;på;med;til;i forhold til;порівняно з (чимось), щодо (чогось);faste vendinger;nej
-149;med hensyn til;med;Jeg har ingen spørgsmål ___ hensyn til prisen.;på;i;til;med hensyn til = hvad angår;щодо (чогось);faste vendinger;nej
-150;på den ene side;på;Det er ___ den ene side dyrt, men på den anden side godt.;i;til;ved;på den ene side … på den anden side;з одного боку;faste vendinger;nej
-151;til gengæld;til;Antallet af biler faldt, men antallet af cykler steg ___ gengæld.;i;på;med;til gengæld;натомість, зате;faste vendinger;nej
-152;på trods af;på;Vi gik en tur ___ trods af regnen.;i;til;med;på trods af = selvom der var …;попри (щось), незважаючи на;faste vendinger;nej
-153;efter min mening;efter;Tre dage er ___ min mening nok.;i;på;til;"efter min mening (ikke ""i min mening"")";на мою думку;faste vendinger;ja
-154;i hvert fald;i;Det tror jeg ___ hvert fald.;på;til;for;i hvert fald = i alle tilfælde;принаймні, у кожному разі;faste vendinger;nej
-155;på forhånd;på;Tak ___ forhånd for hjælpen.;i;til;for;på forhånd = før det sker;заздалегідь;faste vendinger;nej
-156;i forvejen;i;Vi burde have tænkt os bedre om ___ forvejen.;på;til;for;i forvejen = på forhånd;"заздалегідь; і так (уже)";faste vendinger;ja
-157;til sidst;til;De blev ___ sidst enige.;på;i;ved;til sidst = endelig;зрештою, наостанок;faste vendinger;ja
-158;gå i seng;i;Jeg går ___ seng klokken elleve.;til;på;ved;gå i seng;лягати спати;faste vendinger;ja
-159;tage på ferie;på;Vi tager ___ ferie i juli.;til;i;med;tage på ferie;поїхати у відпустку;faste vendinger;nej
-160;komme til orde;til;Alle skal komme ___ orde på mødet.;på;i;ved;komme til orde = få lov at sige noget;отримати слово;faste vendinger;nej
-161;det fremgår af;af;Det fremgår ___ rapporten, at prisen stiger.;i;fra;på;det fremgår af noget = det står i;з (чогось) випливає;udsagnsord;nej
-162;have ret i;i;Du har ret ___, at det er dyrt.;på;om;til;have ret i noget;мати рацію щодо (чогось);udsagnsord;nej
-163;en kilde til;til;En journalist skal altid have en kilde ___ sine oplysninger.;på;af;om;en kilde til noget;джерело (чогось);navneord;nej
-164;der går et rygte om;om;Der går et rygte ___, at chefen stopper.;på;for;af;der går et rygte om noget;ходять чутки про (щось);faste vendinger;nej
-165;en erstatning for;for;Han fik en erstatning ___ den ødelagte bil.;til;på;af;en erstatning for noget;заміна (чогось), компенсація за (щось);navneord;nej
-166;give udtryk for;for;Hun gav udtryk ___ sin skuffelse.;til;om;af;give udtryk for noget;висловлювати (щось);udsagnsord;nej
-167;tage afstand fra;fra;Byrådet tog afstand ___ brevet.;af;mod;til;tage afstand fra noget;дистанціюватися від (чогось);udsagnsord;nej
-168;uenig med (person);med;Jeg er uenig ___ min kollega.;i;til;på;uenig med en person, uenig i en sag;не погоджуватися з (кимось);tillægsord;nej
-169;et angreb på;på;Brevet var et angreb ___ borgmesteren.;af;til;om;et angreb på nogen;напад на (когось);navneord;nej
-170;svare til;til;Det svarer ___ en stigning på 20 procent.;på;med;for;svare til = være lig med (men: svare på et spørgsmål);відповідати (чомусь);udsagnsord;nej
-171;et flertal for;for;Der er et flertal ___ forslaget i byrådet.;til;på;af;et flertal for/imod noget;більшість за (щось);navneord;nej
-172;sammenlignet med;med;Prisen er lav sammenlignet ___ sidste år.;til;af;for;sammenlignet med;порівняно з (чимось);faste vendinger;nej
-173;i takt med;i;Priserne stiger ___ takt med lønningerne.;på;med;til;i takt med = samtidig med;у міру (чогось), разом із;faste vendinger;nej
-174;have indflydelse på;på;Borgerne skal have indflydelse ___ beslutningen.;til;om;for;have indflydelse på noget;впливати на (щось);navneord;nej
-175;gå op for nogen;op for;Det gik pludselig ___ mig, at jeg havde glemt nøglerne.;op til;op på;op i;det går op for mig = jeg forstår det pludselig (men: gå op i = interessere sig for);доходити до (когось) (= усвідомити);udsagnsord;nej
-176;sætte spørgsmålstegn ved;ved;Han satte spørgsmålstegn ___ tallene.;til;på;om;sætte spørgsmålstegn ved noget = tvivle på det;ставити під сумнів (щось);udsagnsord;nej
-177;stå til ansvar for;for;Politikerne skal stå til ansvar ___ deres beslutninger.;til;på;om;stå til ansvar for noget;нести відповідальність за (щось);udsagnsord;nej
-178;give nogen ret i;i;Jeg må give dig ret ___ det.;på;om;til;give nogen ret i noget;визнати, що (хтось) має рацію;udsagnsord;nej
-179;være flov over;over;Han var flov ___ sin fejl.;af;for;på;være flov over noget;соромитися (чогось);tillægsord;nej
-180;holde fast i;i;Hun holdt fast ___ sin holdning.;på;til;om;holde fast i noget;триматися (чогось), наполягати на;udsagnsord;nej
-181;have svært ved;ved;Jeg har svært ___ at forstå dialekter.;for;til;på;have svært ved noget;мати труднощі з (чимось);udsagnsord;nej
-182;lade være med;med;Lad være ___ at råbe!;for;af;til;lade være med at gøre noget;не робити (чогось), утримуватися від;udsagnsord;nej
-183;komme i tanke om;i;Jeg kom ___ tanke om, at jeg havde glemt mødet.;på;til;ved;komme i tanke om = pludselig huske;згадати (про щось);faste vendinger;nej
-184;gå på kompromis med;med;Han ville ikke gå på kompromis ___ sine principper.;for;til;af;gå på kompromis med nogen;іти на компроміс з (кимось);udsagnsord;nej
-185;komme frem til;til;Efter lang tid kom de frem ___ en løsning.;på;med;for;komme frem til noget;дійти до (висновку);udsagnsord;nej
-186;tage initiativ til;til;Gitte tog initiativ ___ mødet.;på;for;om;tage initiativ til noget;виступити ініціатором (чогось);udsagnsord;nej
-187;bidrage til;til;Alle kan bidrage ___ en bedre by.;for;på;om;bidrage til noget;сприяти (чомусь), робити внесок у;udsagnsord;nej
-188;eje en andel i;i;Borgerne kan eje en andel ___ møllerne.;på;til;ved;eje en andel i noget;мати частку в (чомусь);udsagnsord;nej
-189;investere i;i;Kommunen vil investere ___ grøn energi.;på;til;med;investere i noget;інвестувати в (щось);udsagnsord;nej
-190;et tilbud om;om;Hun fik et tilbud ___ et nyt job.;til;for;af;et tilbud om noget (men: et tilbud på en vare i butikken);пропозиція (чогось);navneord;nej
-191;have betydning for;for;Vejret har stor betydning ___ landbruget.;til;på;i;have betydning for noget;мати значення для (чогось);navneord;nej
-192;på vegne af;på;Jeg skriver ___ vegne af naboforeningen.;i;for;med;på vegne af nogen;від імені (когось);faste vendinger;nej
-193;i håb om;i;Han skrev til avisen ___ håb om et svar.;på;med;for;i håb om noget;в надії на (щось);faste vendinger;nej
-194;i tilfælde af;i;Man skal ringe 112 ___ tilfælde af brand.;på;ved;for;i tilfælde af = hvis der sker;у разі (чогось);faste vendinger;nej
-195;føle sig presset af;af;Hun følte sig presset ___ sin chef.;på;til;om;føle sig presset af nogen;відчувати тиск з боку (когось);udsagnsord;nej
-196;tænke tilbage på;på;Jeg tænker tit tilbage ___ min barndom.;til;om;over;tænke tilbage på noget;згадувати (щось), повертатися думками до;udsagnsord;nej
-197;lægge skjul på;på;Han lagde ikke skjul ___ sin vrede.;over;for;om;ikke lægge skjul på noget = vise det åbent;приховувати (щось);faste vendinger;nej
-198;tage imod;imod;Hun tog ___ gaven med et smil.;ved;for;til;tage imod noget;приймати (щось);udsagnsord;nej
-199;række hånden ud til;til;Han rakte hånden ud ___ sin gamle ven.;for;på;om;række hånden ud til nogen = tilbyde forsoning;простягнути руку (комусь);faste vendinger;nej
-200;slå en streg over;over;Lad os slå en streg ___ det, der skete.;på;for;ved;slå en streg over noget = glemme det;поставити крапку на (чомусь), забути про;faste vendinger;nej
-201;forsone sig med;med;Til sidst forsonede han sig ___ sin nabo.;til;for;på;forsone sig med nogen;помиритися з (кимось);udsagnsord;nej
-202;tale ud om;ud om;De satte sig ned og talte ___ det, der var sket.;ud af;ud for;ind om;tale ud om noget = tale færdig om et problem;обговорити (щось) до кінця;udsagnsord;nej
-203;være i tvivl om;i;Jeg er ___ tvivl om, hvad jeg skal vælge.;på;til;ved;være i tvivl om noget;сумніватися щодо (чогось);faste vendinger;nej
-204;stemme for;for;Ni byrådsmedlemmer stemte ___ forslaget.;til;om;af;stemme for/imod et forslag;голосувати за (щось);udsagnsord;nej
-205;med et snævert flertal;med;Forslaget blev vedtaget ___ et snævert flertal.;på;i;ved;med et snævert flertal;незначною більшістю;faste vendinger;nej
-206;på betingelse af;på;Han siger ja ___ betingelse af, at naboerne får penge.;i;med;under;på betingelse af = kun hvis;за умови (чогось);faste vendinger;nej
-207;sætte noget i gang;i;Kommunen satte projektet ___ gang i foråret.;på;til;ved;sætte noget i gang = starte det;запустити (щось), розпочати;faste vendinger;nej
-208;få medhold i;i;Naboerne fik medhold ___ deres klage.;på;til;for;få medhold i noget = få ret;отримати визнання своєї правоти в (чомусь);udsagnsord;nej
-209;gå videre med;med;Byrådet vil gå videre ___ planen.;på;til;for;gå videre med noget;продовжувати (щось), дати хід (чомусь);udsagnsord;nej
-210;glæde sig over;over;Hun glædede sig ___ det gode resultat, hun lige havde fået.;til;på;for;glæde sig over noget, der er sket (men: glæde sig til noget i fremtiden);радіти (чомусь);udsagnsord;nej
-211;få konsekvenser for;for;Beslutningen får konsekvenser ___ hele byen.;til;på;i;få konsekvenser for nogen;мати наслідки для (когось);navneord;nej
-212;lægge op til;op til;Planen lægger ___ en lang debat.;op for;op på;ud til;lægge op til noget = gøre det sandsynligt;підводити до (чогось);udsagnsord;nej
-213;være til stede;til;Borgmesteren var ikke ___ stede.;på;i;ved;være til stede;бути присутнім;faste vendinger;nej
-214;træffe en beslutning om;om;Byrådet skal træffe en beslutning ___ møllerne.;på;for;til;træffe en beslutning om noget;ухвалити рішення щодо (чогось);navneord;nej
-215;takke ja til;til;Hun takkede ja ___ jobbet.;for;på;om;takke ja/nej til noget;погодитися на (щось), прийняти;udsagnsord;nej
-216;falde til;til;Det tog lang tid at falde ___ i Danmark.;ind;på;om;falde til = føle sig hjemme et nyt sted;освоїтися (на новому місці);udsagnsord;nej
-217;gå glip af;af;Jeg vil ikke gå glip ___ festen.;på;for;om;gå glip af noget;пропустити (щось), проґавити;udsagnsord;nej
-218;tage afsked med;med;Han tog afsked ___ sine kolleger.;til;af;for;tage afsked med nogen;попрощатися з (кимось);udsagnsord;nej
-219;have ry for;for;Restauranten har ry ___ at være den bedste i byen.;til;af;om;have ry for noget;славитися (чимось), мати репутацію;faste vendinger;nej
-220;sige fra over for;over for;Man skal sige fra ___ mobning.;på;om;for;sige fra over for noget;сказати «ні» (чомусь), виступити проти;udsagnsord;nej
-221;set i lyset af;i;Set ___ lyset af de høje priser er det en god idé.;på;med;af;set i lyset af = når man tænker på;з огляду на (щось);faste vendinger;nej
-222;et hav af;af;Hun fik et hav ___ blomster.;med;på;til;et hav af = rigtig mange;безліч (чогось), море (чогось);faste vendinger;nej
-223;have ret til;til;Alle har ret ___ at sige deres mening.;på;for;om;have ret til noget (en rettighed);мати право на (щось);navneord;nej
-224;have krav på;på;Man har krav ___ erstatning, hvis huset falder i værdi.;til;om;for;have krav på noget;мати законне право на (щось);navneord;nej
-225;langt fra alene om;om;Hun er langt fra alene ___ at tænke sådan.;med;i;på;være (langt fra) alene om noget;далеко не єдиний у (чомусь);faste vendinger;nej
-226;i fortrolighed;i;Han fortalte mig det ___ fortrolighed.;på;med;til;i fortrolighed = som en hemmelighed;конфіденційно, по секрету;faste vendinger;nej
-227;for længst;for;Det burde være sket ___ længst.;i;på;til;for længst = for lang tid siden;давно;tid;nej
-228;med tiden;med;Det bliver lettere ___ tiden.;i;på;efter;med tiden = efterhånden;з часом;tid;nej
-229;i det hele taget;i;Jeg er ___ det hele taget glad for at bo her.;på;for;med;i det hele taget = generelt;загалом;faste vendinger;nej
-230;i sidste ende;i;Det er ___ sidste ende byrådet, der beslutter.;på;til;ved;i sidste ende = til sidst;зрештою, врешті-решт;faste vendinger;nej
+﻿id;udtryk;praeposition;saetning;forkert1;forkert2;forkert3;forklaring;ukrainsk;engelsk;kategori;mine_fejl
+1;godt for;for;Det er godt ___ samfundet, at unge får en uddannelse.;til;på;med;godt/dårligt/vigtigt for nogen eller noget;добре для (когось/чогось);good for (someone/something);tillægsord;ja
+2;dårligt for;for;Det er dårligt ___ de små byers økonomi.;til;på;af;godt/dårligt/vigtigt for nogen eller noget;погано для (когось/чогось);bad for (someone/something);tillægsord;ja
+3;vigtigt for;for;Det er vigtigt ___ alle at dyrke motion.;til;på;med;godt/dårligt/vigtigt for nogen eller noget;важливо для (когось/чогось);important for (someone/something);tillægsord;ja
+4;afhængig af;af;Mange landmænd er afhængige ___ vejret.;på;til;for;være afhængig af noget;залежний від (чогось);dependent on (something);tillægsord;ja
+5;glad for;for;Jeg er meget glad ___ min nye cykel.;med;på;til;være glad for noget;любити (щось), бути радим (чомусь);fond of (something);tillægsord;nej
+6;enig med (person);med;Jeg er enig ___ min chef.;i;på;til;enig med en person, enig i en sag;погоджуватися з (кимось);agree with (person);tillægsord;ja
+7;enig i (sag);i;Jeg er ikke enig ___ det, chefen siger.;med;på;til;enig med en person, enig i en sag;погоджуватися з (чимось);agree with (matter);tillægsord;ja
+8;uenig i;i;Jeg er helt uenig ___, at vi skal sammenligne møllerne med kirketårne.;med;til;på;uenig i en sag, uenig med en person;не погоджуватися з (чимось);disagree with (something);tillægsord;ja
+9;sikker på;på;Jeg er ikke helt sikker ___, om jeg kan komme.;om;i;af;være sikker på noget;бути впевненим у (чомусь);sure of (something);tillægsord;ja
+10;bekymret for;for;De er bekymrede ___ værdien af deres huse.;om;til;på;være bekymret for noget;хвилюватися за (когось/щось);worried about (someone/something);tillægsord;nej
+11;tilfreds med;med;Er du tilfreds ___ dit nye job?;af;for;over;være tilfreds med noget;бути задоволеним (чимось);satisfied with (something);tillægsord;nej
+12;stolt af;af;Han er meget stolt ___ sin datter.;med;for;på;være stolt af nogen eller noget;пишатися (кимось/чимось);proud of (someone/something);tillægsord;nej
+13;træt af;af;Jeg er træt ___ al den regn.;på;for;med;være træt af noget (= have fået nok);втомитися від (чогось);tired of (something);tillægsord;nej
+14;interesseret i;i;Hun er meget interesseret ___ politik.;for;på;om;være interesseret i noget (men: interessere sig for);зацікавлений у (чомусь);interested in (something);tillægsord;nej
+15;god til;til;Hun er god ___ at tale med kunderne.;for;på;i;være god til noget (en evne);добре вміти (щось), бути вправним у;good at (something);tillægsord;nej
+16;vant til;til;Jeg er ikke vant ___ at cykle i sne.;med;på;for;være vant til noget;бути звиклим до (чогось);used to (something);tillægsord;nej
+17;ked af;af;Oscar er ked ___ at skulle skifte skole.;for;over;med;være ked af noget;засмучений (чимось), шкодувати про;sad about (something);tillægsord;nej
+18;bange for;for;Mange børn er bange ___ mørket.;af;på;over;være bange for noget;боятися (чогось);afraid of (something);tillægsord;nej
+19;taknemmelig for;for;Jeg er taknemmelig ___ din hjælp.;til;på;af;være taknemmelig for noget;бути вдячним за (щось);grateful for (something);tillægsord;nej
+20;skuffet over;over;Borgerne var skuffede ___ byrådets beslutning.;af;for;på;være skuffet over noget;бути розчарованим (чимось);disappointed with (something);tillægsord;nej
+21;vred på (person);på;Hun var vred ___ sin bror.;over;for;til;vred på en person, vred over en sag;сердитися на (когось);angry with (person);tillægsord;nej
+22;vred over (sag);over;Mange er vrede ___ de høje priser.;på;for;af;vred på en person, vred over en sag;обурюватися (чимось), сердитися через;angry about (matter);tillægsord;nej
+23;forelsket i;i;Han er forelsket ___ sin nabo.;på;med;til;være forelsket i nogen;бути закоханим у (когось);in love with (someone);tillægsord;nej
+24;klar til;til;Er du klar ___ prøven?;for;på;med;være klar til noget;бути готовим до (чогось);ready for (something);tillægsord;nej
+25;ansvarlig for;for;Hvem er ansvarlig ___ projektet?;til;på;af;være ansvarlig for noget;відповідальний за (щось);responsible for (something);tillægsord;nej
+26;typisk for;for;Det er typisk ___ Danmark, at mange cykler.;til;på;af;være typisk for noget;типовий для (чогось);typical of (something);tillægsord;nej
+27;lære af;af;Jeg har lært meget ___ Ullas rettelser.;fra;med;på;lære af nogen eller noget;вчитися в (когось) / на (чомусь);learn from (someone/something);udsagnsord;ja
+28;holde øje med;med;Kan du holde øje ___ mine børn et øjeblik?;på;for;til;holde øje med nogen = passe på;стежити за (кимось/чимось);keep an eye on (someone/something);udsagnsord;ja
+29;gøre noget ved;ved;Kommunen skal gøre noget ___ problemet.;med;for;på;gøre noget ved et problem;щось робити з (проблемою);do something about (a problem);udsagnsord;ja
+30;bruge tid på;på;Jeg bruger meget tid ___ at lære dansk.;om;for;med;bruge tid på noget;витрачати час на (щось);spend time on (something);udsagnsord;ja
+31;tænke over (problem);over;Jeg har ikke tænkt ___ det før.;om;af;med;tænke over et problem, tænke på en person;обмірковувати (щось), думати над (чимось);think about (a problem);udsagnsord;ja
+32;tænke på (person);på;Jeg tænker tit ___ min familie i Ukraine.;over;om;af;tænke på en person, tænke over et problem;думати про (когось);think of (someone);udsagnsord;nej
+33;vente på;på;Vi venter ___ bussen.;for;til;efter;vente på nogen eller noget;чекати на (когось/щось);wait for (someone/something);udsagnsord;nej
+34;passe på;på;Du skal passe ___ dig selv.;om;for;med;passe på nogen eller noget;берегти (когось), остерігатися (чогось);look after (someone), watch out for (something);udsagnsord;nej
+35;glæde sig til;til;Jeg glæder mig ___ weekenden.;på;for;over;glæde sig til noget i fremtiden;з нетерпінням чекати (чогось);look forward to (something);udsagnsord;ja
+36;have lyst til;til;Har du lyst ___ at tage på stranden?;på;for;med;have lyst til noget;хотіти (чогось), мати бажання;feel like (something);udsagnsord;nej
+37;have brug for;for;Byen har brug ___ flere unge familier.;til;på;af;have brug for noget;потребувати (чогось);need (something);udsagnsord;ja
+38;have tid til;til;Jeg har ikke tid ___ at lave mad i dag.;for;på;med;have tid til noget;мати час на (щось);have time for (something);udsagnsord;ja
+39;have overskud til;til;Efter arbejde har jeg ikke overskud ___ at lave mad.;for;på;med;have overskud til noget;мати сили на (щось);have energy for (something);udsagnsord;ja
+40;deltage i;i;Mange borgere deltog ___ mødet.;ved;til;med;deltage i noget;брати участь у (чомусь);take part in (something);udsagnsord;nej
+41;tro på;på;Jeg tror ___, at det bliver bedre.;i;om;for;tro på noget;вірити в (щось);believe in (something);udsagnsord;nej
+42;drømme om;om;Hun drømmer ___ at åbne sin egen café.;på;for;af;drømme om noget;мріяти про (щось);dream about (something);udsagnsord;nej
+43;tale om;om;Hele aftenen talte vi ___ de nye planer for havnen.;på;for;af;tale om et emne, tale med en person;говорити про (щось);talk about (a topic);udsagnsord;nej
+44;snakke med (person);med;Jeg snakker tit ___ mine kolleger.;for;af;ved;snakke/tale med en person;розмовляти з (кимось);talk to (person);udsagnsord;nej
+45;spørge om;om;Må jeg spørge dig ___ noget?;på;for;til;spørge nogen om noget;питати (когось) про (щось);ask (someone) about (something);udsagnsord;nej
+46;bede om;om;Må jeg bede dig ___ et råd?;for;på;til;bede nogen om noget;просити (когось) про (щось);ask (someone) for (something);udsagnsord;ja
+47;sørge for;for;Kan du sørge ___, at døren er låst?;om;på;til;sørge for noget;подбати про (щось);make sure of (something);udsagnsord;nej
+48;lede efter;efter;Jeg leder ___ mine nøgler.;for;på;om;lede efter noget;шукати (щось);look for (something);udsagnsord;nej
+49;se frem til;til;Jeg ser frem ___ at møde dig.;på;for;mod;se frem til noget;з нетерпінням чекати (чогось);look forward to (something);udsagnsord;nej
+50;fokusere på;på;Når jeg arbejder hjemme, fokuserer jeg ___ opgaverne.;om;til;i;fokusere på noget;зосереджуватися на (чомусь);focus on (something);udsagnsord;ja
+51;koncentrere sig om;om;Jeg kan ikke koncentrere mig ___ arbejdet.;på;til;i;koncentrere sig om noget;зосереджуватися на (чомусь);concentrate on (something);udsagnsord;nej
+52;interessere sig for;for;Han interesserer sig ___ dansk politik.;i;på;om;interessere sig for noget (men: interesseret i);цікавитися (чимось);be interested in (something);udsagnsord;nej
+53;bestå af;af;Prøven består ___ en skriftlig og en mundtlig del.;med;i;på;bestå af dele;складатися з (чогось);consist of (parts);udsagnsord;ja
+54;stamme fra;fra;"Ordet ""kaffe"" stammer ___ arabisk.";af;ud;på;stamme fra noget;походити з / від (чогось);originate from (something);udsagnsord;ja
+55;bygge på;på;Hans argument bygger ___ en ny undersøgelse.;af;med;om;bygge på noget (= have som grundlag);ґрунтуватися на (чомусь);be based on (something);udsagnsord;ja
+56;opfordre nogen til;til;Jeg opfordrer byrådet ___ at lytte til borgerne.;om;for;på;opfordre nogen til at gøre noget;закликати (когось) до (чогось);urge (someone) to;udsagnsord;ja
+57;overtale nogen til;til;Hun kan ikke overtale mig ___ at gå i seng.;om;for;på;overtale nogen til at gøre noget;умовити (когось) (щось зробити);persuade (someone) to;udsagnsord;ja
+58;overbevise nogen om;om;Han overbeviste mig ___, at han havde ret.;til;for;på;overbevise nogen om, at noget er sandt;переконати (когось) у (чомусь);convince (someone) of;udsagnsord;ja
+59;forberede sig på;på;Man skal forberede sig ___ det værste.;om;for;med;forberede sig på noget;готуватися до (чогось);prepare for (something);udsagnsord;ja
+60;gå op i;i;Han går meget op ___ fodbold.;på;til;med;gå op i noget = interessere sig meget;захоплюватися (чимось);be into (something);udsagnsord;nej
+61;klage over;over;Naboerne klager ___ støjen.;om;på;af;klage over noget;скаржитися на (щось);complain about (something);udsagnsord;nej
+62;svare på;på;Kan du svare ___ mit spørgsmål?;til;om;for;svare på noget;відповідати на (щось);answer (something);udsagnsord;nej
+63;reagere på;på;Hvordan reagerede han ___ nyheden?;til;om;over;reagere på noget;реагувати на (щось);react to (something);udsagnsord;nej
+64;sammenligne med;med;Man kan ikke sammenligne møllerne ___ kirketårne.;til;af;for;sammenligne noget med noget;порівнювати з (чимось);compare with (something);udsagnsord;ja
+65;hjælpe med;med;Kan du hjælpe mig ___ at forstå reglen?;om;på;for;hjælpe nogen med noget;допомагати (комусь) з (чимось);help (someone) with (something);udsagnsord;ja
+66;holde op med;med;Han holdt op ___ at ryge sidste år.;for;af;til;holde op med noget;припинити (щось робити), кинути;stop doing (something);udsagnsord;ja
+67;begynde på;på;Hun begyndte ___ et nyt kursus i august.;for;i;til;begynde på et kursus/en uddannelse;почати (навчання, курс);start (a course or education);udsagnsord;nej
+68;blande sig i;i;Du skal ikke blande dig ___ deres diskussion.;med;på;til;blande sig i noget;втручатися в (щось);interfere in (something);udsagnsord;nej
+69;tage stilling til;til;Vi skal tage stilling ___ forslaget på mødet.;om;på;for;tage stilling til noget;визначитися щодо (чогось);take a position on (something);udsagnsord;nej
+70;komme an på;an på;Det kommer ___ vejret.;på;an til;an i;det kommer an på noget = det afhænger af;залежати від (чогось);depend on (something);udsagnsord;ja
+71;sætte sig ind i;ind i;Jeg skal sætte mig ___ den nye arkitektur.;ind på;på;til;sætte sig ind i noget = lære det grundigt;розібратися в (чомусь);familiarize oneself with (something);udsagnsord;ja
+72;have styr på;på;Jeg har styr ___ tallene.;med;over;om;have styr på noget;тримати (щось) під контролем;be on top of (something);udsagnsord;ja
+73;tage sig af;af;Kan du tage dig ___ det med kunden?;om;med;for;tage sig af noget;подбати про (щось), займатися (чимось);take care of (something);udsagnsord;ja
+74;lytte til;til;Byrådet skal lytte ___ borgerne.;på;for;med;lytte til nogen;слухати (когось);listen to (someone);udsagnsord;ja
+75;skamme sig over;over;Han skammede sig ___ det, han havde sagt.;af;for;på;skamme sig over noget;соромитися (чогось);be ashamed of (something);udsagnsord;nej
+76;være skyld i;i;Hvem er skyld ___ problemet?;for;på;til;være skyld i noget;бути винним у (чомусь);be to blame for (something);udsagnsord;nej
+77;få øje på;på;Jeg fik øje ___ ham i mængden.;for;til;med;få øje på = se noget;помітити (щось), побачити;catch sight of (something);udsagnsord;ja
+78;få øje for;for;Firmaerne har fået øje ___ værdien af de ældre.;af;til;med;få øje for = forstå værdien af noget;усвідомити цінність (чогось);realize the value of (something);udsagnsord;ja
+79;lægge mærke til;til;Jeg lagde ikke mærke ___, at han var gået.;på;for;om;lægge mærke til noget;помічати (щось);notice (something);udsagnsord;nej
+80;lægge vægt på;på;Mange lægger vægt ___ en kort vej til arbejde.;til;for;i;lægge vægt på noget;надавати значення (чомусь);attach importance to (something);udsagnsord;nej
+81;gå ud over;ud over;Nedskæringerne går ___ børnene.;ud af;over;ud for;gå ud over nogen = skade nogen;шкодити (комусь), відбиватися на (комусь);affect (someone) negatively;udsagnsord;nej
+82;få lov til;til;Børnene får ikke lov ___ at se tv om aftenen.;for;på;om;få lov til noget;отримати дозвіл на (щось);be allowed to (do something);udsagnsord;ja
+83;have råd til;til;Vi har ikke råd ___ en ny bil.;for;på;med;have råd til noget;могти дозволити собі (щось);afford (something);udsagnsord;nej
+84;stole på;på;Du kan godt stole ___ mig.;til;i;om;stole på nogen;довіряти (комусь);trust (someone);udsagnsord;nej
+85;have ondt af;af;Jeg har ondt ___ ham.;for;på;over;have ondt af nogen = have medlidenhed;співчувати (комусь);feel sorry for (someone);udsagnsord;nej
+86;tage hensyn til;til;Man skal tage hensyn ___ naboerne.;for;på;om;tage hensyn til nogen;зважати на (когось/щось);take into account (someone/something);udsagnsord;nej
+87;takke for;for;Jeg vil gerne takke dig ___ hjælpen.;til;om;på;takke nogen for noget;дякувати (комусь) за (щось);thank (someone) for (something);udsagnsord;nej
+88;en løsning på;på;Det kan være en løsning ___ problemet med støj.;af;om;ved;en løsning på et problem;вирішення (проблеми);a solution to (a problem);navneord;ja
+89;en forudsætning for;for;Tillid er en forudsætning ___ et godt samarbejde.;til;på;af;en forudsætning for noget;передумова (чогось);a prerequisite for (something);navneord;ja
+90;en betingelse for;for;Dansk er en betingelse ___ at få jobbet.;til;på;om;en betingelse for noget;умова для (чогось);a condition for (something);navneord;ja
+91;en risiko for;for;Der er risiko ___ regn i morgen.;til;på;af;en risiko for noget;ризик (чогось);a risk of (something);navneord;ja
+92;en fordel ved;ved;En fordel ___ at bo i byen er kulturlivet.;for;af;med;en fordel/ulempe ved noget;перевага (чогось);an advantage of (something);navneord;ja
+93;en ulempe ved;ved;En ulempe ___ ordningen er, at den er dyr.;for;af;med;en fordel/ulempe ved noget;недолік (чогось);a disadvantage of (something);navneord;ja
+94;en stigning i;i;Der var en stigning ___ antallet af cyklister.;af;på;for;en stigning/et fald i noget;зростання (чогось);an increase in (something);navneord;ja
+95;et fald i;i;Vi kan se et betydeligt fald ___ antallet.;af;på;for;en stigning/et fald i noget;зниження (чогось);a decrease in (something);navneord;ja
+96;en tendens til;til;Der er en tendens ___, at flere arbejder hjemme.;for;på;af;en tendens til noget;тенденція до (чогось);a tendency towards (something);navneord;ja
+97;en grund til;til;Dårligt vejr er en grund ___ at blive hjemme.;for;på;af;en grund/årsag til noget;підстава для (чогось), причина;a reason for (something);navneord;ja
+98;en årsag til;til;Hvad er årsagen ___ faldet?;for;af;på;en grund/årsag til noget;причина (чогось);a cause of (something);navneord;nej
+99;en opskrift på;på;Hermed sender jeg dig en opskrift ___ fiskesuppe.;for;til;af;en opskrift på en ret;рецепт (страви);a recipe for (a dish);navneord;ja
+100;et symbol på;på;Møllerne er et symbol ___ fremtiden.;af;om;til;et symbol på noget;символ (чогось);a symbol of (something);navneord;ja
+101;omsorg for;for;Det er vigtigt at vise omsorg ___ miljøet.;på;til;om;omsorg for noget;турбота про (когось/щось);care for (someone/something);navneord;ja
+102;en del af;af;Møllerne bliver en del ___ udsigten.;i;fra;på;en del af noget;частина (чогось);part of (something);navneord;ja
+103;mulighed for;for;Vi skal have mulighed ___ at påvirke beslutningerne.;til;på;om;mulighed for at gøre noget;можливість (щось зробити);an opportunity to (do something);navneord;ja
+104;et svar på;på;Jeg har ikke fået svar ___ min mail.;til;om;for;et svar på noget;відповідь на (щось);an answer to (something);navneord;nej
+105;et forslag om;om;Byrådet fik et forslag ___ en ny cykelsti.;på;for;af;et forslag om noget;пропозиція щодо (чогось);a proposal about (something);navneord;nej
+106;interesse for;for;Han har stor interesse ___ musik.;på;til;om;interesse for noget;інтерес до (чогось);interest in (something);navneord;nej
+107;respekt for;for;Vi skal have respekt ___ hinandens holdninger.;til;af;på;respekt for nogen eller noget;повага до (когось/чогось);respect for (someone/something);navneord;nej
+108;kritik af;af;Der kom meget kritik ___ projektet.;til;på;over;kritik af noget;критика (чогось);criticism of (something);navneord;nej
+109;erfaring med;med;Har du erfaring ___ projektledelse?;til;af;for;erfaring med noget;досвід роботи з (чимось);experience with (something);navneord;nej
+110;et krav om;om;Der er et krav ___, at man taler dansk.;på;for;til;et krav om noget;вимога (чогось);a demand for (something);navneord;nej
+111;adgang til;til;Alle har adgang ___ referaterne.;for;på;i;adgang til noget;доступ до (чогось);access to (something);navneord;nej
+112;en undersøgelse af;af;Avisen lavede en undersøgelse ___ danskernes vaner.;til;på;for;en undersøgelse af noget;дослідження (чогось);a study of (something);navneord;nej
+113;en forskel på;på;Der er stor forskel ___ by og land.;af;for;til;en forskel på to ting (eller mellem);різниця між (чимось);a difference between (two things);navneord;nej
+114;ansvar for;for;Hver person har et ansvar ___ sit eget liv.;til;på;af;ansvar for noget;відповідальність за (щось);responsibility for (something);navneord;ja
+115;tillid til;til;Jeg har tillid ___ min læge.;på;for;i;tillid til nogen;довіра до (когось);trust in (someone);navneord;nej
+116;en debat om;om;Der er en stor debat ___ vindmøllerne.;på;af;for;en debat om noget;дискусія про (щось);a debate about (something);navneord;nej
+117;modstand mod;mod;Der er stor modstand ___ projektet.;for;på;til;modstand mod noget;спротив (чомусь);opposition to (something);navneord;nej
+118;støtte til;til;Kommunen giver støtte ___ projektet.;for;på;af;støtte til noget;підтримка (чогось);support for (something);navneord;nej
+119;en sammenhæng mellem;mellem;Der er en sammenhæng ___ alder og holdning.;af;for;med;en sammenhæng mellem to ting;зв’язок між (чимось);a connection between (two things);navneord;nej
+120;tak for;for;Tak ___ din mail!;til;om;på;tak for noget;дякую за (щось);thanks for (something);navneord;ja
+121;tillykke med;med;Tillykke ___ fødselsdagen!;for;til;på;tillykke med noget;вітаю з (чимось);congratulations on (something);navneord;nej
+122;for … siden;for;Jeg flyttede til Danmark ___ tre år siden.;i;på;om;for … siden = tilbage i tiden;… тому (напр. два роки тому);... ago;tid;ja
+123;om morgenen;om;Jeg drikker altid kaffe ___ morgenen.;i;på;ved;om morgenen/aftenen = hver gang (vane);вранці (щоранку);in the morning (habitually);tid;ja
+124;om ugen;om;Jeg løber to gange ___ ugen.;på;ved;til;to gange om ugen/dagen/året;на тиждень (двічі на тиждень);a week (twice a week);tid;ja
+125;i weekenden;i;Hvad skal du lave ___ weekenden?;på;ved;med;i weekenden = denne weekend;у ці вихідні;this weekend;tid;nej
+126;på mandag;på;Vi ses ___ mandag!;i;om;til;på mandag = næste mandag;у (найближчий) понеділок;next Monday;tid;nej
+127;om mandagen;om;Jeg arbejder hjemme ___ mandagen.;på;i;ved;om mandagen = hver mandag;щопонеділка, по понеділках;on Mondays;tid;ja
+128;i tirsdags;i;Jeg holdt min præsentation ___ tirsdags.;på;om;sidste;i tirsdags = sidste tirsdag;минулого вівторка;last Tuesday;tid;ja
+129;i aften;i;Hvad skal du lave ___ aften?;på;om;med;i aften = denne aften;сьогодні ввечері;this evening;tid;ja
+130;om vinteren;om;Det regner meget her ___ vinteren.;i;på;ved;om vinteren = hver vinter;взимку (щозими);in the winter;tid;ja
+131;i løbet af;i;Han blev bedre ___ løbet af bogen.;på;under;om;i løbet af = mens tiden går;протягом (чогось);during (a period of time);tid;ja
+132;til tiden;til;Toget kom ikke ___ tiden.;på;i;om;komme til tiden = ikke for sent;вчасно;on time;tid;nej
+133;på arbejde;på;Jeg er ___ arbejde fra klokken 8 til 16.;til;i;ved;være på arbejde;на роботі;at work;sted;ja
+134;på kontoret;på;Vi skal møde ___ kontoret fire dage om ugen.;i;til;ved;på kontoret;в офісі;at the office;sted;ja
+135;i skole;i;Min datter går ___ skole i København.;om;til;ved;gå i skole;ходити до школи;at school (attending school);sted;nej
+136;på universitetet;på;Mine børn læser ___ universitetet i Polen.;i;om;til;på universitetet;в університеті;at the university;sted;ja
+137;på Amager;på;De har fundet en lejlighed ___ Amager.;i;ved;til;på en ø (Amager, Fyn), i en by eller et land;на Амагері (на острові);on Amager (island);sted;ja
+138;i København;i;Jeg har boet ___ København i tre år.;på;ved;til;i en by eller et land, på en ø;у Копенгагені;in Copenhagen (city);sted;nej
+139;på landet;på;Mange ældre flytter ud ___ landet.;i;til;ved;på landet, i byen;у селі, за містом;in the countryside;sted;ja
+140;uden for byen;uden for;Vi bor lidt ___ byen.;uden af;udenfor af;ude af;uden for byen;за містом;outside the city;sted;ja
+141;i nærheden af;i;Der er en park ___ nærheden af min lejlighed.;på;ved;til;i nærheden af;поблизу (чогось), неподалік від;near (something);sted;ja
+142;på cykel;på;Det tager ti minutter ___ cykel.;med;i;ved;på cykel, med bus/tog;на велосипеді;by bike;sted;ja
+143;med bussen;med;Det tager tyve minutter ___ bussen.;på;til;ved;med bus/tog, på cykel;автобусом;by bus;sted;nej
+144;til fods;til;Vi gik ___ fods hele vejen.;på;med;i;til fods = gående;пішки;on foot;sted;nej
+145;på nettet;på;Jeg læste artiklen ___ nettet.;i;ved;om;på nettet;в інтернеті;online;sted;nej
+146;på grund af;på;Jeg flyttede ___ grund af mit arbejde.;i;for;af;på grund af;через (щось);because of (something);faste vendinger;ja
+147;i stedet for;i;Vi tager toget ___ stedet for bilen.;på;for;til;i stedet for;замість (чогось);instead of (something);faste vendinger;ja
+148;i forhold til;i;Prisen er høj ___ forhold til kvaliteten.;på;med;til;i forhold til;порівняно з (чимось), щодо (чогось);in relation to (something);faste vendinger;nej
+149;med hensyn til;med;Jeg har ingen spørgsmål ___ hensyn til prisen.;på;i;til;med hensyn til = hvad angår;щодо (чогось);regarding (something);faste vendinger;nej
+150;på den ene side;på;Det er ___ den ene side dyrt, men på den anden side godt.;i;til;ved;på den ene side … på den anden side;з одного боку;on the one hand;faste vendinger;nej
+151;til gengæld;til;Antallet af biler faldt, men antallet af cykler steg ___ gengæld.;i;på;med;til gengæld;натомість, зате;in return;faste vendinger;nej
+152;på trods af;på;Vi gik en tur ___ trods af regnen.;i;til;med;på trods af = selvom der var …;попри (щось), незважаючи на;despite (something);faste vendinger;nej
+153;efter min mening;efter;Tre dage er ___ min mening nok.;i;på;til;"efter min mening (ikke ""i min mening"")";на мою думку;in my opinion;faste vendinger;ja
+154;i hvert fald;i;Det tror jeg ___ hvert fald.;på;til;for;i hvert fald = i alle tilfælde;принаймні, у кожному разі;at any rate, at least;faste vendinger;nej
+155;på forhånd;på;Tak ___ forhånd for hjælpen.;i;til;for;på forhånd = før det sker;заздалегідь;in advance;faste vendinger;nej
+156;i forvejen;i;Vi burde have tænkt os bedre om ___ forvejen.;på;til;for;i forvejen = på forhånd;"заздалегідь; і так (уже)";beforehand;faste vendinger;ja
+157;til sidst;til;De blev ___ sidst enige.;på;i;ved;til sidst = endelig;зрештою, наостанок;finally, in the end;faste vendinger;ja
+158;gå i seng;i;Jeg går ___ seng klokken elleve.;til;på;ved;gå i seng;лягати спати;go to bed;faste vendinger;ja
+159;tage på ferie;på;Vi tager ___ ferie i juli.;til;i;med;tage på ferie;поїхати у відпустку;go on holiday;faste vendinger;nej
+160;komme til orde;til;Alle skal komme ___ orde på mødet.;på;i;ved;komme til orde = få lov at sige noget;отримати слово;get a word in;faste vendinger;nej
+161;det fremgår af;af;Det fremgår ___ rapporten, at prisen stiger.;i;fra;på;det fremgår af noget = det står i;з (чогось) випливає;it appears from (something);udsagnsord;nej
+162;have ret i;i;Du har ret ___, at det er dyrt.;på;om;til;have ret i noget;мати рацію щодо (чогось);be right about (something);udsagnsord;nej
+163;en kilde til;til;En journalist skal altid have en kilde ___ sine oplysninger.;på;af;om;en kilde til noget;джерело (чогось);a source of (something);navneord;nej
+164;der går et rygte om;om;Der går et rygte ___, at chefen stopper.;på;for;af;der går et rygte om noget;ходять чутки про (щось);there is a rumour about (something);faste vendinger;nej
+165;en erstatning for;for;Han fik en erstatning ___ den ødelagte bil.;til;på;af;en erstatning for noget;заміна (чогось), компенсація за (щось);a replacement for (something);navneord;nej
+166;give udtryk for;for;Hun gav udtryk ___ sin skuffelse.;til;om;af;give udtryk for noget;висловлювати (щось);express (something);udsagnsord;nej
+167;tage afstand fra;fra;Byrådet tog afstand ___ brevet.;af;mod;til;tage afstand fra noget;дистанціюватися від (чогось);distance oneself from (something);udsagnsord;nej
+168;uenig med (person);med;Jeg er uenig ___ min kollega.;i;til;på;uenig med en person, uenig i en sag;не погоджуватися з (кимось);disagree with (person);tillægsord;nej
+169;et angreb på;på;Brevet var et angreb ___ borgmesteren.;af;til;om;et angreb på nogen;напад на (когось);an attack on (someone);navneord;nej
+170;svare til;til;Det svarer ___ en stigning på 20 procent.;på;med;for;svare til = være lig med (men: svare på et spørgsmål);відповідати (чомусь);correspond to (something);udsagnsord;nej
+171;et flertal for;for;Der er et flertal ___ forslaget i byrådet.;til;på;af;et flertal for/imod noget;більшість за (щось);a majority for (something);navneord;nej
+172;sammenlignet med;med;Prisen er lav sammenlignet ___ sidste år.;til;af;for;sammenlignet med;порівняно з (чимось);compared with (something);faste vendinger;nej
+173;i takt med;i;Priserne stiger ___ takt med lønningerne.;på;med;til;i takt med = samtidig med;у міру (чогось), разом із;in line with (something);faste vendinger;nej
+174;have indflydelse på;på;Borgerne skal have indflydelse ___ beslutningen.;til;om;for;have indflydelse på noget;впливати на (щось);have an influence on (something);navneord;nej
+175;gå op for nogen;op for;Det gik pludselig ___ mig, at jeg havde glemt nøglerne.;op til;op på;op i;det går op for mig = jeg forstår det pludselig (men: gå op i = interessere sig for);доходити до (когось) (= усвідомити);dawn on (someone);udsagnsord;nej
+176;sætte spørgsmålstegn ved;ved;Han satte spørgsmålstegn ___ tallene.;til;på;om;sætte spørgsmålstegn ved noget = tvivle på det;ставити під сумнів (щось);question (something);udsagnsord;nej
+177;stå til ansvar for;for;Politikerne skal stå til ansvar ___ deres beslutninger.;til;på;om;stå til ansvar for noget;нести відповідальність за (щось);be held accountable for (something);udsagnsord;nej
+178;give nogen ret i;i;Jeg må give dig ret ___ det.;på;om;til;give nogen ret i noget;визнати, що (хтось) має рацію;admit that (someone) is right;udsagnsord;nej
+179;være flov over;over;Han var flov ___ sin fejl.;af;for;på;være flov over noget;соромитися (чогось);be embarrassed about (something);tillægsord;nej
+180;holde fast i;i;Hun holdt fast ___ sin holdning.;på;til;om;holde fast i noget;триматися (чогось), наполягати на;hold on to (something);udsagnsord;nej
+181;have svært ved;ved;Jeg har svært ___ at forstå dialekter.;for;til;på;have svært ved noget;мати труднощі з (чимось);have difficulty with (something);udsagnsord;nej
+182;lade være med;med;Lad være ___ at råbe!;for;af;til;lade være med at gøre noget;не робити (чогось), утримуватися від;refrain from (doing something);udsagnsord;nej
+183;komme i tanke om;i;Jeg kom ___ tanke om, at jeg havde glemt mødet.;på;til;ved;komme i tanke om = pludselig huske;згадати (про щось);come to think of (something);faste vendinger;nej
+184;gå på kompromis med;med;Han ville ikke gå på kompromis ___ sine principper.;for;til;af;gå på kompromis med nogen;іти на компроміс з (кимось);compromise with (someone);udsagnsord;nej
+185;komme frem til;til;Efter lang tid kom de frem ___ en løsning.;på;med;for;komme frem til noget;дійти до (висновку);arrive at (a conclusion);udsagnsord;nej
+186;tage initiativ til;til;Gitte tog initiativ ___ mødet.;på;for;om;tage initiativ til noget;виступити ініціатором (чогось);take the initiative on (something);udsagnsord;nej
+187;bidrage til;til;Alle kan bidrage ___ en bedre by.;for;på;om;bidrage til noget;сприяти (чомусь), робити внесок у;contribute to (something);udsagnsord;nej
+188;eje en andel i;i;Borgerne kan eje en andel ___ møllerne.;på;til;ved;eje en andel i noget;мати частку в (чомусь);own a share in (something);udsagnsord;nej
+189;investere i;i;Kommunen vil investere ___ grøn energi.;på;til;med;investere i noget;інвестувати в (щось);invest in (something);udsagnsord;nej
+190;et tilbud om;om;Hun fik et tilbud ___ et nyt job.;til;for;af;et tilbud om noget (men: et tilbud på en vare i butikken);пропозиція (чогось);an offer of (something);navneord;nej
+191;have betydning for;for;Vejret har stor betydning ___ landbruget.;til;på;i;have betydning for noget;мати значення для (чогось);matter for (something);navneord;nej
+192;på vegne af;på;Jeg skriver ___ vegne af naboforeningen.;i;for;med;på vegne af nogen;від імені (когось);on behalf of (someone);faste vendinger;nej
+193;i håb om;i;Han skrev til avisen ___ håb om et svar.;på;med;for;i håb om noget;в надії на (щось);in the hope of (something);faste vendinger;nej
+194;i tilfælde af;i;Man skal ringe 112 ___ tilfælde af brand.;på;ved;for;i tilfælde af = hvis der sker;у разі (чогось);in case of (something);faste vendinger;nej
+195;føle sig presset af;af;Hun følte sig presset ___ sin chef.;på;til;om;føle sig presset af nogen;відчувати тиск з боку (когось);feel pressured by (someone);udsagnsord;nej
+196;tænke tilbage på;på;Jeg tænker tit tilbage ___ min barndom.;til;om;over;tænke tilbage på noget;згадувати (щось), повертатися думками до;look back on (something);udsagnsord;nej
+197;lægge skjul på;på;Han lagde ikke skjul ___ sin vrede.;over;for;om;ikke lægge skjul på noget = vise det åbent;приховувати (щось);hide (something);faste vendinger;nej
+198;tage imod;imod;Hun tog ___ gaven med et smil.;ved;for;til;tage imod noget;приймати (щось);accept (something);udsagnsord;nej
+199;række hånden ud til;til;Han rakte hånden ud ___ sin gamle ven.;for;på;om;række hånden ud til nogen = tilbyde forsoning;простягнути руку (комусь);reach out to (someone);faste vendinger;nej
+200;slå en streg over;over;Lad os slå en streg ___ det, der skete.;på;for;ved;slå en streg over noget = glemme det;поставити крапку на (чомусь), забути про;draw a line under (something);faste vendinger;nej
+201;forsone sig med;med;Til sidst forsonede han sig ___ sin nabo.;til;for;på;forsone sig med nogen;помиритися з (кимось);make peace with (someone);udsagnsord;nej
+202;tale ud om;ud om;De satte sig ned og talte ___ det, der var sket.;ud af;ud for;ind om;tale ud om noget = tale færdig om et problem;обговорити (щось) до кінця;talk through (a problem);udsagnsord;nej
+203;være i tvivl om;i;Jeg er ___ tvivl om, hvad jeg skal vælge.;på;til;ved;være i tvivl om noget;сумніватися щодо (чогось);be unsure about (something);faste vendinger;nej
+204;stemme for;for;Ni byrådsmedlemmer stemte ___ forslaget.;til;om;af;stemme for/imod et forslag;голосувати за (щось);vote for (a proposal);udsagnsord;nej
+205;med et snævert flertal;med;Forslaget blev vedtaget ___ et snævert flertal.;på;i;ved;med et snævert flertal;незначною більшістю;by a narrow majority;faste vendinger;nej
+206;på betingelse af;på;Han siger ja ___ betingelse af, at naboerne får penge.;i;med;under;på betingelse af = kun hvis;за умови (чогось);on condition of (something);faste vendinger;nej
+207;sætte noget i gang;i;Kommunen satte projektet ___ gang i foråret.;på;til;ved;sætte noget i gang = starte det;запустити (щось), розпочати;start (something);faste vendinger;nej
+208;få medhold i;i;Naboerne fik medhold ___ deres klage.;på;til;for;få medhold i noget = få ret;отримати визнання своєї правоти в (чомусь);be proved right about (something);udsagnsord;nej
+209;gå videre med;med;Byrådet vil gå videre ___ planen.;på;til;for;gå videre med noget;продовжувати (щось), дати хід (чомусь);proceed with (something);udsagnsord;nej
+210;glæde sig over;over;Hun glædede sig ___ det gode resultat, hun lige havde fået.;til;på;for;glæde sig over noget, der er sket (men: glæde sig til noget i fremtiden);радіти (чомусь);be pleased about (something that happened);udsagnsord;nej
+211;få konsekvenser for;for;Beslutningen får konsekvenser ___ hele byen.;til;på;i;få konsekvenser for nogen;мати наслідки для (когось);have consequences for (someone);navneord;nej
+212;lægge op til;op til;Planen lægger ___ en lang debat.;op for;op på;ud til;lægge op til noget = gøre det sandsynligt;підводити до (чогось);lead up to (something);udsagnsord;nej
+213;være til stede;til;Borgmesteren var ikke ___ stede.;på;i;ved;være til stede;бути присутнім;be present;faste vendinger;nej
+214;træffe en beslutning om;om;Byrådet skal træffe en beslutning ___ møllerne.;på;for;til;træffe en beslutning om noget;ухвалити рішення щодо (чогось);make a decision about (something);navneord;nej
+215;takke ja til;til;Hun takkede ja ___ jobbet.;for;på;om;takke ja/nej til noget;погодитися на (щось), прийняти;accept (an offer), say yes to;udsagnsord;nej
+216;falde til;til;Det tog lang tid at falde ___ i Danmark.;ind;på;om;falde til = føle sig hjemme et nyt sted;освоїтися (на новому місці);settle in;udsagnsord;nej
+217;gå glip af;af;Jeg vil ikke gå glip ___ festen.;på;for;om;gå glip af noget;пропустити (щось), проґавити;miss out on (something);udsagnsord;nej
+218;tage afsked med;med;Han tog afsked ___ sine kolleger.;til;af;for;tage afsked med nogen;попрощатися з (кимось);say goodbye to (someone);udsagnsord;nej
+219;have ry for;for;Restauranten har ry ___ at være den bedste i byen.;til;af;om;have ry for noget;славитися (чимось), мати репутацію;have a reputation for (something);faste vendinger;nej
+220;sige fra over for;over for;Man skal sige fra ___ mobning.;på;om;for;sige fra over for noget;сказати «ні» (чомусь), виступити проти;say no to (something), stand up against;udsagnsord;nej
+221;set i lyset af;i;Set ___ lyset af de høje priser er det en god idé.;på;med;af;set i lyset af = når man tænker på;з огляду на (щось);in light of (something);faste vendinger;nej
+222;et hav af;af;Hun fik et hav ___ blomster.;med;på;til;et hav af = rigtig mange;безліч (чогось), море (чогось);a sea of (something), lots of;faste vendinger;nej
+223;have ret til;til;Alle har ret ___ at sige deres mening.;på;for;om;have ret til noget (en rettighed);мати право на (щось);be entitled to (something);navneord;nej
+224;have krav på;på;Man har krav ___ erstatning, hvis huset falder i værdi.;til;om;for;have krav på noget;мати законне право на (щось);have a claim to (something);navneord;nej
+225;langt fra alene om;om;Hun er langt fra alene ___ at tænke sådan.;med;i;på;være (langt fra) alene om noget;далеко не єдиний у (чомусь);far from alone in (something);faste vendinger;nej
+226;i fortrolighed;i;Han fortalte mig det ___ fortrolighed.;på;med;til;i fortrolighed = som en hemmelighed;конфіденційно, по секрету;in confidence;faste vendinger;nej
+227;for længst;for;Det burde være sket ___ længst.;i;på;til;for længst = for lang tid siden;давно;a long time ago;tid;nej
+228;med tiden;med;Det bliver lettere ___ tiden.;i;på;efter;med tiden = efterhånden;з часом;in time;tid;nej
+229;i det hele taget;i;Jeg er ___ det hele taget glad for at bo her.;på;for;med;i det hele taget = generelt;загалом;all in all;faste vendinger;nej
+230;i sidste ende;i;Det er ___ sidste ende byrådet, der beslutter.;på;til;ved;i sidste ende = til sidst;зрештою, врешті-решт;in the end;faste vendinger;nej

@@ -17,6 +17,7 @@
       ],
       "forklaring": "godt/dårligt/vigtigt for nogen eller noget",
       "ukrainsk": "добре для (когось/чогось)",
+      "engelsk": "good for (someone/something)",
       "kategori": "tillægsord",
       "mine_fejl": true
     },
@@ -32,6 +33,7 @@
       ],
       "forklaring": "godt/dårligt/vigtigt for nogen eller noget",
       "ukrainsk": "погано для (когось/чогось)",
+      "engelsk": "bad for (someone/something)",
       "kategori": "tillægsord",
       "mine_fejl": true
     },
@@ -47,6 +49,7 @@
       ],
       "forklaring": "godt/dårligt/vigtigt for nogen eller noget",
       "ukrainsk": "важливо для (когось/чогось)",
+      "engelsk": "important for (someone/something)",
       "kategori": "tillægsord",
       "mine_fejl": true
     },
@@ -62,6 +65,7 @@
       ],
       "forklaring": "være afhængig af noget",
       "ukrainsk": "залежний від (чогось)",
+      "engelsk": "dependent on (something)",
       "kategori": "tillægsord",
       "mine_fejl": true
     },
@@ -77,6 +81,7 @@
       ],
       "forklaring": "være glad for noget",
       "ukrainsk": "любити (щось), бути радим (чомусь)",
+      "engelsk": "fond of (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -92,6 +97,7 @@
       ],
       "forklaring": "enig med en person, enig i en sag",
       "ukrainsk": "погоджуватися з (кимось)",
+      "engelsk": "agree with (person)",
       "kategori": "tillægsord",
       "mine_fejl": true
     },
@@ -107,6 +113,7 @@
       ],
       "forklaring": "enig med en person, enig i en sag",
       "ukrainsk": "погоджуватися з (чимось)",
+      "engelsk": "agree with (matter)",
       "kategori": "tillægsord",
       "mine_fejl": true
     },
@@ -122,6 +129,7 @@
       ],
       "forklaring": "uenig i en sag, uenig med en person",
       "ukrainsk": "не погоджуватися з (чимось)",
+      "engelsk": "disagree with (something)",
       "kategori": "tillægsord",
       "mine_fejl": true
     },
@@ -137,6 +145,7 @@
       ],
       "forklaring": "være sikker på noget",
       "ukrainsk": "бути впевненим у (чомусь)",
+      "engelsk": "sure of (something)",
       "kategori": "tillægsord",
       "mine_fejl": true
     },
@@ -152,6 +161,7 @@
       ],
       "forklaring": "være bekymret for noget",
       "ukrainsk": "хвилюватися за (когось/щось)",
+      "engelsk": "worried about (someone/something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -167,6 +177,7 @@
       ],
       "forklaring": "være tilfreds med noget",
       "ukrainsk": "бути задоволеним (чимось)",
+      "engelsk": "satisfied with (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -182,6 +193,7 @@
       ],
       "forklaring": "være stolt af nogen eller noget",
       "ukrainsk": "пишатися (кимось/чимось)",
+      "engelsk": "proud of (someone/something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -197,6 +209,7 @@
       ],
       "forklaring": "være træt af noget (= have fået nok)",
       "ukrainsk": "втомитися від (чогось)",
+      "engelsk": "tired of (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -212,6 +225,7 @@
       ],
       "forklaring": "være interesseret i noget (men: interessere sig for)",
       "ukrainsk": "зацікавлений у (чомусь)",
+      "engelsk": "interested in (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -227,6 +241,7 @@
       ],
       "forklaring": "være god til noget (en evne)",
       "ukrainsk": "добре вміти (щось), бути вправним у",
+      "engelsk": "good at (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -242,6 +257,7 @@
       ],
       "forklaring": "være vant til noget",
       "ukrainsk": "бути звиклим до (чогось)",
+      "engelsk": "used to (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -257,6 +273,7 @@
       ],
       "forklaring": "være ked af noget",
       "ukrainsk": "засмучений (чимось), шкодувати про",
+      "engelsk": "sad about (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -272,6 +289,7 @@
       ],
       "forklaring": "være bange for noget",
       "ukrainsk": "боятися (чогось)",
+      "engelsk": "afraid of (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -287,6 +305,7 @@
       ],
       "forklaring": "være taknemmelig for noget",
       "ukrainsk": "бути вдячним за (щось)",
+      "engelsk": "grateful for (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -302,6 +321,7 @@
       ],
       "forklaring": "være skuffet over noget",
       "ukrainsk": "бути розчарованим (чимось)",
+      "engelsk": "disappointed with (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -317,6 +337,7 @@
       ],
       "forklaring": "vred på en person, vred over en sag",
       "ukrainsk": "сердитися на (когось)",
+      "engelsk": "angry with (person)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -332,6 +353,7 @@
       ],
       "forklaring": "vred på en person, vred over en sag",
       "ukrainsk": "обурюватися (чимось), сердитися через",
+      "engelsk": "angry about (matter)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -347,6 +369,7 @@
       ],
       "forklaring": "være forelsket i nogen",
       "ukrainsk": "бути закоханим у (когось)",
+      "engelsk": "in love with (someone)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -362,6 +385,7 @@
       ],
       "forklaring": "være klar til noget",
       "ukrainsk": "бути готовим до (чогось)",
+      "engelsk": "ready for (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -377,6 +401,7 @@
       ],
       "forklaring": "være ansvarlig for noget",
       "ukrainsk": "відповідальний за (щось)",
+      "engelsk": "responsible for (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -392,6 +417,7 @@
       ],
       "forklaring": "være typisk for noget",
       "ukrainsk": "типовий для (чогось)",
+      "engelsk": "typical of (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -407,6 +433,7 @@
       ],
       "forklaring": "lære af nogen eller noget",
       "ukrainsk": "вчитися в (когось) / на (чомусь)",
+      "engelsk": "learn from (someone/something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -422,6 +449,7 @@
       ],
       "forklaring": "holde øje med nogen = passe på",
       "ukrainsk": "стежити за (кимось/чимось)",
+      "engelsk": "keep an eye on (someone/something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -437,6 +465,7 @@
       ],
       "forklaring": "gøre noget ved et problem",
       "ukrainsk": "щось робити з (проблемою)",
+      "engelsk": "do something about (a problem)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -452,6 +481,7 @@
       ],
       "forklaring": "bruge tid på noget",
       "ukrainsk": "витрачати час на (щось)",
+      "engelsk": "spend time on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -467,6 +497,7 @@
       ],
       "forklaring": "tænke over et problem, tænke på en person",
       "ukrainsk": "обмірковувати (щось), думати над (чимось)",
+      "engelsk": "think about (a problem)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -482,6 +513,7 @@
       ],
       "forklaring": "tænke på en person, tænke over et problem",
       "ukrainsk": "думати про (когось)",
+      "engelsk": "think of (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -497,6 +529,7 @@
       ],
       "forklaring": "vente på nogen eller noget",
       "ukrainsk": "чекати на (когось/щось)",
+      "engelsk": "wait for (someone/something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -512,6 +545,7 @@
       ],
       "forklaring": "passe på nogen eller noget",
       "ukrainsk": "берегти (когось), остерігатися (чогось)",
+      "engelsk": "look after (someone), watch out for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -527,6 +561,7 @@
       ],
       "forklaring": "glæde sig til noget i fremtiden",
       "ukrainsk": "з нетерпінням чекати (чогось)",
+      "engelsk": "look forward to (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -542,6 +577,7 @@
       ],
       "forklaring": "have lyst til noget",
       "ukrainsk": "хотіти (чогось), мати бажання",
+      "engelsk": "feel like (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -557,6 +593,7 @@
       ],
       "forklaring": "have brug for noget",
       "ukrainsk": "потребувати (чогось)",
+      "engelsk": "need (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -572,6 +609,7 @@
       ],
       "forklaring": "have tid til noget",
       "ukrainsk": "мати час на (щось)",
+      "engelsk": "have time for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -587,6 +625,7 @@
       ],
       "forklaring": "have overskud til noget",
       "ukrainsk": "мати сили на (щось)",
+      "engelsk": "have energy for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -602,6 +641,7 @@
       ],
       "forklaring": "deltage i noget",
       "ukrainsk": "брати участь у (чомусь)",
+      "engelsk": "take part in (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -617,6 +657,7 @@
       ],
       "forklaring": "tro på noget",
       "ukrainsk": "вірити в (щось)",
+      "engelsk": "believe in (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -632,6 +673,7 @@
       ],
       "forklaring": "drømme om noget",
       "ukrainsk": "мріяти про (щось)",
+      "engelsk": "dream about (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -647,6 +689,7 @@
       ],
       "forklaring": "tale om et emne, tale med en person",
       "ukrainsk": "говорити про (щось)",
+      "engelsk": "talk about (a topic)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -662,6 +705,7 @@
       ],
       "forklaring": "snakke/tale med en person",
       "ukrainsk": "розмовляти з (кимось)",
+      "engelsk": "talk to (person)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -677,6 +721,7 @@
       ],
       "forklaring": "spørge nogen om noget",
       "ukrainsk": "питати (когось) про (щось)",
+      "engelsk": "ask (someone) about (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -692,6 +737,7 @@
       ],
       "forklaring": "bede nogen om noget",
       "ukrainsk": "просити (когось) про (щось)",
+      "engelsk": "ask (someone) for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -707,6 +753,7 @@
       ],
       "forklaring": "sørge for noget",
       "ukrainsk": "подбати про (щось)",
+      "engelsk": "make sure of (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -722,6 +769,7 @@
       ],
       "forklaring": "lede efter noget",
       "ukrainsk": "шукати (щось)",
+      "engelsk": "look for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -737,6 +785,7 @@
       ],
       "forklaring": "se frem til noget",
       "ukrainsk": "з нетерпінням чекати (чогось)",
+      "engelsk": "look forward to (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -752,6 +801,7 @@
       ],
       "forklaring": "fokusere på noget",
       "ukrainsk": "зосереджуватися на (чомусь)",
+      "engelsk": "focus on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -767,6 +817,7 @@
       ],
       "forklaring": "koncentrere sig om noget",
       "ukrainsk": "зосереджуватися на (чомусь)",
+      "engelsk": "concentrate on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -782,6 +833,7 @@
       ],
       "forklaring": "interessere sig for noget (men: interesseret i)",
       "ukrainsk": "цікавитися (чимось)",
+      "engelsk": "be interested in (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -797,6 +849,7 @@
       ],
       "forklaring": "bestå af dele",
       "ukrainsk": "складатися з (чогось)",
+      "engelsk": "consist of (parts)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -812,6 +865,7 @@
       ],
       "forklaring": "stamme fra noget",
       "ukrainsk": "походити з / від (чогось)",
+      "engelsk": "originate from (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -827,6 +881,7 @@
       ],
       "forklaring": "bygge på noget (= have som grundlag)",
       "ukrainsk": "ґрунтуватися на (чомусь)",
+      "engelsk": "be based on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -842,6 +897,7 @@
       ],
       "forklaring": "opfordre nogen til at gøre noget",
       "ukrainsk": "закликати (когось) до (чогось)",
+      "engelsk": "urge (someone) to",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -857,6 +913,7 @@
       ],
       "forklaring": "overtale nogen til at gøre noget",
       "ukrainsk": "умовити (когось) (щось зробити)",
+      "engelsk": "persuade (someone) to",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -872,6 +929,7 @@
       ],
       "forklaring": "overbevise nogen om, at noget er sandt",
       "ukrainsk": "переконати (когось) у (чомусь)",
+      "engelsk": "convince (someone) of",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -887,6 +945,7 @@
       ],
       "forklaring": "forberede sig på noget",
       "ukrainsk": "готуватися до (чогось)",
+      "engelsk": "prepare for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -902,6 +961,7 @@
       ],
       "forklaring": "gå op i noget = interessere sig meget",
       "ukrainsk": "захоплюватися (чимось)",
+      "engelsk": "be into (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -917,6 +977,7 @@
       ],
       "forklaring": "klage over noget",
       "ukrainsk": "скаржитися на (щось)",
+      "engelsk": "complain about (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -932,6 +993,7 @@
       ],
       "forklaring": "svare på noget",
       "ukrainsk": "відповідати на (щось)",
+      "engelsk": "answer (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -947,6 +1009,7 @@
       ],
       "forklaring": "reagere på noget",
       "ukrainsk": "реагувати на (щось)",
+      "engelsk": "react to (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -962,6 +1025,7 @@
       ],
       "forklaring": "sammenligne noget med noget",
       "ukrainsk": "порівнювати з (чимось)",
+      "engelsk": "compare with (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -977,6 +1041,7 @@
       ],
       "forklaring": "hjælpe nogen med noget",
       "ukrainsk": "допомагати (комусь) з (чимось)",
+      "engelsk": "help (someone) with (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -992,6 +1057,7 @@
       ],
       "forklaring": "holde op med noget",
       "ukrainsk": "припинити (щось робити), кинути",
+      "engelsk": "stop doing (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1007,6 +1073,7 @@
       ],
       "forklaring": "begynde på et kursus/en uddannelse",
       "ukrainsk": "почати (навчання, курс)",
+      "engelsk": "start (a course or education)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1022,6 +1089,7 @@
       ],
       "forklaring": "blande sig i noget",
       "ukrainsk": "втручатися в (щось)",
+      "engelsk": "interfere in (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1037,6 +1105,7 @@
       ],
       "forklaring": "tage stilling til noget",
       "ukrainsk": "визначитися щодо (чогось)",
+      "engelsk": "take a position on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1052,6 +1121,7 @@
       ],
       "forklaring": "det kommer an på noget = det afhænger af",
       "ukrainsk": "залежати від (чогось)",
+      "engelsk": "depend on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1067,6 +1137,7 @@
       ],
       "forklaring": "sætte sig ind i noget = lære det grundigt",
       "ukrainsk": "розібратися в (чомусь)",
+      "engelsk": "familiarize oneself with (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1082,6 +1153,7 @@
       ],
       "forklaring": "have styr på noget",
       "ukrainsk": "тримати (щось) під контролем",
+      "engelsk": "be on top of (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1097,6 +1169,7 @@
       ],
       "forklaring": "tage sig af noget",
       "ukrainsk": "подбати про (щось), займатися (чимось)",
+      "engelsk": "take care of (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1112,6 +1185,7 @@
       ],
       "forklaring": "lytte til nogen",
       "ukrainsk": "слухати (когось)",
+      "engelsk": "listen to (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1127,6 +1201,7 @@
       ],
       "forklaring": "skamme sig over noget",
       "ukrainsk": "соромитися (чогось)",
+      "engelsk": "be ashamed of (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1142,6 +1217,7 @@
       ],
       "forklaring": "være skyld i noget",
       "ukrainsk": "бути винним у (чомусь)",
+      "engelsk": "be to blame for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1157,6 +1233,7 @@
       ],
       "forklaring": "få øje på = se noget",
       "ukrainsk": "помітити (щось), побачити",
+      "engelsk": "catch sight of (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1172,6 +1249,7 @@
       ],
       "forklaring": "få øje for = forstå værdien af noget",
       "ukrainsk": "усвідомити цінність (чогось)",
+      "engelsk": "realize the value of (something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1187,6 +1265,7 @@
       ],
       "forklaring": "lægge mærke til noget",
       "ukrainsk": "помічати (щось)",
+      "engelsk": "notice (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1202,6 +1281,7 @@
       ],
       "forklaring": "lægge vægt på noget",
       "ukrainsk": "надавати значення (чомусь)",
+      "engelsk": "attach importance to (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1217,6 +1297,7 @@
       ],
       "forklaring": "gå ud over nogen = skade nogen",
       "ukrainsk": "шкодити (комусь), відбиватися на (комусь)",
+      "engelsk": "affect (someone) negatively",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1232,6 +1313,7 @@
       ],
       "forklaring": "få lov til noget",
       "ukrainsk": "отримати дозвіл на (щось)",
+      "engelsk": "be allowed to (do something)",
       "kategori": "udsagnsord",
       "mine_fejl": true
     },
@@ -1247,6 +1329,7 @@
       ],
       "forklaring": "have råd til noget",
       "ukrainsk": "могти дозволити собі (щось)",
+      "engelsk": "afford (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1262,6 +1345,7 @@
       ],
       "forklaring": "stole på nogen",
       "ukrainsk": "довіряти (комусь)",
+      "engelsk": "trust (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1277,6 +1361,7 @@
       ],
       "forklaring": "have ondt af nogen = have medlidenhed",
       "ukrainsk": "співчувати (комусь)",
+      "engelsk": "feel sorry for (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1292,6 +1377,7 @@
       ],
       "forklaring": "tage hensyn til nogen",
       "ukrainsk": "зважати на (когось/щось)",
+      "engelsk": "take into account (someone/something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1307,6 +1393,7 @@
       ],
       "forklaring": "takke nogen for noget",
       "ukrainsk": "дякувати (комусь) за (щось)",
+      "engelsk": "thank (someone) for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -1322,6 +1409,7 @@
       ],
       "forklaring": "en løsning på et problem",
       "ukrainsk": "вирішення (проблеми)",
+      "engelsk": "a solution to (a problem)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1337,6 +1425,7 @@
       ],
       "forklaring": "en forudsætning for noget",
       "ukrainsk": "передумова (чогось)",
+      "engelsk": "a prerequisite for (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1352,6 +1441,7 @@
       ],
       "forklaring": "en betingelse for noget",
       "ukrainsk": "умова для (чогось)",
+      "engelsk": "a condition for (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1367,6 +1457,7 @@
       ],
       "forklaring": "en risiko for noget",
       "ukrainsk": "ризик (чогось)",
+      "engelsk": "a risk of (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1382,6 +1473,7 @@
       ],
       "forklaring": "en fordel/ulempe ved noget",
       "ukrainsk": "перевага (чогось)",
+      "engelsk": "an advantage of (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1397,6 +1489,7 @@
       ],
       "forklaring": "en fordel/ulempe ved noget",
       "ukrainsk": "недолік (чогось)",
+      "engelsk": "a disadvantage of (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1412,6 +1505,7 @@
       ],
       "forklaring": "en stigning/et fald i noget",
       "ukrainsk": "зростання (чогось)",
+      "engelsk": "an increase in (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1427,6 +1521,7 @@
       ],
       "forklaring": "en stigning/et fald i noget",
       "ukrainsk": "зниження (чогось)",
+      "engelsk": "a decrease in (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1442,6 +1537,7 @@
       ],
       "forklaring": "en tendens til noget",
       "ukrainsk": "тенденція до (чогось)",
+      "engelsk": "a tendency towards (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1457,6 +1553,7 @@
       ],
       "forklaring": "en grund/årsag til noget",
       "ukrainsk": "підстава для (чогось), причина",
+      "engelsk": "a reason for (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1472,6 +1569,7 @@
       ],
       "forklaring": "en grund/årsag til noget",
       "ukrainsk": "причина (чогось)",
+      "engelsk": "a cause of (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1487,6 +1585,7 @@
       ],
       "forklaring": "en opskrift på en ret",
       "ukrainsk": "рецепт (страви)",
+      "engelsk": "a recipe for (a dish)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1502,6 +1601,7 @@
       ],
       "forklaring": "et symbol på noget",
       "ukrainsk": "символ (чогось)",
+      "engelsk": "a symbol of (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1517,6 +1617,7 @@
       ],
       "forklaring": "omsorg for noget",
       "ukrainsk": "турбота про (когось/щось)",
+      "engelsk": "care for (someone/something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1532,6 +1633,7 @@
       ],
       "forklaring": "en del af noget",
       "ukrainsk": "частина (чогось)",
+      "engelsk": "part of (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1547,6 +1649,7 @@
       ],
       "forklaring": "mulighed for at gøre noget",
       "ukrainsk": "можливість (щось зробити)",
+      "engelsk": "an opportunity to (do something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1562,6 +1665,7 @@
       ],
       "forklaring": "et svar på noget",
       "ukrainsk": "відповідь на (щось)",
+      "engelsk": "an answer to (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1577,6 +1681,7 @@
       ],
       "forklaring": "et forslag om noget",
       "ukrainsk": "пропозиція щодо (чогось)",
+      "engelsk": "a proposal about (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1592,6 +1697,7 @@
       ],
       "forklaring": "interesse for noget",
       "ukrainsk": "інтерес до (чогось)",
+      "engelsk": "interest in (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1607,6 +1713,7 @@
       ],
       "forklaring": "respekt for nogen eller noget",
       "ukrainsk": "повага до (когось/чогось)",
+      "engelsk": "respect for (someone/something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1622,6 +1729,7 @@
       ],
       "forklaring": "kritik af noget",
       "ukrainsk": "критика (чогось)",
+      "engelsk": "criticism of (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1637,6 +1745,7 @@
       ],
       "forklaring": "erfaring med noget",
       "ukrainsk": "досвід роботи з (чимось)",
+      "engelsk": "experience with (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1652,6 +1761,7 @@
       ],
       "forklaring": "et krav om noget",
       "ukrainsk": "вимога (чогось)",
+      "engelsk": "a demand for (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1667,6 +1777,7 @@
       ],
       "forklaring": "adgang til noget",
       "ukrainsk": "доступ до (чогось)",
+      "engelsk": "access to (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1682,6 +1793,7 @@
       ],
       "forklaring": "en undersøgelse af noget",
       "ukrainsk": "дослідження (чогось)",
+      "engelsk": "a study of (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1697,6 +1809,7 @@
       ],
       "forklaring": "en forskel på to ting (eller mellem)",
       "ukrainsk": "різниця між (чимось)",
+      "engelsk": "a difference between (two things)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1712,6 +1825,7 @@
       ],
       "forklaring": "ansvar for noget",
       "ukrainsk": "відповідальність за (щось)",
+      "engelsk": "responsibility for (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1727,6 +1841,7 @@
       ],
       "forklaring": "tillid til nogen",
       "ukrainsk": "довіра до (когось)",
+      "engelsk": "trust in (someone)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1742,6 +1857,7 @@
       ],
       "forklaring": "en debat om noget",
       "ukrainsk": "дискусія про (щось)",
+      "engelsk": "a debate about (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1757,6 +1873,7 @@
       ],
       "forklaring": "modstand mod noget",
       "ukrainsk": "спротив (чомусь)",
+      "engelsk": "opposition to (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1772,6 +1889,7 @@
       ],
       "forklaring": "støtte til noget",
       "ukrainsk": "підтримка (чогось)",
+      "engelsk": "support for (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1787,6 +1905,7 @@
       ],
       "forklaring": "en sammenhæng mellem to ting",
       "ukrainsk": "зв’язок між (чимось)",
+      "engelsk": "a connection between (two things)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1802,6 +1921,7 @@
       ],
       "forklaring": "tak for noget",
       "ukrainsk": "дякую за (щось)",
+      "engelsk": "thanks for (something)",
       "kategori": "navneord",
       "mine_fejl": true
     },
@@ -1817,6 +1937,7 @@
       ],
       "forklaring": "tillykke med noget",
       "ukrainsk": "вітаю з (чимось)",
+      "engelsk": "congratulations on (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -1832,6 +1953,7 @@
       ],
       "forklaring": "for … siden = tilbage i tiden",
       "ukrainsk": "… тому (напр. два роки тому)",
+      "engelsk": "... ago",
       "kategori": "tid",
       "mine_fejl": true
     },
@@ -1847,6 +1969,7 @@
       ],
       "forklaring": "om morgenen/aftenen = hver gang (vane)",
       "ukrainsk": "вранці (щоранку)",
+      "engelsk": "in the morning (habitually)",
       "kategori": "tid",
       "mine_fejl": true
     },
@@ -1862,6 +1985,7 @@
       ],
       "forklaring": "to gange om ugen/dagen/året",
       "ukrainsk": "на тиждень (двічі на тиждень)",
+      "engelsk": "a week (twice a week)",
       "kategori": "tid",
       "mine_fejl": true
     },
@@ -1877,6 +2001,7 @@
       ],
       "forklaring": "i weekenden = denne weekend",
       "ukrainsk": "у ці вихідні",
+      "engelsk": "this weekend",
       "kategori": "tid",
       "mine_fejl": false
     },
@@ -1892,6 +2017,7 @@
       ],
       "forklaring": "på mandag = næste mandag",
       "ukrainsk": "у (найближчий) понеділок",
+      "engelsk": "next Monday",
       "kategori": "tid",
       "mine_fejl": false
     },
@@ -1907,6 +2033,7 @@
       ],
       "forklaring": "om mandagen = hver mandag",
       "ukrainsk": "щопонеділка, по понеділках",
+      "engelsk": "on Mondays",
       "kategori": "tid",
       "mine_fejl": true
     },
@@ -1922,6 +2049,7 @@
       ],
       "forklaring": "i tirsdags = sidste tirsdag",
       "ukrainsk": "минулого вівторка",
+      "engelsk": "last Tuesday",
       "kategori": "tid",
       "mine_fejl": true
     },
@@ -1937,6 +2065,7 @@
       ],
       "forklaring": "i aften = denne aften",
       "ukrainsk": "сьогодні ввечері",
+      "engelsk": "this evening",
       "kategori": "tid",
       "mine_fejl": true
     },
@@ -1952,6 +2081,7 @@
       ],
       "forklaring": "om vinteren = hver vinter",
       "ukrainsk": "взимку (щозими)",
+      "engelsk": "in the winter",
       "kategori": "tid",
       "mine_fejl": true
     },
@@ -1967,6 +2097,7 @@
       ],
       "forklaring": "i løbet af = mens tiden går",
       "ukrainsk": "протягом (чогось)",
+      "engelsk": "during (a period of time)",
       "kategori": "tid",
       "mine_fejl": true
     },
@@ -1982,6 +2113,7 @@
       ],
       "forklaring": "komme til tiden = ikke for sent",
       "ukrainsk": "вчасно",
+      "engelsk": "on time",
       "kategori": "tid",
       "mine_fejl": false
     },
@@ -1997,6 +2129,7 @@
       ],
       "forklaring": "være på arbejde",
       "ukrainsk": "на роботі",
+      "engelsk": "at work",
       "kategori": "sted",
       "mine_fejl": true
     },
@@ -2012,6 +2145,7 @@
       ],
       "forklaring": "på kontoret",
       "ukrainsk": "в офісі",
+      "engelsk": "at the office",
       "kategori": "sted",
       "mine_fejl": true
     },
@@ -2027,6 +2161,7 @@
       ],
       "forklaring": "gå i skole",
       "ukrainsk": "ходити до школи",
+      "engelsk": "at school (attending school)",
       "kategori": "sted",
       "mine_fejl": false
     },
@@ -2042,6 +2177,7 @@
       ],
       "forklaring": "på universitetet",
       "ukrainsk": "в університеті",
+      "engelsk": "at the university",
       "kategori": "sted",
       "mine_fejl": true
     },
@@ -2057,6 +2193,7 @@
       ],
       "forklaring": "på en ø (Amager, Fyn), i en by eller et land",
       "ukrainsk": "на Амагері (на острові)",
+      "engelsk": "on Amager (island)",
       "kategori": "sted",
       "mine_fejl": true
     },
@@ -2072,6 +2209,7 @@
       ],
       "forklaring": "i en by eller et land, på en ø",
       "ukrainsk": "у Копенгагені",
+      "engelsk": "in Copenhagen (city)",
       "kategori": "sted",
       "mine_fejl": false
     },
@@ -2087,6 +2225,7 @@
       ],
       "forklaring": "på landet, i byen",
       "ukrainsk": "у селі, за містом",
+      "engelsk": "in the countryside",
       "kategori": "sted",
       "mine_fejl": true
     },
@@ -2102,6 +2241,7 @@
       ],
       "forklaring": "uden for byen",
       "ukrainsk": "за містом",
+      "engelsk": "outside the city",
       "kategori": "sted",
       "mine_fejl": true
     },
@@ -2117,6 +2257,7 @@
       ],
       "forklaring": "i nærheden af",
       "ukrainsk": "поблизу (чогось), неподалік від",
+      "engelsk": "near (something)",
       "kategori": "sted",
       "mine_fejl": true
     },
@@ -2132,6 +2273,7 @@
       ],
       "forklaring": "på cykel, med bus/tog",
       "ukrainsk": "на велосипеді",
+      "engelsk": "by bike",
       "kategori": "sted",
       "mine_fejl": true
     },
@@ -2147,6 +2289,7 @@
       ],
       "forklaring": "med bus/tog, på cykel",
       "ukrainsk": "автобусом",
+      "engelsk": "by bus",
       "kategori": "sted",
       "mine_fejl": false
     },
@@ -2162,6 +2305,7 @@
       ],
       "forklaring": "til fods = gående",
       "ukrainsk": "пішки",
+      "engelsk": "on foot",
       "kategori": "sted",
       "mine_fejl": false
     },
@@ -2177,6 +2321,7 @@
       ],
       "forklaring": "på nettet",
       "ukrainsk": "в інтернеті",
+      "engelsk": "online",
       "kategori": "sted",
       "mine_fejl": false
     },
@@ -2192,6 +2337,7 @@
       ],
       "forklaring": "på grund af",
       "ukrainsk": "через (щось)",
+      "engelsk": "because of (something)",
       "kategori": "faste vendinger",
       "mine_fejl": true
     },
@@ -2207,6 +2353,7 @@
       ],
       "forklaring": "i stedet for",
       "ukrainsk": "замість (чогось)",
+      "engelsk": "instead of (something)",
       "kategori": "faste vendinger",
       "mine_fejl": true
     },
@@ -2222,6 +2369,7 @@
       ],
       "forklaring": "i forhold til",
       "ukrainsk": "порівняно з (чимось), щодо (чогось)",
+      "engelsk": "in relation to (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2237,6 +2385,7 @@
       ],
       "forklaring": "med hensyn til = hvad angår",
       "ukrainsk": "щодо (чогось)",
+      "engelsk": "regarding (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2252,6 +2401,7 @@
       ],
       "forklaring": "på den ene side … på den anden side",
       "ukrainsk": "з одного боку",
+      "engelsk": "on the one hand",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2267,6 +2417,7 @@
       ],
       "forklaring": "til gengæld",
       "ukrainsk": "натомість, зате",
+      "engelsk": "in return",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2282,6 +2433,7 @@
       ],
       "forklaring": "på trods af = selvom der var …",
       "ukrainsk": "попри (щось), незважаючи на",
+      "engelsk": "despite (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2297,6 +2449,7 @@
       ],
       "forklaring": "efter min mening (ikke \"i min mening\")",
       "ukrainsk": "на мою думку",
+      "engelsk": "in my opinion",
       "kategori": "faste vendinger",
       "mine_fejl": true
     },
@@ -2312,6 +2465,7 @@
       ],
       "forklaring": "i hvert fald = i alle tilfælde",
       "ukrainsk": "принаймні, у кожному разі",
+      "engelsk": "at any rate, at least",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2327,6 +2481,7 @@
       ],
       "forklaring": "på forhånd = før det sker",
       "ukrainsk": "заздалегідь",
+      "engelsk": "in advance",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2342,6 +2497,7 @@
       ],
       "forklaring": "i forvejen = på forhånd",
       "ukrainsk": "заздалегідь; і так (уже)",
+      "engelsk": "beforehand",
       "kategori": "faste vendinger",
       "mine_fejl": true
     },
@@ -2357,6 +2513,7 @@
       ],
       "forklaring": "til sidst = endelig",
       "ukrainsk": "зрештою, наостанок",
+      "engelsk": "finally, in the end",
       "kategori": "faste vendinger",
       "mine_fejl": true
     },
@@ -2372,6 +2529,7 @@
       ],
       "forklaring": "gå i seng",
       "ukrainsk": "лягати спати",
+      "engelsk": "go to bed",
       "kategori": "faste vendinger",
       "mine_fejl": true
     },
@@ -2387,6 +2545,7 @@
       ],
       "forklaring": "tage på ferie",
       "ukrainsk": "поїхати у відпустку",
+      "engelsk": "go on holiday",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2402,6 +2561,7 @@
       ],
       "forklaring": "komme til orde = få lov at sige noget",
       "ukrainsk": "отримати слово",
+      "engelsk": "get a word in",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2417,6 +2577,7 @@
       ],
       "forklaring": "det fremgår af noget = det står i",
       "ukrainsk": "з (чогось) випливає",
+      "engelsk": "it appears from (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2432,6 +2593,7 @@
       ],
       "forklaring": "have ret i noget",
       "ukrainsk": "мати рацію щодо (чогось)",
+      "engelsk": "be right about (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2447,6 +2609,7 @@
       ],
       "forklaring": "en kilde til noget",
       "ukrainsk": "джерело (чогось)",
+      "engelsk": "a source of (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -2462,6 +2625,7 @@
       ],
       "forklaring": "der går et rygte om noget",
       "ukrainsk": "ходять чутки про (щось)",
+      "engelsk": "there is a rumour about (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2477,6 +2641,7 @@
       ],
       "forklaring": "en erstatning for noget",
       "ukrainsk": "заміна (чогось), компенсація за (щось)",
+      "engelsk": "a replacement for (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -2492,6 +2657,7 @@
       ],
       "forklaring": "give udtryk for noget",
       "ukrainsk": "висловлювати (щось)",
+      "engelsk": "express (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2507,6 +2673,7 @@
       ],
       "forklaring": "tage afstand fra noget",
       "ukrainsk": "дистанціюватися від (чогось)",
+      "engelsk": "distance oneself from (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2522,6 +2689,7 @@
       ],
       "forklaring": "uenig med en person, uenig i en sag",
       "ukrainsk": "не погоджуватися з (кимось)",
+      "engelsk": "disagree with (person)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -2537,6 +2705,7 @@
       ],
       "forklaring": "et angreb på nogen",
       "ukrainsk": "напад на (когось)",
+      "engelsk": "an attack on (someone)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -2552,6 +2721,7 @@
       ],
       "forklaring": "svare til = være lig med (men: svare på et spørgsmål)",
       "ukrainsk": "відповідати (чомусь)",
+      "engelsk": "correspond to (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2567,6 +2737,7 @@
       ],
       "forklaring": "et flertal for/imod noget",
       "ukrainsk": "більшість за (щось)",
+      "engelsk": "a majority for (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -2582,6 +2753,7 @@
       ],
       "forklaring": "sammenlignet med",
       "ukrainsk": "порівняно з (чимось)",
+      "engelsk": "compared with (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2597,6 +2769,7 @@
       ],
       "forklaring": "i takt med = samtidig med",
       "ukrainsk": "у міру (чогось), разом із",
+      "engelsk": "in line with (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2612,6 +2785,7 @@
       ],
       "forklaring": "have indflydelse på noget",
       "ukrainsk": "впливати на (щось)",
+      "engelsk": "have an influence on (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -2627,6 +2801,7 @@
       ],
       "forklaring": "det går op for mig = jeg forstår det pludselig (men: gå op i = interessere sig for)",
       "ukrainsk": "доходити до (когось) (= усвідомити)",
+      "engelsk": "dawn on (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2642,6 +2817,7 @@
       ],
       "forklaring": "sætte spørgsmålstegn ved noget = tvivle på det",
       "ukrainsk": "ставити під сумнів (щось)",
+      "engelsk": "question (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2657,6 +2833,7 @@
       ],
       "forklaring": "stå til ansvar for noget",
       "ukrainsk": "нести відповідальність за (щось)",
+      "engelsk": "be held accountable for (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2672,6 +2849,7 @@
       ],
       "forklaring": "give nogen ret i noget",
       "ukrainsk": "визнати, що (хтось) має рацію",
+      "engelsk": "admit that (someone) is right",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2687,6 +2865,7 @@
       ],
       "forklaring": "være flov over noget",
       "ukrainsk": "соромитися (чогось)",
+      "engelsk": "be embarrassed about (something)",
       "kategori": "tillægsord",
       "mine_fejl": false
     },
@@ -2702,6 +2881,7 @@
       ],
       "forklaring": "holde fast i noget",
       "ukrainsk": "триматися (чогось), наполягати на",
+      "engelsk": "hold on to (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2717,6 +2897,7 @@
       ],
       "forklaring": "have svært ved noget",
       "ukrainsk": "мати труднощі з (чимось)",
+      "engelsk": "have difficulty with (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2732,6 +2913,7 @@
       ],
       "forklaring": "lade være med at gøre noget",
       "ukrainsk": "не робити (чогось), утримуватися від",
+      "engelsk": "refrain from (doing something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2747,6 +2929,7 @@
       ],
       "forklaring": "komme i tanke om = pludselig huske",
       "ukrainsk": "згадати (про щось)",
+      "engelsk": "come to think of (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2762,6 +2945,7 @@
       ],
       "forklaring": "gå på kompromis med nogen",
       "ukrainsk": "іти на компроміс з (кимось)",
+      "engelsk": "compromise with (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2777,6 +2961,7 @@
       ],
       "forklaring": "komme frem til noget",
       "ukrainsk": "дійти до (висновку)",
+      "engelsk": "arrive at (a conclusion)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2792,6 +2977,7 @@
       ],
       "forklaring": "tage initiativ til noget",
       "ukrainsk": "виступити ініціатором (чогось)",
+      "engelsk": "take the initiative on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2807,6 +2993,7 @@
       ],
       "forklaring": "bidrage til noget",
       "ukrainsk": "сприяти (чомусь), робити внесок у",
+      "engelsk": "contribute to (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2822,6 +3009,7 @@
       ],
       "forklaring": "eje en andel i noget",
       "ukrainsk": "мати частку в (чомусь)",
+      "engelsk": "own a share in (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2837,6 +3025,7 @@
       ],
       "forklaring": "investere i noget",
       "ukrainsk": "інвестувати в (щось)",
+      "engelsk": "invest in (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2852,6 +3041,7 @@
       ],
       "forklaring": "et tilbud om noget (men: et tilbud på en vare i butikken)",
       "ukrainsk": "пропозиція (чогось)",
+      "engelsk": "an offer of (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -2867,6 +3057,7 @@
       ],
       "forklaring": "have betydning for noget",
       "ukrainsk": "мати значення для (чогось)",
+      "engelsk": "matter for (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -2882,6 +3073,7 @@
       ],
       "forklaring": "på vegne af nogen",
       "ukrainsk": "від імені (когось)",
+      "engelsk": "on behalf of (someone)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2897,6 +3089,7 @@
       ],
       "forklaring": "i håb om noget",
       "ukrainsk": "в надії на (щось)",
+      "engelsk": "in the hope of (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2912,6 +3105,7 @@
       ],
       "forklaring": "i tilfælde af = hvis der sker",
       "ukrainsk": "у разі (чогось)",
+      "engelsk": "in case of (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2927,6 +3121,7 @@
       ],
       "forklaring": "føle sig presset af nogen",
       "ukrainsk": "відчувати тиск з боку (когось)",
+      "engelsk": "feel pressured by (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2942,6 +3137,7 @@
       ],
       "forklaring": "tænke tilbage på noget",
       "ukrainsk": "згадувати (щось), повертатися думками до",
+      "engelsk": "look back on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2957,6 +3153,7 @@
       ],
       "forklaring": "ikke lægge skjul på noget = vise det åbent",
       "ukrainsk": "приховувати (щось)",
+      "engelsk": "hide (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -2972,6 +3169,7 @@
       ],
       "forklaring": "tage imod noget",
       "ukrainsk": "приймати (щось)",
+      "engelsk": "accept (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -2987,6 +3185,7 @@
       ],
       "forklaring": "række hånden ud til nogen = tilbyde forsoning",
       "ukrainsk": "простягнути руку (комусь)",
+      "engelsk": "reach out to (someone)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3002,6 +3201,7 @@
       ],
       "forklaring": "slå en streg over noget = glemme det",
       "ukrainsk": "поставити крапку на (чомусь), забути про",
+      "engelsk": "draw a line under (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3017,6 +3217,7 @@
       ],
       "forklaring": "forsone sig med nogen",
       "ukrainsk": "помиритися з (кимось)",
+      "engelsk": "make peace with (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3032,6 +3233,7 @@
       ],
       "forklaring": "tale ud om noget = tale færdig om et problem",
       "ukrainsk": "обговорити (щось) до кінця",
+      "engelsk": "talk through (a problem)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3047,6 +3249,7 @@
       ],
       "forklaring": "være i tvivl om noget",
       "ukrainsk": "сумніватися щодо (чогось)",
+      "engelsk": "be unsure about (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3062,6 +3265,7 @@
       ],
       "forklaring": "stemme for/imod et forslag",
       "ukrainsk": "голосувати за (щось)",
+      "engelsk": "vote for (a proposal)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3077,6 +3281,7 @@
       ],
       "forklaring": "med et snævert flertal",
       "ukrainsk": "незначною більшістю",
+      "engelsk": "by a narrow majority",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3092,6 +3297,7 @@
       ],
       "forklaring": "på betingelse af = kun hvis",
       "ukrainsk": "за умови (чогось)",
+      "engelsk": "on condition of (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3107,6 +3313,7 @@
       ],
       "forklaring": "sætte noget i gang = starte det",
       "ukrainsk": "запустити (щось), розпочати",
+      "engelsk": "start (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3122,6 +3329,7 @@
       ],
       "forklaring": "få medhold i noget = få ret",
       "ukrainsk": "отримати визнання своєї правоти в (чомусь)",
+      "engelsk": "be proved right about (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3137,6 +3345,7 @@
       ],
       "forklaring": "gå videre med noget",
       "ukrainsk": "продовжувати (щось), дати хід (чомусь)",
+      "engelsk": "proceed with (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3152,6 +3361,7 @@
       ],
       "forklaring": "glæde sig over noget, der er sket (men: glæde sig til noget i fremtiden)",
       "ukrainsk": "радіти (чомусь)",
+      "engelsk": "be pleased about (something that happened)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3167,6 +3377,7 @@
       ],
       "forklaring": "få konsekvenser for nogen",
       "ukrainsk": "мати наслідки для (когось)",
+      "engelsk": "have consequences for (someone)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -3182,6 +3393,7 @@
       ],
       "forklaring": "lægge op til noget = gøre det sandsynligt",
       "ukrainsk": "підводити до (чогось)",
+      "engelsk": "lead up to (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3197,6 +3409,7 @@
       ],
       "forklaring": "være til stede",
       "ukrainsk": "бути присутнім",
+      "engelsk": "be present",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3212,6 +3425,7 @@
       ],
       "forklaring": "træffe en beslutning om noget",
       "ukrainsk": "ухвалити рішення щодо (чогось)",
+      "engelsk": "make a decision about (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -3227,6 +3441,7 @@
       ],
       "forklaring": "takke ja/nej til noget",
       "ukrainsk": "погодитися на (щось), прийняти",
+      "engelsk": "accept (an offer), say yes to",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3242,6 +3457,7 @@
       ],
       "forklaring": "falde til = føle sig hjemme et nyt sted",
       "ukrainsk": "освоїтися (на новому місці)",
+      "engelsk": "settle in",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3257,6 +3473,7 @@
       ],
       "forklaring": "gå glip af noget",
       "ukrainsk": "пропустити (щось), проґавити",
+      "engelsk": "miss out on (something)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3272,6 +3489,7 @@
       ],
       "forklaring": "tage afsked med nogen",
       "ukrainsk": "попрощатися з (кимось)",
+      "engelsk": "say goodbye to (someone)",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3287,6 +3505,7 @@
       ],
       "forklaring": "have ry for noget",
       "ukrainsk": "славитися (чимось), мати репутацію",
+      "engelsk": "have a reputation for (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3302,6 +3521,7 @@
       ],
       "forklaring": "sige fra over for noget",
       "ukrainsk": "сказати «ні» (чомусь), виступити проти",
+      "engelsk": "say no to (something), stand up against",
       "kategori": "udsagnsord",
       "mine_fejl": false
     },
@@ -3317,6 +3537,7 @@
       ],
       "forklaring": "set i lyset af = når man tænker på",
       "ukrainsk": "з огляду на (щось)",
+      "engelsk": "in light of (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3332,6 +3553,7 @@
       ],
       "forklaring": "et hav af = rigtig mange",
       "ukrainsk": "безліч (чогось), море (чогось)",
+      "engelsk": "a sea of (something), lots of",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3347,6 +3569,7 @@
       ],
       "forklaring": "have ret til noget (en rettighed)",
       "ukrainsk": "мати право на (щось)",
+      "engelsk": "be entitled to (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -3362,6 +3585,7 @@
       ],
       "forklaring": "have krav på noget",
       "ukrainsk": "мати законне право на (щось)",
+      "engelsk": "have a claim to (something)",
       "kategori": "navneord",
       "mine_fejl": false
     },
@@ -3377,6 +3601,7 @@
       ],
       "forklaring": "være (langt fra) alene om noget",
       "ukrainsk": "далеко не єдиний у (чомусь)",
+      "engelsk": "far from alone in (something)",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3392,6 +3617,7 @@
       ],
       "forklaring": "i fortrolighed = som en hemmelighed",
       "ukrainsk": "конфіденційно, по секрету",
+      "engelsk": "in confidence",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3407,6 +3633,7 @@
       ],
       "forklaring": "for længst = for lang tid siden",
       "ukrainsk": "давно",
+      "engelsk": "a long time ago",
       "kategori": "tid",
       "mine_fejl": false
     },
@@ -3422,6 +3649,7 @@
       ],
       "forklaring": "med tiden = efterhånden",
       "ukrainsk": "з часом",
+      "engelsk": "in time",
       "kategori": "tid",
       "mine_fejl": false
     },
@@ -3437,6 +3665,7 @@
       ],
       "forklaring": "i det hele taget = generelt",
       "ukrainsk": "загалом",
+      "engelsk": "all in all",
       "kategori": "faste vendinger",
       "mine_fejl": false
     },
@@ -3452,6 +3681,7 @@
       ],
       "forklaring": "i sidste ende = til sidst",
       "ukrainsk": "зрештою, врешті-решт",
+      "engelsk": "in the end",
       "kategori": "faste vendinger",
       "mine_fejl": false
     }
