@@ -52,12 +52,26 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "define": {
+                "USE_API": "true"
+              }
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "define": {
+                "USE_API": "false"
+              }
+            },
+            "development-api": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "define": {
+                "USE_API": "true"
+              }
             }
           },
           "defaultConfiguration": "production"
@@ -70,6 +84,10 @@
             },
             "development": {
               "buildTarget": "dansk-prepositioner:build:development"
+            },
+            "api": {
+              "buildTarget": "dansk-prepositioner:build:development-api",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

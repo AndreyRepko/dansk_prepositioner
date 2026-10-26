@@ -32,6 +32,20 @@ jobs:
           test -s dist/dansk-prepositioner/browser/index.html
           test -s dist/dansk-prepositioner/browser/data/praepositioner.json
           test -s dist/dansk-prepositioner/browser/qr.svg
+      # The API runs on the managed Functions runtime node:22 (staticwebapp.config.json), so build it with 22.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: api/package-lock.json
+      - name: Build API
+        working-directory: api
+        run: |
+          npm ci
+          npm test
+          npm run build
+          npm prune --omit=dev
+          test -s dist/functions/progress.js
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -41,11 +55,12 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          # The app is built by the steps above (Node 24); upload the finished output as-is.
+          # App and API are built by the steps above; upload the finished output as-is.
           app_location: "dist/dansk-prepositioner/browser" # App source code path
-          api_location: "" # Api source code path - optional
+          api_location: "api" # Api source code path - optional
           output_location: "" # Built app content directory - optional
           skip_app_build: true
+          skip_api_build: true
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
