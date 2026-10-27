@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, HostListener, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GAP } from '../models/expression';
+import { DONT_KNOW, GAP } from '../models/expression';
 import { QuizService } from '../services/quiz.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { QuizService } from '../services/quiz.service';
 
       <section class="card">
         <p class="sentence">
-          {{ parts().before }}<span class="gap" [class.good]="correct() === true" [class.bad]="correct() === false">{{
+          {{ parts().before }}<span class="gap" [class.good]="correct() === true" [class.bad]="correct() === false && !dontKnow()">{{
             chosen() === null ? '___' : q.expression.praeposition
           }}</span>{{ parts().after }}
         </p>
@@ -36,11 +36,20 @@ import { QuizService } from '../services/quiz.service';
             </button>
           }
         </div>
+        <button class="dont-know" [disabled]="chosen() !== null" (click)="answer(dontKnowAnswer)">
+          <span class="key">0</span> Ved ikke
+        </button>
       </section>
 
       @if (chosen() !== null) {
-        <section class="card feedback" [class.good]="correct()" [class.bad]="!correct()">
-          <p class="verdict">{{ correct() ? 'Rigtigt!' : 'Forkert — the answer is “' + q.expression.praeposition + '”' }}</p>
+        <section class="card feedback" [class.good]="correct()" [class.bad]="!correct() && !dontKnow()">
+          <p class="verdict">
+            {{
+              correct()
+                ? 'Rigtigt!'
+                : (dontKnow() ? 'The answer is “' : 'Forkert — the answer is “') + q.expression.praeposition + '”'
+            }}
+          </p>
           <p><strong>{{ q.expression.udtryk }}</strong> — {{ q.expression.forklaring }}</p>
           <p class="muted">{{ q.expression.ukrainsk }}</p>
           <p class="muted">{{ q.expression.engelsk }}</p>
@@ -87,6 +96,13 @@ import { QuizService } from '../services/quiz.service';
       font-size: 1.1rem;
       padding: 0.85rem;
       text-align: left;
+    }
+    .dont-know {
+      display: block;
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 0.6rem;
+      color: var(--muted);
     }
     .options button:disabled {
       opacity: 1;
@@ -146,6 +162,9 @@ export class QuizPage implements OnInit {
     if (!this.quiz.active()) void this.router.navigate(['/']);
   }
 
+  protected readonly dontKnowAnswer = DONT_KNOW;
+  protected readonly dontKnow = computed(() => this.chosen() === DONT_KNOW);
+
   protected answer(option: string): void {
     this.quiz.answer(option);
   }
@@ -160,6 +179,7 @@ export class QuizPage implements OnInit {
     const q = this.question();
     if (!q || event.ctrlKey || event.altKey || event.metaKey) return;
     if (this.chosen() === null) {
+      if (event.key === '0') return this.answer(DONT_KNOW);
       const i = Number(event.key) - 1;
       if (i >= 0 && i < q.options.length) this.answer(q.options[i]);
     } else if (event.key === 'Enter') {

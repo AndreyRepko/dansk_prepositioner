@@ -1,4 +1,4 @@
-import { Category, Expression, Sentence, sentencesOf } from '../models/expression';
+import { Category, DONT_KNOW, Expression, Sentence, sentencesOf } from '../models/expression';
 import { Box, ItemProgress, ProgressState, SentenceProgress } from '../models/progress';
 
 export type Rng = () => number;
@@ -30,7 +30,8 @@ export interface SessionFilter {
 }
 
 /**
- * Records one answer on sentence `sentence` (`chosen`: the option picked, for the confusion counts).
+ * Records one answer on sentence `sentence` (`chosen`: the option picked, for the confusion counts;
+ * `DONT_KNOW` counts as a wrong answer, but as "Ved ikke", not as a confusion).
  * A wrong answer always sends the item back to box 1.
  * A correct answer only promotes an item that was due; answering a not-yet-due
  * item (session filler) correctly keeps its box and due date, so repeating
@@ -59,9 +60,10 @@ export function applyAnswer(
     },
   };
   const confusions =
-    correct || chosen === undefined
+    correct || chosen === undefined || chosen === DONT_KNOW
       ? prev.confusions
       : { ...prev.confusions, [chosen]: (prev.confusions?.[chosen] ?? 0) + 1 };
+  const dontKnow = (prev.dontKnow ?? 0) + (chosen === DONT_KNOW ? 1 : 0);
   const counts = {
     seen: prev.seen + 1,
     correct: prev.correct + (correct ? 1 : 0),
@@ -69,6 +71,7 @@ export function applyAnswer(
     lastSeen: now,
     sentences,
     ...(confusions && { confusions }),
+    ...(dontKnow > 0 && { dontKnow }),
   };
   if (correct && !wasDue) return { ...counts, box: prev.box, due: prev.due };
   // Box 1 is reserved for recent mistakes, so a correct answer lands in box 2 or higher.

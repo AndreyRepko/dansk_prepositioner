@@ -148,6 +148,18 @@ describe('progressSince', () => {
     });
   });
 
+  it('adds up and subtracts "Ved ikke" counts', () => {
+    const one = (dontKnow: number | undefined, lastSeen: number): ProgressState => ({
+      version: 1,
+      items: { 1: testProgress({ lastSeen, ...(dontKnow !== undefined && { dontKnow }) }) },
+      sessions: [],
+    });
+    expect(mergeProgress(one(2, 10), one(1, 20)).items[1].dontKnow).toBe(3);
+    expect(mergeProgress(one(undefined, 10), one(1, 20)).items[1].dontKnow).toBe(1);
+    expect(progressSince(one(3, 20), one(1, 10)).items[1].dontKnow).toBe(2);
+    expect(progressSince(one(1, 20), one(1, 10)).items[1]).not.toHaveProperty('dontKnow');
+  });
+
   it('keeps only the sentence answers and mix-ups since', () => {
     const then = testProgress({
       lastSeen: 10,
@@ -227,6 +239,15 @@ describe('progressSince', () => {
 });
 
 describe('parseProgress', () => {
+  it('keeps a positive "Ved ikke" count and drops an invalid one', () => {
+    const parse = (dontKnow: unknown) =>
+      parseProgress({ version: 1, items: { 1: { ...testProgress(), dontKnow } }, sessions: [] })
+        ?.items[1];
+    expect(parse(2)?.dontKnow).toBe(2);
+    expect(parse(0)).not.toHaveProperty('dontKnow');
+    expect(parse('x')).not.toHaveProperty('dontKnow');
+  });
+
   it('keeps the merge ids of an account', () => {
     expect(parseProgress({ version: 1, items: {}, sessions: [], merged: ['a', 1, 'b'] })).toEqual({
       version: 1,

@@ -23,7 +23,9 @@ export interface CategoryStats {
 export interface HardItem {
   expression: Expression;
   correct: number;
+  /** Wrong answers, "Ved ikke" included. */
   wrong: number;
+  dontKnow: number;
   /** Sentences whose latest answer was right, of `sentences`. */
   known: number;
   sentences: number;
@@ -75,16 +77,21 @@ export function overview(expressions: Expression[], state: ProgressState, now: n
 }
 
 /** Answers over the current expressions (progress for removed ids is ignored, as in the other stats). */
-export function totals(expressions: Expression[], state: ProgressState): { answers: number; correct: number } {
+export function totals(
+  expressions: Expression[],
+  state: ProgressState,
+): { answers: number; correct: number; dontKnow: number } {
   let answers = 0;
   let correct = 0;
+  let dontKnow = 0;
   for (const e of expressions) {
     const p = state.items[e.id];
     if (!p) continue;
     answers += p.seen;
     correct += p.correct;
+    dontKnow += p.dontKnow ?? 0;
   }
-  return { answers, correct };
+  return { answers, correct, dontKnow };
 }
 
 export function byCategory(expressions: Expression[], state: ProgressState): CategoryStats[] {
@@ -113,6 +120,7 @@ export function hardest(expressions: Expression[], state: ProgressState, limit: 
         expression,
         correct: p?.correct ?? 0,
         wrong: p?.wrong ?? 0,
+        dontKnow: p?.dontKnow ?? 0,
         known: knownSentences(p, sentencesOf(expression).length),
         sentences: sentencesOf(expression).length,
         tier: tier(p, sentencesOf(expression).length),

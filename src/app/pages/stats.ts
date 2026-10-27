@@ -38,6 +38,9 @@ import {
         <strong>{{ pct(all().correct, all().answers) }}%</strong>, sessions:
         <strong>{{ progress().sessions.length }}</strong>
       </p>
+      @if (all().dontKnow > 0) {
+        <p class="muted">“Ved ikke” {{ all().dontKnow }} times (counted as wrong).</p>
+      }
     </section>
 
     <h2>By category</h2>
@@ -133,7 +136,12 @@ import {
                 <td>{{ h.expression.udtryk }}<br /><span class="muted">{{ h.expression.ukrainsk }}</span><br /><span class="muted">{{ h.expression.engelsk }}</span></td>
                 <td class="num">{{ h.known }} / {{ h.sentences }}{{ stars(h.tier) }}</td>
                 <td class="num">{{ h.correct }}</td>
-                <td class="num">{{ h.wrong }}</td>
+                <td class="num">
+                  {{ h.wrong }}
+                  @if (h.dontKnow > 0) {
+                    <br /><span class="muted">{{ h.dontKnow }} ved ikke</span>
+                  }
+                </td>
               </tr>
             }
           </tbody>
