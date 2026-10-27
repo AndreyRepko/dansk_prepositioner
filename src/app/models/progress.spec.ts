@@ -2,6 +2,7 @@ import { testProgress } from '../testing/fixtures';
 import {
   emptyProgress,
   isEmptyProgress,
+  ItemProgress,
   MAX_SESSIONS,
   mergeProgress,
   parseProgress,
@@ -60,6 +61,32 @@ describe('mergeProgress', () => {
         },
         confusions: { i: 3, til: 1 },
       }),
+    );
+  });
+
+  it('takes `last` from the account when its answer on the sentence is newer', () => {
+    const one = (item: ItemProgress): ProgressState => ({ version: 1, items: { 1: item }, sessions: [] });
+    const account = testProgress({
+      lastSeen: 30,
+      sentences: { 0: sentence({ lastSeen: 30, first: false, correct: 0, last: false }) },
+    });
+    const guest = testProgress({ lastSeen: 20, sentences: { 0: sentence({ lastSeen: 20 }) }, confusions: { i: 1 } });
+
+    expect(mergeProgress(one(account), one(guest)).items[1]).toEqual(
+      expect.objectContaining({
+        sentences: { 0: sentence({ seen: 2, correct: 1, lastSeen: 30, first: false, last: false }) },
+        confusions: { i: 1 },
+      }),
+    );
+  });
+
+  it('merges sentence answers into an item saved before sentences were counted', () => {
+    const one = (item: ItemProgress): ProgressState => ({ version: 1, items: { 1: item }, sessions: [] });
+    const legacy = testProgress({ seen: 4, lastSeen: 10 });
+    const guest = testProgress({ lastSeen: 20, sentences: { 2: sentence({ lastSeen: 20 }) } });
+
+    expect(mergeProgress(one(legacy), one(guest)).items[1]).toEqual(
+      expect.objectContaining({ seen: 5, sentences: { 2: sentence({ lastSeen: 20 }) } }),
     );
   });
 
@@ -159,6 +186,44 @@ describe('progressSince', () => {
     const once = mergeProgress(mergeProgress(account, snapshot), progressSince(now, snapshot));
     expect(once).toEqual(mergeProgress(account, now));
   });
+
+  it('adds no sentence answer or mix-up twice when merged again', () => {
+    const one = (item: ItemProgress): ProgressState => ({ version: 1, items: { 1: item }, sessions: [] });
+    const account = one(
+      testProgress({ seen: 2, lastSeen: 5, sentences: { 0: sentence({ seen: 2, correct: 2, lastSeen: 5 }) } }),
+    );
+    const then = testProgress({
+      seen: 2,
+      lastSeen: 10,
+      sentences: { 0: sentence({ lastSeen: 10 }), 1: sentence({ lastSeen: 10 }) },
+      confusions: { i: 1 },
+    });
+    const now = testProgress({
+      seen: 5,
+      lastSeen: 20,
+      sentences: {
+        0: sentence({ lastSeen: 10 }),
+        1: sentence({ seen: 3, correct: 1, lastSeen: 20, last: false }),
+        2: sentence({ lastSeen: 20 }),
+      },
+      confusions: { i: 3 },
+    });
+    const once = mergeProgress(mergeProgress(account, one(then)), progressSince(one(now), one(then)));
+    expect(once).toEqual(mergeProgress(account, one(now)));
+  });
+
+  it('never claims a right first answer it does not count', () => {
+    const one = (item: ItemProgress): ProgressState => ({ version: 1, items: { 1: item }, sessions: [] });
+    const then = testProgress({ lastSeen: 10, sentences: { 0: sentence({ lastSeen: 10 }) } });
+    const now = testProgress({
+      seen: 2,
+      lastSeen: 20,
+      sentences: { 0: sentence({ seen: 2, correct: 1, lastSeen: 20, last: false }) },
+    });
+    expect(progressSince(one(now), one(then)).items[1].sentences).toEqual({
+      0: sentence({ seen: 1, correct: 0, lastSeen: 20, first: false, last: false }),
+    });
+  });
 });
 
 describe('parseProgress', () => {
@@ -174,7 +239,15 @@ describe('parseProgress', () => {
   it('keeps valid sentence answers and mix-ups and drops malformed ones', () => {
     const item = {
       ...testProgress(),
-      sentences: { 0: sentence(), 1: { seen: 1 }, x: sentence() },
+      sentences: {
+        0: sentence(),
+        1: { seen: 1 },
+        x: sentence(),
+        '': sentence(),
+        '-1': sentence(),
+        '1.0': sentence(),
+        '0x1': sentence(),
+      },
       confusions: { i: 2, til: 'x', om: 0 },
     };
     expect(parseProgress({ version: 1, items: { 1: item }, sessions: [] })?.items[1]).toEqual({

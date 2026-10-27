@@ -89,7 +89,8 @@ Every expression sits in a Leitner box (`src/app/services/srs.ts`):
 A correct answer on a due item moves it one box up (at least to box 2); answering a not-yet-due
 item correctly changes nothing, so repeating sessions cannot fast-track it. A wrong answer
 always sends the item back to box 1. An item reaches box 4 (mastered) only when at least 3 of its
-sentences are known (their latest answer was right); until then it stays in box 3. A session (10 questions by default) is filled with: recent mistakes → other due
+sentences are known (their latest answer was right); until then it stays in box 3. Items already
+in box 4–5 from before sentences were counted keep their box. A session (10 questions by default) is filled with: recent mistakes → other due
 items → new items (`mine_fejl` first) → least recently seen items. Within a session a wrong
 answer is asked again at the end, with the same sentence, until it is answered correctly (only
 the first attempt counts for the statistics).
@@ -97,11 +98,13 @@ the first attempt counts for the statistics).
 Each time an expression comes up it is asked with a sentence not answered yet, otherwise with the
 one answered longest ago. Per sentence the progress keeps the answer counts, whether the very first
 answer on it was right and whether the latest one was; per expression it counts the wrong options
-chosen. From that:
+chosen. Answers given before sentences were counted were all on the first sentence, so they count
+as answers on it (whether the very first was right is guessed). From that:
 
 - **Tiers**: a mastered expression gets ★ / ★★ / ★★★ when 4 / 5 / all 6 sentences are known.
 - **New vs. familiar sentences** (Statistics): accuracy on the first answer to each sentence
-  compared with later answers on sentences seen before. Much better on familiar sentences means
+  compared with later answers on sentences seen before. More than 15 points better on familiar
+  sentences (with at least 10 answers on each side) means
   the sentences are remembered rather than the expression; the expressions where this shows most
   are listed.
 - **Common mix-ups** (Statistics): which preposition was chosen instead of which, with examples.

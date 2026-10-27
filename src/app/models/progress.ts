@@ -12,7 +12,7 @@ export interface ItemProgress {
   due: number;
   /** Answers per sentence, keyed by index in `sentencesOf` (absent in older progress). */
   sentences?: Record<number, SentenceProgress>;
-  /** How often each wrong option was chosen. */
+  /** How often each wrong option was chosen (retries within a session are not recorded). */
   confusions?: Record<string, number>;
 }
 
@@ -73,7 +73,7 @@ function parseItem(item: ItemProgress): ItemProgress {
   const { sentences, confusions, ...rest } = item as ItemProgress & Record<string, unknown>;
   const s = isObject(sentences)
     ? Object.entries(sentences).filter(
-        ([k, v]) => Number.isInteger(Number(k)) && isSentenceProgress(v),
+        ([k, v]) => /^(0|[1-9]\d*)$/.test(k) && isSentenceProgress(v),
       )
     : [];
   const c = isObject(confusions)
@@ -123,8 +123,8 @@ export const isEmptyProgress = (p: ProgressState) => Object.keys(p.items).length
 
 /**
  * Combines two separate histories (guest practice added to an account `a`): per expression the
- * newer answer decides box and due date, and answer counts add up; sessions are interleaved by date.
- * The merge ids of `a` are kept.
+ * newer answer decides box and due date, and answer counts add up (per sentence and per wrong
+ * option too); sessions are interleaved by date. The merge ids of `a` are kept.
  */
 export function mergeProgress(a: ProgressState, b: ProgressState): ProgressState {
   const items: Record<number, ItemProgress> = { ...a.items };
@@ -191,7 +191,11 @@ function mergeSentences(
   return result;
 }
 
-/** Sentences answered since `then`, with only the answers since counted. */
+/**
+ * Sentences answered since `then`, with only the answers since counted. Their first answer on a
+ * sentence answered before `then` is unknown: guessed right if any was, so `first` never claims a
+ * right answer that is not counted.
+ */
 function sentencesSince(
   now: Record<number, SentenceProgress>,
   then: Record<number, SentenceProgress>,
@@ -200,12 +204,9 @@ function sentencesSince(
   for (const [key, n] of Object.entries(now) as unknown as [number, SentenceProgress][]) {
     const t = then[key];
     if (!t) result[key] = n;
-    else if (n.lastSeen > t.lastSeen) {
-      result[key] = {
-        ...n,
-        seen: Math.max(0, n.seen - t.seen),
-        correct: Math.max(0, n.correct - t.correct),
-      };
+    else if (n.lastSeen > t.lastSeen && n.seen > t.seen) {
+      const correct = Math.max(0, n.correct - t.correct);
+      result[key] = { ...n, seen: n.seen - t.seen, correct, first: correct > 0 };
     }
   }
   return result;

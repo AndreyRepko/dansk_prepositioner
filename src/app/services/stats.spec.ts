@@ -3,6 +3,7 @@ import { testExpression, testProgress } from '../testing/fixtures';
 import {
   byCategory,
   confusions,
+  familiarMuchBetter,
   hardest,
   overview,
   percent,
@@ -100,6 +101,27 @@ describe('stats', () => {
         { expression: all[0], newSeen: 2, newCorrect: 0, repeatSeen: 3, repeatCorrect: 3 },
       ]);
     });
+
+    it('never shows negative or impossible counts for an inconsistent entry', () => {
+      const bad: ProgressState = {
+        ...emptyProgress(),
+        items: { 1: testProgress({ sentences: { 0: sentence(1, 0, true), 1: sentence(0, 2, false) } }) },
+      };
+      expect(recognitionGap(all, bad)).toEqual({ newSeen: 2, newCorrect: 1, repeatSeen: 0, repeatCorrect: 0 });
+    });
+
+    it.each([
+      [10, 5, 10, 6, false], // 60% vs 50%
+      [20, 10, 20, 13, false], // 65% vs 50%: exactly 15 points
+      [100, 50, 100, 66, true], // 66% vs 50%
+      [9, 0, 10, 10, false], // too few new answers
+      [10, 0, 9, 9, false], // too few repeat answers
+    ])(
+      'warns about familiar sentences only above 15 points (%i new / %i right, %i repeat / %i right)',
+      (newSeen, newCorrect, repeatSeen, repeatCorrect, warn) => {
+        expect(familiarMuchBetter({ newSeen, newCorrect, repeatSeen, repeatCorrect })).toBe(warn);
+      },
+    );
   });
 
   it('adds up mix-ups per right answer and chosen option', () => {

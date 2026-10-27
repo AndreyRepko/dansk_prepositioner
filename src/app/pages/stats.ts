@@ -5,6 +5,7 @@ import { QuizService } from '../services/quiz.service';
 import {
   byCategory,
   confusions,
+  familiarMuchBetter,
   hardest,
   overview,
   percent,
@@ -60,7 +61,7 @@ import {
     <h2>New vs. familiar sentences</h2>
     <section class="card">
       @if (gap().newSeen === 0) {
-        <p class="muted">No answers yet.</p>
+        <p class="muted">No answers since sentences were counted.</p>
       } @else {
         <p>
           Sentences seen for the first time: <strong>{{ pct(gap().newCorrect, gap().newSeen) }}%</strong>
@@ -174,12 +175,7 @@ export class StatsPage {
   protected readonly categories = computed(() => byCategory(this.expressions(), this.progress()));
   protected readonly hard = computed(() => hardest(this.expressions(), this.progress(), 10));
   protected readonly gap = computed(() => recognitionGap(this.expressions(), this.progress()));
-  /** At least 15 points better on familiar sentences, with enough answers to tell. */
-  protected readonly bigGap = computed(() => {
-    const g = this.gap();
-    const diff = percent(g.repeatCorrect, g.repeatSeen) - percent(g.newCorrect, g.newSeen);
-    return g.newSeen >= 10 && g.repeatSeen >= 10 && diff > 15;
-  });
+  protected readonly bigGap = computed(() => familiarMuchBetter(this.gap()));
   protected readonly bound = computed(() => sentenceBound(this.expressions(), this.progress(), 10));
   protected readonly mixUps = computed(() => confusions(this.expressions(), this.progress(), 8));
   protected readonly sessions = computed(() => this.progress().sessions.slice(-10).reverse());

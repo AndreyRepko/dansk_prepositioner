@@ -35,7 +35,8 @@ export interface SessionFilter {
  * A correct answer only promotes an item that was due; answering a not-yet-due
  * item (session filler) correctly keeps its box and due date, so repeating
  * sessions cannot fast-track items to "mastered". Nor can one sentence learnt by heart:
- * the item stays below `MASTERED_BOX` until `MIN_SENTENCES_FOR_MASTERY` sentences are known.
+ * the item cannot move up into `MASTERED_BOX` until `MIN_SENTENCES_FOR_MASTERY` sentences are
+ * known (items already there, from before sentences were counted, keep their box).
  */
 export function applyAnswer(
   progress: ItemProgress | undefined,
@@ -46,7 +47,7 @@ export function applyAnswer(
 ): ItemProgress {
   const prev = progress ?? { box: 0, seen: 0, correct: 0, wrong: 0, lastSeen: 0, due: 0 };
   const wasDue = prev.box === 0 || prev.due <= now;
-  const before = prev.sentences?.[sentence];
+  const before = withUntracked(prev)[sentence];
   const sentences = {
     ...prev.sentences,
     [sentence]: {
@@ -78,13 +79,28 @@ export function applyAnswer(
   return { box, ...counts, due: now + BOX_INTERVALS[box] };
 }
 
-/** Number of sentences whose latest answer was right. */
-export function knownSentences(progress: ItemProgress | undefined): number {
-  return countKnown(progress?.sentences);
+/**
+ * `progress.sentences`, plus sentence 0 for the answers given before sentences were tracked (they
+ * were all on sentence 0), so they count as seen before rather than as a first answer later.
+ */
+function withUntracked(progress: ItemProgress): Record<number, SentenceProgress> {
+  const sentences = progress.sentences ?? {};
+  const tracked = Object.values(sentences);
+  const seen = progress.seen - tracked.reduce((n, s) => n + s.seen, 0);
+  if (sentences[0] || seen <= 0) return sentences;
+  const right = progress.correct - tracked.reduce((n, s) => n + s.correct, 0);
+  const correct = Math.min(Math.max(right, 0), seen);
+  // When they started is unknown: guess the first one right if any was, and the oldest of all.
+  return { ...sentences, 0: { seen, correct, lastSeen: 0, first: correct > 0, last: false } };
 }
 
-const countKnown = (sentences: Record<number, SentenceProgress> = {}) =>
-  Object.values(sentences).filter((s) => s.last).length;
+/** Number of sentences whose latest answer was right, of the first `sentenceCount`. */
+export function knownSentences(progress: ItemProgress | undefined, sentenceCount = Infinity): number {
+  return countKnown(progress?.sentences, sentenceCount);
+}
+
+const countKnown = (sentences: Record<number, SentenceProgress> = {}, sentenceCount = Infinity) =>
+  Object.entries(sentences).filter(([i, s]) => Number(i) < sentenceCount && s.last).length;
 
 /**
  * Stars on top of mastered: 0 until mastered, then one per sentence known beyond
@@ -93,7 +109,7 @@ const countKnown = (sentences: Record<number, SentenceProgress> = {}) =>
  */
 export function tier(progress: ItemProgress | undefined, sentenceCount: number): number {
   if (!isMastered(progress)) return 0;
-  const known = knownSentences(progress);
+  const known = knownSentences(progress, sentenceCount);
   if (known >= sentenceCount) return MAX_TIER;
   return Math.min(Math.max(known - MIN_SENTENCES_FOR_MASTERY, 0), MAX_TIER - 1);
 }
@@ -108,7 +124,7 @@ export function pickSentence(
   rng: Rng = Math.random,
 ): number {
   const indexes = sentencesOf(expression).map((_, i) => i);
-  const answered = progress?.sentences ?? {};
+  const answered = progress ? withUntracked(progress) : {};
   const unseen = indexes.filter((i) => !answered[i]);
   if (unseen.length > 0) return unseen[Math.floor(rng() * unseen.length)];
   return indexes.reduce((oldest, i) =>

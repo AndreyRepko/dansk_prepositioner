@@ -101,7 +101,31 @@ describe('applyAnswer', () => {
   });
 
   it('does not demote an item mastered before sentences were counted', () => {
-    expect(applyAnswer(testProgress({ box: 4, due: NOW }), true, NOW).box).toBe(4);
+    expect(applyAnswer(testProgress({ box: 4, due: NOW }), true, NOW, 1)).toEqual(
+      expect.objectContaining({ box: 4, due: NOW + 7 * DAY }),
+    );
+    expect(applyAnswer(testProgress({ box: 5, due: NOW }), true, NOW, 1)).toEqual(
+      expect.objectContaining({ box: 5, due: NOW + 21 * DAY }),
+    );
+  });
+
+  it('holds an item mastered before sentences were counted at box 3 once it slips', () => {
+    let p = applyAnswer(testProgress({ box: 4, due: NOW }), false, NOW, 1);
+    expect(p.box).toBe(1);
+    for (const step of [1, 2, 3, 4]) p = applyAnswer(p, true, NOW + step * 30 * DAY, 1);
+    expect(p.box).toBe(3);
+  });
+
+  it('counts answers given before sentences were counted as answers on sentence 0', () => {
+    const legacy = testProgress({ box: 3, seen: 5, correct: 4, wrong: 1, due: NOW });
+    expect(applyAnswer(legacy, true, NOW, 0).sentences).toEqual({
+      0: sentence({ seen: 6, correct: 5, lastSeen: NOW, first: true, last: true }),
+    });
+    const elsewhere = applyAnswer(legacy, false, NOW, 2, 'i');
+    expect(elsewhere.sentences).toEqual({ 2: sentence({ correct: 0, lastSeen: NOW, first: false, last: false }) });
+    expect(applyAnswer(elsewhere, true, NOW + 1, 0).sentences?.[0]).toEqual(
+      sentence({ seen: 6, correct: 5, lastSeen: NOW + 1, first: true, last: true }),
+    );
   });
 
   it('moves a box-1 item to box 2 when answered correctly', () => {
@@ -207,6 +231,13 @@ describe('pickSentence', () => {
     });
     expect(pickSentence(e, p, seededRng())).toBe(1);
   });
+
+  it('treats sentence 0 as answered long ago when answers were given before sentences were counted', () => {
+    const legacy = testProgress({ seen: 4 });
+    expect([0, 0.99].map((r) => pickSentence(e, legacy, () => r))).toEqual([1, 2]);
+    const rest = { 1: sentence({ lastSeen: 10 }), 2: sentence({ lastSeen: 20 }) };
+    expect(pickSentence(e, testProgress({ seen: 6, sentences: rest }), seededRng())).toBe(0);
+  });
 });
 
 describe('tier', () => {
@@ -225,6 +256,12 @@ describe('tier', () => {
 
   it('gives the top tier when all of fewer sentences are known', () => {
     expect(tier(testProgress({ box: 4, sentences: knownUpTo(3) }), 3)).toBe(3);
+  });
+
+  it('ignores answers on sentences the expression no longer has', () => {
+    const sentences = { ...knownUpTo(4), 7: sentence(), 9: sentence() };
+    expect(knownSentences(testProgress({ sentences }), 6)).toBe(4);
+    expect(tier(testProgress({ box: 4, sentences }), 6)).toBe(1);
   });
 });
 

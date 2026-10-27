@@ -113,7 +113,7 @@ export function hardest(expressions: Expression[], state: ProgressState, limit: 
         expression,
         correct: p?.correct ?? 0,
         wrong: p?.wrong ?? 0,
-        known: knownSentences(p),
+        known: knownSentences(p, sentencesOf(expression).length),
         sentences: sentencesOf(expression).length,
         tier: tier(p, sentencesOf(expression).length),
       };
@@ -128,8 +128,10 @@ function gapOf(p: ItemProgress | undefined): RecognitionGap {
   for (const s of Object.values(p?.sentences ?? {})) {
     gap.newSeen++;
     if (s.first) gap.newCorrect++;
-    gap.repeatSeen += s.seen - 1;
-    gap.repeatCorrect += s.correct - (s.first ? 1 : 0);
+    // Clamped so an inconsistent entry cannot show negative or impossible counts.
+    const repeats = Math.max(0, s.seen - 1);
+    gap.repeatSeen += repeats;
+    gap.repeatCorrect += Math.min(Math.max(0, s.correct - (s.first ? 1 : 0)), repeats);
   }
   return gap;
 }
@@ -148,6 +150,18 @@ export function recognitionGap(expressions: Expression[], state: ProgressState):
     total.repeatCorrect += gap.repeatCorrect;
   }
   return total;
+}
+
+/** Answers needed on each side before `familiarMuchBetter` says anything. */
+export const MIN_GAP_ANSWERS = 10;
+
+/**
+ * More than 15 percentage points (rounded) better on familiar sentences than on new ones, with at
+ * least `MIN_GAP_ANSWERS` answers on each side.
+ */
+export function familiarMuchBetter(g: RecognitionGap): boolean {
+  const diff = percent(g.repeatCorrect, g.repeatSeen) - percent(g.newCorrect, g.newSeen);
+  return g.newSeen >= MIN_GAP_ANSWERS && g.repeatSeen >= MIN_GAP_ANSWERS && diff > 15;
 }
 
 const ratio = (part: number, whole: number) => (whole === 0 ? 0 : part / whole);

@@ -21,7 +21,8 @@ describe('data/praepositioner.json', () => {
     expect(CATEGORIES).toContain(e.kategori);
     expect(e.engelsk?.trim()).toBeTruthy();
     const sentences = sentencesOf(e);
-    expect(sentences.length).toBeGreaterThan(1);
+    // Mastery needs 3 known sentences and the ★ tiers say "4 / 5 / all 6".
+    expect(sentences.length).toBe(6);
     for (const s of sentences) {
       expect(s.saetning.split(GAP).length).toBe(2);
       expect(s.forkerte.length).toBe(3);
