@@ -1,3 +1,4 @@
+import { DONT_KNOW } from '../models/expression';
 import { emptyProgress, ProgressState, SentenceProgress } from '../models/progress';
 import { seededRng, testExpression, testProgress } from '../testing/fixtures';
 import { Box } from '../models/progress';
@@ -82,6 +83,14 @@ describe('applyAnswer', () => {
       1: sentence({ seen: 2, correct: 1, lastSeen: NOW + 1, first: false, last: true }),
     });
     expect(knownSentences(applyAnswer(p, false, NOW + 3, 0, 'til'))).toBe(1);
+  });
+
+  it('counts "Ved ikke" as wrong, but not as a mix-up', () => {
+    let p = applyAnswer(testProgress({ box: 3, due: NOW, seen: 2, correct: 2 }), false, NOW, 1, DONT_KNOW);
+    p = applyAnswer(p, false, NOW, 2, DONT_KNOW);
+    expect(p).toEqual(expect.objectContaining({ box: 1, seen: 4, correct: 2, wrong: 2, dontKnow: 2 }));
+    expect(p.confusions).toBeUndefined();
+    expect(p.sentences?.[1]).toEqual(expect.objectContaining({ first: false, last: false }));
   });
 
   it('counts the wrong options chosen', () => {

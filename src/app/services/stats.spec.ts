@@ -52,9 +52,18 @@ describe('stats', () => {
     expect(hardest(all, state, 10).map((h) => h.expression.id)).toEqual([2, 3]);
   });
 
+  it('totals "Ved ikke" answers and shows them per hard item', () => {
+    const s: ProgressState = {
+      ...state,
+      items: { ...state.items, 2: { ...state.items[2], dontKnow: 1 } },
+    };
+    expect(totals(all, s).dontKnow).toBe(1);
+    expect(hardest(all, s, 10)[0]).toEqual(expect.objectContaining({ wrong: 2, dontKnow: 1 }));
+  });
+
   it('totals answers over current expressions only', () => {
     const withRemoved: ProgressState = { ...state, items: { ...state.items, 99: testProgress({ seen: 50, correct: 50 }) } };
-    expect(totals(all, withRemoved)).toEqual({ answers: 8, correct: 5 });
+    expect(totals(all, withRemoved)).toEqual({ answers: 8, correct: 5, dontKnow: 0 });
   });
 
   const sentence = (seen: number, correct: number, first: boolean, last = true): SentenceProgress => ({

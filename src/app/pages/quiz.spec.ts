@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
+import { DONT_KNOW } from '../models/expression';
 import { emptyProgress } from '../models/progress';
 import { ExpressionService } from '../services/expression.service';
 import { ProgressStore } from '../services/progress-store';
@@ -60,7 +61,7 @@ describe('QuizPage', () => {
     key(keyFor('på'), { ctrlKey: true });
     key(keyFor('på'), { altKey: true });
     key(keyFor('på'), { metaKey: true });
-    key('0');
+    key('0', { ctrlKey: true });
     key('5');
     expect(quiz.chosen()).toBeNull();
     expect(quiz.index()).toBe(0);
@@ -73,6 +74,32 @@ describe('QuizPage', () => {
     expect(enter.defaultPrevented).toBe(true);
     expect(quiz.index()).toBe(1);
     expect(quiz.current()?.retry).toBe(true);
+  });
+
+  it('answers "Ved ikke" with 0: shows the answer without marking it wrong, and retries it', async () => {
+    const { fixture, el } = await render();
+    key('0');
+    await fixture.whenStable();
+
+    expect(quiz.chosen()).toBe(DONT_KNOW);
+    expect(quiz.isCorrect()).toBe(false);
+    expect(el.querySelector('.sentence .gap')?.classList).not.toContain('bad');
+    expect(el.querySelector('.feedback')?.textContent).toContain('The answer is “på”');
+    expect(el.querySelector('.feedback')?.textContent).not.toContain('Forkert');
+    expect(el.querySelector('.feedback')?.classList).not.toContain('bad');
+    expect(el.querySelector('.options button.good')?.textContent).toContain('på');
+    expect(el.querySelector('.options button.bad')).toBeNull();
+    expect(quiz.queue().at(-1)?.retry).toBe(true);
+  });
+
+  it('answers "Ved ikke" with its button', async () => {
+    const { fixture, el } = await render();
+    el.querySelector<HTMLButtonElement>('.dont-know')!.click();
+    await fixture.whenStable();
+    expect(quiz.chosen()).toBe(DONT_KNOW);
+    const button = el.querySelector<HTMLButtonElement>('.dont-know')!;
+    expect(button.disabled).toBe(true);
+    expect(button.classList).toContain('chosen');
   });
 
   it('navigates to the summary after the last question', async () => {

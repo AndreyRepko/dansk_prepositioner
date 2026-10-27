@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { sentencesOf } from '../models/expression';
+import { DONT_KNOW, sentencesOf } from '../models/expression';
 import { emptyProgress, MAX_SESSIONS, ProgressState } from '../models/progress';
 import { seededRng, testExpression, testProgress } from '../testing/fixtures';
 import { ExpressionService } from './expression.service';
@@ -162,6 +162,23 @@ describe('QuizService', () => {
     expect(quiz.progress().items[id].box).toBe(2);
     expect(quiz.results()).toEqual([expect.objectContaining({ correct: true, chosen: 'på' })]);
     expect(store.saved.length).toBe(1);
+  });
+
+  it('records "Ved ikke" as a wrong first attempt, not as a mix-up', () => {
+    quiz.start({ size: 1 });
+    const id = quiz.current()!.expression.id;
+    quiz.answer(DONT_KNOW);
+    expect(quiz.progress().items[id]).toEqual(
+      expect.objectContaining({ box: 1, wrong: 1, dontKnow: 1 }),
+    );
+    expect(quiz.progress().items[id].confusions).toBeUndefined();
+    expect(quiz.results()).toEqual([expect.objectContaining({ chosen: DONT_KNOW, correct: false })]);
+
+    quiz.next();
+    expect(quiz.current()?.retry).toBe(true);
+    quiz.answer(DONT_KNOW);
+    expect(quiz.progress().items[id]).toEqual(expect.objectContaining({ seen: 1, dontKnow: 1 }));
+    expect(quiz.queue().length).toBe(3);
   });
 
   it('ignores a second answer to the same question', () => {

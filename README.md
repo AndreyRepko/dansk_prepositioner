@@ -14,7 +14,7 @@ npm test           # unit tests (Vitest)
 npm run build      # output: dist/dansk-prepositioner/browser (uses the API for progress)
 ```
 
-Keyboard: `1`–`4` answers, `Enter` goes to the next question.
+Keyboard: `1`–`4` answers, `0` is *Ved ikke* (don't know), `Enter` goes to the next question.
 
 ### With the API locally
 
@@ -94,6 +94,12 @@ in box 4–5 from before sentences were counted keep their box. A session (10 qu
 items → new items (`mine_fejl` first) → least recently seen items. Within a session a wrong
 answer is asked again at the end, with the same sentence (or another one, see below), until it is answered correctly (only
 the first attempt counts for the statistics).
+
+**Ved ikke** (don't know) counts as a wrong answer: the item goes back to box 1 and is asked again
+at the end of the session. It is not counted as a mix-up, and the answer is shown without
+"Forkert". It exists so that blind guesses (right 1 time in 4) do not promote items or mark
+sentences as known; guessing itself is not harmful when the right answer is shown right away
+(Kornell, Hays & Bjork 2009; Butler & Roediger 2008). Statistics show how often it was used.
 
 Each time an expression comes up it is asked with a sentence not answered yet, otherwise with the
 one answered longest ago. Per sentence the progress keeps the answer counts, whether the very first

@@ -14,6 +14,8 @@ export interface ItemProgress {
   sentences?: Record<number, SentenceProgress>;
   /** How often each wrong option was chosen (retries within a session are not recorded). */
   confusions?: Record<string, number>;
+  /** How often "Ved ikke" was answered (also counted in `wrong`, not in `confusions`). */
+  dontKnow?: number;
 }
 
 export interface SentenceProgress {
@@ -68,9 +70,13 @@ function isSentenceProgress(v: unknown): v is SentenceProgress {
   );
 }
 
-/** The item with malformed `sentences` / `confusions` entries dropped (and empty maps left out). */
+/**
+ * The item with malformed `sentences` / `confusions` entries dropped (and empty maps, or a
+ * `dontKnow` that is not a positive count, left out).
+ */
 function parseItem(item: ItemProgress): ItemProgress {
-  const { sentences, confusions, ...rest } = item as ItemProgress & Record<string, unknown>;
+  const { sentences, confusions, dontKnow, ...rest } = item as ItemProgress &
+    Record<string, unknown>;
   const s = isObject(sentences)
     ? Object.entries(sentences).filter(
         ([k, v]) => /^(0|[1-9]\d*)$/.test(k) && isSentenceProgress(v),
@@ -83,6 +89,7 @@ function parseItem(item: ItemProgress): ItemProgress {
     ...rest,
     ...(s.length > 0 && { sentences: Object.fromEntries(s) }),
     ...(c.length > 0 && { confusions: Object.fromEntries(c) }),
+    ...(isNum(dontKnow) && dontKnow > 0 && { dontKnow }),
   };
 }
 
@@ -144,23 +151,26 @@ export function mergeProgress(a: ProgressState, b: ProgressState): ProgressState
       },
       mergeSentences(ours.sentences ?? {}, theirs.sentences ?? {}),
       addCounts(ours.confusions ?? {}, theirs.confusions ?? {}, 1),
+      (ours.dontKnow ?? 0) + (theirs.dontKnow ?? 0),
     );
   }
   const sessions = [...a.sessions, ...b.sessions].sort((x, y) => x.date - y.date).slice(-MAX_SESSIONS);
   return { version: 1, items, sessions, ...(a.merged && { merged: a.merged }) };
 }
 
-/** `item` with these sentence and confusion maps, left out when empty. */
+/** `item` with these sentence and confusion maps and "Ved ikke" count, left out when empty. */
 function withDetails(
   item: ItemProgress,
   sentences: Record<number, SentenceProgress>,
   confusions: Record<string, number>,
+  dontKnow: number,
 ): ItemProgress {
-  const { sentences: _s, confusions: _c, ...rest } = item;
+  const { sentences: _s, confusions: _c, dontKnow: _d, ...rest } = item;
   return {
     ...rest,
     ...(Object.keys(sentences).length > 0 && { sentences }),
     ...(Object.keys(confusions).length > 0 && { confusions }),
+    ...(dontKnow > 0 && { dontKnow }),
   };
 }
 
@@ -246,6 +256,7 @@ export function progressSince(current: ProgressState, snapshot: ProgressState): 
         },
         sentencesSince(now.sentences ?? {}, then.sentences ?? {}),
         addCounts(now.confusions ?? {}, then.confusions ?? {}, -1),
+        (now.dontKnow ?? 0) - (then.dontKnow ?? 0),
       );
     }
   }

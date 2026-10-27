@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, HostListener, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GAP } from '../models/expression';
+import { DONT_KNOW, GAP } from '../models/expression';
 import { QuizService } from '../services/quiz.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { QuizService } from '../services/quiz.service';
 
       <section class="card">
         <p class="sentence">
-          {{ parts().before }}<span class="gap" [class.good]="correct() === true" [class.bad]="correct() === false">{{
+          {{ parts().before }}<span class="gap" [class.good]="correct() === true" [class.bad]="correct() === false && !dontKnow()">{{
             chosen() === null ? '___' : q.expression.praeposition
           }}</span>{{ parts().after }}
         </p>
@@ -36,11 +36,19 @@ import { QuizService } from '../services/quiz.service';
             </button>
           }
         </div>
+        <button
+          class="dont-know"
+          [class.chosen]="dontKnow()"
+          [disabled]="chosen() !== null"
+          (click)="answer(dontKnowAnswer)"
+        >
+          <span class="key">0</span> Ved ikke
+        </button>
       </section>
 
       @if (chosen() !== null) {
-        <section class="card feedback" [class.good]="correct()" [class.bad]="!correct()">
-          <p class="verdict">{{ correct() ? 'Rigtigt!' : 'Forkert — the answer is “' + q.expression.praeposition + '”' }}</p>
+        <section class="card feedback" [class.good]="correct()" [class.bad]="!correct() && !dontKnow()">
+          <p class="verdict">{{ verdict() }}</p>
           <p><strong>{{ q.expression.udtryk }}</strong> — {{ q.expression.forklaring }}</p>
           <p class="muted">{{ q.expression.ukrainsk }}</p>
           <p class="muted">{{ q.expression.engelsk }}</p>
@@ -88,8 +96,21 @@ import { QuizService } from '../services/quiz.service';
       padding: 0.85rem;
       text-align: left;
     }
-    .options button:disabled {
+    .dont-know {
+      display: block;
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 0.6rem;
+      color: var(--muted);
+    }
+    .options button:disabled,
+    .dont-know:disabled {
       opacity: 1;
+    }
+    .dont-know.chosen {
+      border-color: var(--text);
+      color: var(--text);
+      font-weight: 600;
     }
     .options button.good {
       background: var(--good-bg);
@@ -146,6 +167,15 @@ export class QuizPage implements OnInit {
     if (!this.quiz.active()) void this.router.navigate(['/']);
   }
 
+  protected readonly dontKnowAnswer = DONT_KNOW;
+  protected readonly dontKnow = computed(() => this.chosen() === DONT_KNOW);
+  /** "Ved ikke" shows the answer without "Forkert". */
+  protected readonly verdict = computed(() => {
+    const answer = `“${this.question()?.expression.praeposition}”`;
+    if (this.correct()) return 'Rigtigt!';
+    return this.dontKnow() ? `The answer is ${answer}` : `Forkert — the answer is ${answer}`;
+  });
+
   protected answer(option: string): void {
     this.quiz.answer(option);
   }
@@ -160,6 +190,7 @@ export class QuizPage implements OnInit {
     const q = this.question();
     if (!q || event.ctrlKey || event.altKey || event.metaKey) return;
     if (this.chosen() === null) {
+      if (event.key === '0') return this.answer(DONT_KNOW);
       const i = Number(event.key) - 1;
       if (i >= 0 && i < q.options.length) this.answer(q.options[i]);
     } else if (event.key === 'Enter') {

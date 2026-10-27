@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { GAP } from '../models/expression';
+import { DONT_KNOW, GAP } from '../models/expression';
 import { QuizService } from '../services/quiz.service';
 import { percent } from '../services/stats';
 
@@ -22,7 +22,7 @@ import { percent } from '../services/stats';
           <p class="sentence">{{ fill(m.saetning, m.expression.praeposition) }}</p>
           <p>
             <strong>{{ m.expression.udtryk }}</strong> — {{ m.expression.forklaring }}
-            <span class="muted">(you chose “{{ m.chosen }}”)</span>
+            <span class="muted">{{ m.chosen === dontKnow ? '(ved ikke)' : '(you chose “' + m.chosen + '”)' }}</span>
           </p>
           <p class="muted">{{ m.expression.ukrainsk }}</p>
           <p class="muted">{{ m.expression.engelsk }}</p>
@@ -60,6 +60,7 @@ export class SummaryPage implements OnInit {
   private readonly router = inject(Router);
 
   protected readonly results = this.quiz.results;
+  protected readonly dontKnow = DONT_KNOW;
   protected readonly correct = computed(() => this.results().filter((r) => r.correct).length);
   protected readonly mistakes = computed(() => this.results().filter((r) => !r.correct));
   protected readonly pct = computed(() => percent(this.correct(), this.results().length));

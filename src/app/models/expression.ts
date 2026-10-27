@@ -34,6 +34,9 @@ export interface ExpressionFile {
 
 export const GAP = '___';
 
+/** The answer "Ved ikke" (don't know): counted as wrong, shown with the right answer. */
+export const DONT_KNOW = 'ved ikke';
+
 /** All sentences of an expression; index 0 is `saetning`, progress refers to them by index. */
 export function sentencesOf(e: Expression): Sentence[] {
   return [{ saetning: e.saetning, forkerte: e.forkerte }, ...(e.flere_saetninger ?? [])];
