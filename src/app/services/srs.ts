@@ -175,6 +175,18 @@ export function selectSession(
   return shuffle([...learning, ...due, ...fresh, ...later].slice(0, size), rng);
 }
 
+/** A random sentence other than `current` (`current` itself when there is no other). */
+export function otherSentence(
+  expression: Expression,
+  current: number,
+  rng: Rng = Math.random,
+): number {
+  const others = sentencesOf(expression)
+    .map((_, i) => i)
+    .filter((i) => i !== current);
+  return others.length > 0 ? others[Math.floor(rng() * others.length)] : current;
+}
+
 /** The correct answer plus the sentence's wrong options, shuffled. */
 export function buildOptions(answer: string, sentence: Sentence, rng: Rng = Math.random): string[] {
   return shuffle([answer, ...sentence.forkerte], rng);

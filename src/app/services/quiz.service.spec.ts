@@ -141,6 +141,17 @@ describe('QuizService', () => {
     expect(quiz.current()).toEqual(expect.objectContaining({ retry: true, sentence: first.sentence }));
   });
 
+  it('asks a retry with another sentence when that is set', () => {
+    quiz.start({ size: 1, retryOtherSentence: true });
+    const first = quiz.current()!;
+    quiz.answer('i');
+    quiz.next();
+    const retry = quiz.current()!;
+    expect(retry.retry).toBe(true);
+    expect(retry.sentence).not.toBe(first.sentence);
+    expect(sentencesOf(retry.expression)[retry.sentence].saetning).toBe(retry.saetning);
+  });
+
   it('records a correct first attempt and saves progress', async () => {
     quiz.start({ size: 1 });
     const id = quiz.current()!.expression.id;
