@@ -32,7 +32,7 @@ describe('QuizPage', () => {
 
   it('shows the sentence with a gap and four options', async () => {
     const { el } = await render();
-    expect(el.querySelector('.sentence')?.textContent).toContain('Sætning 1 ___ slut.');
+    expect(el.querySelector('.sentence')?.textContent).toContain(quiz.current()!.saetning);
     expect(el.querySelectorAll('.options button').length).toBe(4);
   });
 

@@ -1,5 +1,5 @@
 import data from '../../data/praepositioner.json';
-import { Category, ExpressionFile, GAP } from './models/expression';
+import { Category, ExpressionFile, GAP, sentencesOf } from './models/expression';
 
 const CATEGORIES: Category[] = ['tillægsord', 'udsagnsord', 'navneord', 'tid', 'sted', 'faste vendinger'];
 
@@ -18,11 +18,18 @@ describe('data/praepositioner.json', () => {
   });
 
   it.each(items.map((e) => [e.id, e] as const))('item %i is a valid question', (_, e) => {
-    expect(e.saetning.split(GAP).length).toBe(2);
-    expect(e.forkerte.length).toBe(3);
-    const options = [e.praeposition, ...e.forkerte].map((o) => o.trim().toLowerCase());
-    expect(new Set(options).size).toBe(4);
     expect(CATEGORIES).toContain(e.kategori);
     expect(e.engelsk?.trim()).toBeTruthy();
+    const sentences = sentencesOf(e);
+    // Mastery needs 3 known sentences and the ★ tiers say "4 / 5 / all 6".
+    expect(sentences.length).toBe(6);
+    for (const s of sentences) {
+      expect(s.saetning.split(GAP).length).toBe(2);
+      expect(s.forkerte.length).toBe(3);
+      const options = [e.praeposition, ...s.forkerte].map((o) => o.trim().toLowerCase());
+      expect(new Set(options).size).toBe(4);
+    }
+    // Progress is kept per sentence index, and the same sentence twice would not test anything new.
+    expect(new Set(sentences.map((s) => s.saetning)).size).toBe(sentences.length);
   });
 });

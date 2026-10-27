@@ -138,7 +138,7 @@ export class QuizPage implements OnInit {
   protected readonly number = computed(() => Math.min(this.quiz.index() + 1, this.total()));
   protected readonly score = computed(() => this.quiz.results().filter((r) => r.correct).length);
   protected readonly parts = computed(() => {
-    const [before, after = ''] = (this.question()?.expression.saetning ?? '').split(GAP);
+    const [before, after = ''] = (this.question()?.saetning ?? '').split(GAP);
     return { before, after };
   });
 

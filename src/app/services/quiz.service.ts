@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { Expression } from '../models/expression';
+import { Expression, sentencesOf } from '../models/expression';
 import {
   emptyProgress,
   isEmptyProgress,
@@ -13,7 +13,7 @@ import { ExpressionService } from './expression.service';
 import { GuestMerge, GuestProgressStore } from './local-storage-progress-store';
 import { passwordHash } from './password-hash';
 import { Account, ProgressStore, WrongPasswordError } from './progress-store';
-import { applyAnswer, buildOptions, Rng, selectSession, SessionFilter } from './srs';
+import { applyAnswer, buildOptions, pickSentence, Rng, selectSession, SessionFilter } from './srs';
 import { cleanName, nameKey } from './user-name';
 import { UserService } from './user.service';
 
@@ -23,6 +23,9 @@ export interface QuizSettings extends SessionFilter {
 
 export interface Question {
   expression: Expression;
+  /** Index of the asked sentence in `sentencesOf(expression)`. */
+  sentence: number;
+  saetning: string;
   options: string[];
   /** A re-ask of an item answered wrong earlier in this session; it does not count for stats. */
   retry: boolean;
@@ -30,6 +33,7 @@ export interface Question {
 
 export interface AnswerRecord {
   expression: Expression;
+  saetning: string;
   chosen: string;
   correct: boolean;
 }
@@ -301,13 +305,20 @@ export class QuizService {
       const id = q.expression.id;
       this.progress.update((s) => ({
         ...s,
-        items: { ...s.items, [id]: applyAnswer(s.items[id], correct, this.now()) },
+        items: {
+          ...s.items,
+          [id]: applyAnswer(s.items[id], correct, this.now(), q.sentence, option),
+        },
       }));
-      this.results.update((r) => [...r, { expression: q.expression, chosen: option, correct }]);
+      this.results.update((r) => [
+        ...r,
+        { expression: q.expression, saetning: q.saetning, chosen: option, correct },
+      ]);
       void this.persist();
     }
     if (!correct) {
-      this.queue.update((queue) => [...queue, this.toQuestion(q.expression, true)]);
+      // The same sentence again (whether another one would help more is untested).
+      this.queue.update((queue) => [...queue, this.toQuestion(q.expression, true, q.sentence)]);
     }
   }
 
@@ -363,7 +374,19 @@ export class QuizService {
     return saved;
   }
 
-  private toQuestion(expression: Expression, retry: boolean): Question {
-    return { expression, options: buildOptions(expression, this.rng), retry };
+  /** A question on `sentence`, or by default on the sentence due for this expression. */
+  private toQuestion(
+    expression: Expression,
+    retry: boolean,
+    sentence = pickSentence(expression, this.progress().items[expression.id], this.rng),
+  ): Question {
+    const asked = sentencesOf(expression)[sentence];
+    return {
+      expression,
+      sentence,
+      saetning: asked.saetning,
+      options: buildOptions(expression.praeposition, asked, this.rng),
+      retry,
+    };
   }
 }

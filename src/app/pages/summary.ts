@@ -19,7 +19,7 @@ import { percent } from '../services/stats';
       <h2>Mistakes</h2>
       @for (m of mistakes(); track m.expression.id) {
         <section class="card mistake">
-          <p class="sentence">{{ fill(m.expression.saetning, m.expression.praeposition) }}</p>
+          <p class="sentence">{{ fill(m.saetning, m.expression.praeposition) }}</p>
           <p>
             <strong>{{ m.expression.udtryk }}</strong> — {{ m.expression.forklaring }}
             <span class="muted">(you chose “{{ m.chosen }}”)</span>
