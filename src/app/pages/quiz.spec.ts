@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
+import { DONT_KNOW } from '../models/expression';
 import { emptyProgress } from '../models/progress';
 import { ExpressionService } from '../services/expression.service';
 import { ProgressStore } from '../services/progress-store';
@@ -80,8 +81,9 @@ describe('QuizPage', () => {
     key('0');
     await fixture.whenStable();
 
-    expect(quiz.chosen()).toBe('ved ikke');
+    expect(quiz.chosen()).toBe(DONT_KNOW);
     expect(quiz.isCorrect()).toBe(false);
+    expect(el.querySelector('.sentence .gap')?.classList).not.toContain('bad');
     expect(el.querySelector('.feedback')?.textContent).toContain('The answer is “på”');
     expect(el.querySelector('.feedback')?.textContent).not.toContain('Forkert');
     expect(el.querySelector('.feedback')?.classList).not.toContain('bad');
@@ -94,8 +96,10 @@ describe('QuizPage', () => {
     const { fixture, el } = await render();
     el.querySelector<HTMLButtonElement>('.dont-know')!.click();
     await fixture.whenStable();
-    expect(quiz.chosen()).toBe('ved ikke');
-    expect(el.querySelector<HTMLButtonElement>('.dont-know')!.disabled).toBe(true);
+    expect(quiz.chosen()).toBe(DONT_KNOW);
+    const button = el.querySelector<HTMLButtonElement>('.dont-know')!;
+    expect(button.disabled).toBe(true);
+    expect(button.classList).toContain('chosen');
   });
 
   it('navigates to the summary after the last question', async () => {

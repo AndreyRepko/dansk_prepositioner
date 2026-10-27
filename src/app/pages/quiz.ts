@@ -36,20 +36,19 @@ import { QuizService } from '../services/quiz.service';
             </button>
           }
         </div>
-        <button class="dont-know" [disabled]="chosen() !== null" (click)="answer(dontKnowAnswer)">
+        <button
+          class="dont-know"
+          [class.chosen]="dontKnow()"
+          [disabled]="chosen() !== null"
+          (click)="answer(dontKnowAnswer)"
+        >
           <span class="key">0</span> Ved ikke
         </button>
       </section>
 
       @if (chosen() !== null) {
         <section class="card feedback" [class.good]="correct()" [class.bad]="!correct() && !dontKnow()">
-          <p class="verdict">
-            {{
-              correct()
-                ? 'Rigtigt!'
-                : (dontKnow() ? 'The answer is “' : 'Forkert — the answer is “') + q.expression.praeposition + '”'
-            }}
-          </p>
+          <p class="verdict">{{ verdict() }}</p>
           <p><strong>{{ q.expression.udtryk }}</strong> — {{ q.expression.forklaring }}</p>
           <p class="muted">{{ q.expression.ukrainsk }}</p>
           <p class="muted">{{ q.expression.engelsk }}</p>
@@ -104,8 +103,14 @@ import { QuizService } from '../services/quiz.service';
       padding: 0.6rem;
       color: var(--muted);
     }
-    .options button:disabled {
+    .options button:disabled,
+    .dont-know:disabled {
       opacity: 1;
+    }
+    .dont-know.chosen {
+      border-color: var(--text);
+      color: var(--text);
+      font-weight: 600;
     }
     .options button.good {
       background: var(--good-bg);
@@ -164,6 +169,12 @@ export class QuizPage implements OnInit {
 
   protected readonly dontKnowAnswer = DONT_KNOW;
   protected readonly dontKnow = computed(() => this.chosen() === DONT_KNOW);
+  /** "Ved ikke" shows the answer without "Forkert". */
+  protected readonly verdict = computed(() => {
+    const answer = `“${this.question()?.expression.praeposition}”`;
+    if (this.correct()) return 'Rigtigt!';
+    return this.dontKnow() ? `The answer is ${answer}` : `Forkert — the answer is ${answer}`;
+  });
 
   protected answer(option: string): void {
     this.quiz.answer(option);
