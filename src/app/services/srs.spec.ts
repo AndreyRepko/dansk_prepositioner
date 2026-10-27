@@ -5,6 +5,7 @@ import {
   applyAnswer,
   buildOptions,
   knownSentences,
+  otherSentence,
   pickSentence,
   selectSession,
   shuffle,
@@ -237,6 +238,17 @@ describe('pickSentence', () => {
     expect([0, 0.99].map((r) => pickSentence(e, legacy, () => r))).toEqual([1, 2]);
     const rest = { 1: sentence({ lastSeen: 10 }), 2: sentence({ lastSeen: 20 }) };
     expect(pickSentence(e, testProgress({ seen: 6, sentences: rest }), seededRng())).toBe(0);
+  });
+});
+
+describe('otherSentence', () => {
+  it('picks any sentence but the current one', () => {
+    const e = testExpression(1); // 3 sentences
+    expect([0, 0.99].map((r) => otherSentence(e, 1, () => r))).toEqual([0, 2]);
+  });
+
+  it('keeps the only sentence there is', () => {
+    expect(otherSentence(testExpression(1, { flere_saetninger: [] }), 0, () => 0.5)).toBe(0);
   });
 });
 

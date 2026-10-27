@@ -92,7 +92,7 @@ always sends the item back to box 1. An item reaches box 4 (mastered) only when 
 sentences are known (their latest answer was right); until then it stays in box 3. Items already
 in box 4–5 from before sentences were counted keep their box. A session (10 questions by default) is filled with: recent mistakes → other due
 items → new items (`mine_fejl` first) → least recently seen items. Within a session a wrong
-answer is asked again at the end, with the same sentence, until it is answered correctly (only
+answer is asked again at the end, with the same sentence (or another one, see below), until it is answered correctly (only
 the first attempt counts for the statistics).
 
 Each time an expression comes up it is asked with a sentence not answered yet, otherwise with the
@@ -109,9 +109,10 @@ as answers on it (whether the very first was right is guessed). From that:
   are listed.
 - **Common mix-ups** (Statistics): which preposition was chosen instead of which, with examples.
 
-Whether a retry should rather use another sentence is open (studies are mixed); a later
-within-person test could randomly use the same or another sentence per retry and compare the
-first answers at the next review.
+Whether a retry should rather use another sentence is open (studies are mixed), so it is a
+setting on Home: *Retry mistakes with another sentence* re-asks with a random other sentence. A
+later within-person test could randomly use the same or another sentence per retry and compare
+the first answers at the next review.
 
 ## Guests, accounts and storage
 
