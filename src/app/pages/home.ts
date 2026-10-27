@@ -53,6 +53,14 @@ import { overview, percent } from '../services/stats';
         <input type="checkbox" [checked]="settings().onlyMineFejl ?? false" (change)="setMineFejl($event)" />
         Only my own mistakes
       </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="settings().retryOtherSentence ?? false"
+          (change)="setRetryOther($event)"
+        />
+        Retry mistakes with another sentence
+      </label>
       <div class="actions">
         <button class="primary" (click)="start()">Start</button>
       </div>
@@ -124,6 +132,11 @@ export class HomePage {
   protected setMineFejl(event: Event): void {
     const onlyMineFejl = (event.target as HTMLInputElement).checked;
     this.settings.update((s) => ({ ...s, onlyMineFejl }));
+  }
+
+  protected setRetryOther(event: Event): void {
+    const retryOtherSentence = (event.target as HTMLInputElement).checked;
+    this.settings.update((s) => ({ ...s, retryOtherSentence }));
   }
 
   protected start(): void {

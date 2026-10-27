@@ -13,12 +13,22 @@ import { ExpressionService } from './expression.service';
 import { GuestMerge, GuestProgressStore } from './local-storage-progress-store';
 import { passwordHash } from './password-hash';
 import { Account, ProgressStore, WrongPasswordError } from './progress-store';
-import { applyAnswer, buildOptions, pickSentence, Rng, selectSession, SessionFilter } from './srs';
+import {
+  applyAnswer,
+  buildOptions,
+  otherSentence,
+  pickSentence,
+  Rng,
+  selectSession,
+  SessionFilter,
+} from './srs';
 import { cleanName, nameKey } from './user-name';
 import { UserService } from './user.service';
 
 export interface QuizSettings extends SessionFilter {
   size: number;
+  /** Re-ask a wrong answer with another sentence (random) instead of the same one. */
+  retryOtherSentence?: boolean;
 }
 
 export interface Question {
@@ -317,8 +327,11 @@ export class QuizService {
       void this.persist();
     }
     if (!correct) {
-      // The same sentence again (whether another one would help more is untested).
-      this.queue.update((queue) => [...queue, this.toQuestion(q.expression, true, q.sentence)]);
+      // Which helps more, the same sentence or another one, is untested; it is a setting.
+      const sentence = this.settings().retryOtherSentence
+        ? otherSentence(q.expression, q.sentence, this.rng)
+        : q.sentence;
+      this.queue.update((queue) => [...queue, this.toQuestion(q.expression, true, sentence)]);
     }
   }
 
