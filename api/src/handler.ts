@@ -2,8 +2,8 @@ import { timingSafeEqual } from 'node:crypto';
 import { cleanName, nameKey } from './names.js';
 import { ProgressRepo, RowConflictError } from './progress-repo.js';
 
-/** Real progress for 230 expressions is ~30K chars; this leaves plenty of room. */
-export const MAX_BODY_CHARS = 200_000;
+/** Real progress for 230 expressions is ~30K chars, up to ~150K with answers on every sentence. */
+export const MAX_BODY_CHARS = 400_000;
 
 /** The app sends SHA-256(password + name key) as lowercase hex. */
 const HASH = /^[0-9a-f]{64}$/;

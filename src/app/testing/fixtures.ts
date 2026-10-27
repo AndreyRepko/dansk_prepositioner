@@ -8,6 +8,10 @@ export function testExpression(id: number, overrides: Partial<Expression> = {}):
     praeposition: 'på',
     saetning: `Sætning ${id} ___ slut.`,
     forkerte: ['i', 'til', 'om'],
+    flere_saetninger: [
+      { saetning: `Sætning ${id}b ___ slut.`, forkerte: ['af', 'med', 'for'] },
+      { saetning: `Sætning ${id}c ___ slut.`, forkerte: ['ved', 'over', 'fra'] },
+    ],
     forklaring: 'forklaring',
     ukrainsk: 'переклад',
     engelsk: 'translation',

@@ -10,6 +10,21 @@ export interface ItemProgress {
   lastSeen: number;
   /** Epoch ms when the item is due again. */
   due: number;
+  /** Answers per sentence, keyed by index in `sentencesOf` (absent in older progress). */
+  sentences?: Record<number, SentenceProgress>;
+  /** How often each wrong option was chosen. */
+  confusions?: Record<string, number>;
+}
+
+export interface SentenceProgress {
+  seen: number;
+  correct: number;
+  /** Epoch ms of the last answer on this sentence. */
+  lastSeen: number;
+  /** The first answer on this sentence was right: the expression was known, not the sentence. */
+  first: boolean;
+  /** The latest answer on this sentence was right. */
+  last: boolean;
 }
 
 export interface SessionRecord {
@@ -44,6 +59,33 @@ function isItemProgress(v: unknown): v is ItemProgress {
   );
 }
 
+function isSentenceProgress(v: unknown): v is SentenceProgress {
+  return (
+    isObject(v) &&
+    ['seen', 'correct', 'lastSeen'].every((k) => isNum(v[k])) &&
+    typeof v['first'] === 'boolean' &&
+    typeof v['last'] === 'boolean'
+  );
+}
+
+/** The item with malformed `sentences` / `confusions` entries dropped (and empty maps left out). */
+function parseItem(item: ItemProgress): ItemProgress {
+  const { sentences, confusions, ...rest } = item as ItemProgress & Record<string, unknown>;
+  const s = isObject(sentences)
+    ? Object.entries(sentences).filter(
+        ([k, v]) => Number.isInteger(Number(k)) && isSentenceProgress(v),
+      )
+    : [];
+  const c = isObject(confusions)
+    ? Object.entries(confusions).filter(([, n]) => isNum(n) && n > 0)
+    : [];
+  return {
+    ...rest,
+    ...(s.length > 0 && { sentences: Object.fromEntries(s) }),
+    ...(c.length > 0 && { confusions: Object.fromEntries(c) }),
+  };
+}
+
 function isSessionRecord(v: unknown): v is SessionRecord {
   return isObject(v) && ['date', 'total', 'correct'].every((k) => isNum(v[k]));
 }
@@ -61,7 +103,9 @@ export function parseProgress(raw: unknown): ProgressState | null {
   return {
     version: 1,
     items: Object.fromEntries(
-      Object.entries(items).filter((entry): entry is [string, ItemProgress] => isItemProgress(entry[1])),
+      Object.entries(items)
+        .filter((entry): entry is [string, ItemProgress] => isItemProgress(entry[1]))
+        .map(([id, item]) => [id, parseItem(item)]),
     ),
     sessions: sessions.filter(isSessionRecord),
     ...(Array.isArray(merged) && {
@@ -91,15 +135,91 @@ export function mergeProgress(a: ProgressState, b: ProgressState): ProgressState
       continue;
     }
     const newer = theirs.lastSeen > ours.lastSeen ? theirs : ours;
-    items[id] = {
-      ...newer,
-      seen: ours.seen + theirs.seen,
-      correct: ours.correct + theirs.correct,
-      wrong: ours.wrong + theirs.wrong,
-    };
+    items[id] = withDetails(
+      {
+        ...newer,
+        seen: ours.seen + theirs.seen,
+        correct: ours.correct + theirs.correct,
+        wrong: ours.wrong + theirs.wrong,
+      },
+      mergeSentences(ours.sentences ?? {}, theirs.sentences ?? {}),
+      addCounts(ours.confusions ?? {}, theirs.confusions ?? {}, 1),
+    );
   }
   const sessions = [...a.sessions, ...b.sessions].sort((x, y) => x.date - y.date).slice(-MAX_SESSIONS);
   return { version: 1, items, sessions, ...(a.merged && { merged: a.merged }) };
+}
+
+/** `item` with these sentence and confusion maps, left out when empty. */
+function withDetails(
+  item: ItemProgress,
+  sentences: Record<number, SentenceProgress>,
+  confusions: Record<string, number>,
+): ItemProgress {
+  const { sentences: _s, confusions: _c, ...rest } = item;
+  return {
+    ...rest,
+    ...(Object.keys(sentences).length > 0 && { sentences }),
+    ...(Object.keys(confusions).length > 0 && { confusions }),
+  };
+}
+
+/**
+ * Per sentence the counts add up and the newer answer sets `last`; `a` (the account) keeps its
+ * `first`.
+ */
+function mergeSentences(
+  a: Record<number, SentenceProgress>,
+  b: Record<number, SentenceProgress>,
+): Record<number, SentenceProgress> {
+  const result = { ...a };
+  for (const [key, theirs] of Object.entries(b) as unknown as [number, SentenceProgress][]) {
+    const ours = result[key];
+    if (!ours) {
+      result[key] = theirs;
+      continue;
+    }
+    const newer = theirs.lastSeen > ours.lastSeen ? theirs : ours;
+    result[key] = {
+      seen: ours.seen + theirs.seen,
+      correct: ours.correct + theirs.correct,
+      lastSeen: newer.lastSeen,
+      first: ours.first,
+      last: newer.last,
+    };
+  }
+  return result;
+}
+
+/** Sentences answered since `then`, with only the answers since counted. */
+function sentencesSince(
+  now: Record<number, SentenceProgress>,
+  then: Record<number, SentenceProgress>,
+): Record<number, SentenceProgress> {
+  const result: Record<number, SentenceProgress> = {};
+  for (const [key, n] of Object.entries(now) as unknown as [number, SentenceProgress][]) {
+    const t = then[key];
+    if (!t) result[key] = n;
+    else if (n.lastSeen > t.lastSeen) {
+      result[key] = {
+        ...n,
+        seen: Math.max(0, n.seen - t.seen),
+        correct: Math.max(0, n.correct - t.correct),
+      };
+    }
+  }
+  return result;
+}
+
+/** `a` plus (`sign` 1) or minus (`sign` -1) `b` per key; keys that drop to 0 or below are left out. */
+function addCounts(
+  a: Record<string, number>,
+  b: Record<string, number>,
+  sign: 1 | -1,
+): Record<string, number> {
+  const result = { ...a };
+  for (const [key, n] of Object.entries(b)) result[key] = (result[key] ?? 0) + sign * n;
+  return Object.fromEntries(Object.entries(result).filter(([, n]) => n > 0));
 }
 
 const sameSession = (x: SessionRecord, y: SessionRecord) =>
@@ -116,12 +236,16 @@ export function progressSince(current: ProgressState, snapshot: ProgressState): 
     if (!then) {
       items[id] = now;
     } else if (now.lastSeen > then.lastSeen) {
-      items[id] = {
-        ...now,
-        seen: Math.max(0, now.seen - then.seen),
-        correct: Math.max(0, now.correct - then.correct),
-        wrong: Math.max(0, now.wrong - then.wrong),
-      };
+      items[id] = withDetails(
+        {
+          ...now,
+          seen: Math.max(0, now.seen - then.seen),
+          correct: Math.max(0, now.correct - then.correct),
+          wrong: Math.max(0, now.wrong - then.wrong),
+        },
+        sentencesSince(now.sentences ?? {}, then.sentences ?? {}),
+        addCounts(now.confusions ?? {}, then.confusions ?? {}, -1),
+      );
     }
   }
   const sessions = current.sessions.filter(

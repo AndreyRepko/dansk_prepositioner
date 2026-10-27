@@ -23,6 +23,11 @@ import { overview, percent } from '../services/stats';
         <span class="learning" [style.width.%]="pct(ov().learning)"></span>
       </div>
       <p class="muted small">{{ pct(ov().mastered) }}% of {{ ov().total }} expressions mastered</p>
+      @if (ov().mastered > 0) {
+        <p class="muted small" title="Mastered and right in 4, 5 or all 6 different sentences">
+          ★ {{ ov().tiers[0] }} · ★★ {{ ov().tiers[1] }} · ★★★ {{ ov().tiers[2] }}
+        </p>
+      }
     </section>
 
     <section class="card settings">

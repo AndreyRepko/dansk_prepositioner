@@ -6,14 +6,19 @@ export type Category =
   | 'sted'
   | 'faste vendinger';
 
+/** A sentence with exactly one gap written as `___`, and three wrong options for it. */
+export interface Sentence {
+  saetning: string;
+  forkerte: string[];
+}
+
 /** One fixed expression, mirrors an item of `udtryk` in data/praepositioner.json. */
-export interface Expression {
+export interface Expression extends Sentence {
   id: number;
   udtryk: string;
   praeposition: string;
-  /** Sentence with exactly one gap written as `___`. */
-  saetning: string;
-  forkerte: string[];
+  /** More sentences with the same expression (same answer, their own wrong options). */
+  flere_saetninger: Sentence[];
   forklaring: string;
   ukrainsk: string;
   engelsk: string;
@@ -28,3 +33,8 @@ export interface ExpressionFile {
 }
 
 export const GAP = '___';
+
+/** All sentences of an expression; index 0 is `saetning`, progress refers to them by index. */
+export function sentencesOf(e: Expression): Sentence[] {
+  return [{ saetning: e.saetning, forkerte: e.forkerte }, ...(e.flere_saetninger ?? [])];
+}

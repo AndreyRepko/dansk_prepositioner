@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { sentencesOf } from '../models/expression';
 import { emptyProgress, MAX_SESSIONS, ProgressState } from '../models/progress';
 import { seededRng, testExpression, testProgress } from '../testing/fixtures';
 import { ExpressionService } from './expression.service';
@@ -94,7 +95,50 @@ describe('QuizService', () => {
   it('builds a session with 4 options per question', () => {
     expect(quiz.start({ size: 2 })).toBe(2);
     expect(quiz.queue().length).toBe(2);
-    expect([...quiz.current()!.options].sort()).toEqual(['i', 'om', 'på', 'til']);
+    const q = quiz.current()!;
+    expect([...q.options].sort()).toEqual(['på', ...sentencesOf(q.expression)[q.sentence].forkerte].sort());
+  });
+
+  it('asks one of the sentences of the expression, with its own wrong options', () => {
+    quiz.start({ size: 3 });
+    for (const q of quiz.queue()) {
+      expect(sentencesOf(q.expression)[q.sentence].saetning).toBe(q.saetning);
+    }
+  });
+
+  it('records the answer per sentence, with the wrong option chosen', () => {
+    quiz.start({ size: 1 });
+    const q = quiz.current()!;
+    quiz.answer('i');
+    expect(quiz.progress().items[q.expression.id]).toEqual(
+      expect.objectContaining({
+        sentences: { [q.sentence]: expect.objectContaining({ seen: 1, first: false, last: false }) },
+        confusions: { i: 1 },
+      }),
+    );
+    expect(quiz.results()).toEqual([expect.objectContaining({ saetning: q.saetning })]);
+  });
+
+  it('asks another sentence of the same expression next time', () => {
+    const asked = new Set<number>();
+    for (let i = 0; i < 3; i++) {
+      quiz.start({ size: 3 });
+      const q = quiz.queue().find((x) => x.expression.id === 1)!;
+      asked.add(q.sentence);
+      while (!quiz.finished()) {
+        quiz.answer('på');
+        quiz.next();
+      }
+    }
+    expect([...asked].sort()).toEqual([0, 1, 2]);
+  });
+
+  it('asks a retry with the same sentence', () => {
+    quiz.start({ size: 1 });
+    const first = quiz.current()!;
+    quiz.answer('i');
+    quiz.next();
+    expect(quiz.current()).toEqual(expect.objectContaining({ retry: true, sentence: first.sentence }));
   });
 
   it('records a correct first attempt and saves progress', async () => {
